@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Home, BarChartBig, BookText, Landmark, Rss } from 'lucide-react'; // Added Landmark and Rss
+import { Home, BarChartBig, BookText, Landmark, Rss, ClipboardCheck } from 'lucide-react'; // Added Landmark, Rss, ClipboardCheck
 
 export function SidebarNavigation() {
   const pathname = usePathname();
@@ -90,6 +90,21 @@ export function SidebarNavigation() {
             </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
+        
+        {/* Quiz Page Link */}
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            asChild
+            isActive={pathname === '/quiz'}
+            className="w-full justify-start"
+            tooltip="Find Your Provider Quiz"
+          >
+            <Link href="/quiz">
+              <ClipboardCheck className="mr-2 h-4 w-4" />
+              <span>Provider Quiz</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
 
 
         {categories.map((category) => {
@@ -115,7 +130,5 @@ export function SidebarNavigation() {
     </ScrollArea>
   );
 }
-
-    
 
     
