@@ -1,56 +1,103 @@
+
+'use client';
+
 import type { ReactNode } from 'react';
-import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarInset,
-  SidebarTrigger,
-  SidebarFooter,
-} from '@/components/ui/sidebar';
-import { AppLogo } from '@/components/core/AppLogo';
-import { SidebarNavigation } from '@/components/navigation/SidebarNavigation';
+import { useState, useEffect, useCallback } from 'react';
 import { Toaster } from "@/components/ui/toaster";
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
-import { ScrollProgressBar } from '@/components/core/ScrollProgressBar'; // Added
-import { Fab } from '@/components/core/Fab'; // Added
+import { ScrollProgressBar } from '@/components/core/ScrollProgressBar';
+import { Fab } from '@/components/core/Fab'; // Existing FAB
+import Header from '@/components/navigation/Header';
+import Footer from '@/components/navigation/Footer';
+import MobileMenu from '@/components/navigation/MobileMenu';
+import GlobalSearch from '@/components/search/GlobalSearch';
+import { Breadcrumbs as CoreBreadcrumbs } from '@/components/core/Breadcrumbs'; // Renamed to avoid conflict
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
 
 interface MainLayoutProps {
   children: ReactNode;
+  // title and description props are removed as metadata is handled by Next.js App Router pages/layouts
+  showBreadcrumbs?: boolean;
+  breadcrumbItems?: BreadcrumbItem[];
+  className?: string;
 }
 
-export function MainLayout({ children }: MainLayoutProps) {
+export function MainLayout({ 
+  children, 
+  showBreadcrumbs = true,
+  breadcrumbItems = null, // Default to null if not provided
+  className = "" 
+}: MainLayoutProps) {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setSearchOpen(false);
+      setMobileMenuOpen(false);
+    }
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      setSearchOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
+  // If custom breadcrumb items are not provided, don't render breadcrumbs
+  // unless showBreadcrumbs is explicitly true and breadcrumbItems is an empty array (for homepage case perhaps)
+  const shouldShowBreadcrumbs = showBreadcrumbs && breadcrumbItems;
+
+
   return (
-    <SidebarProvider defaultOpen>
-      <ScrollProgressBar /> {/* Added */}
-      <Sidebar>
-        <SidebarHeader className="p-4 border-b">
-          <AppLogo />
-        </SidebarHeader>
-        <SidebarContent className="p-0">
-          <SidebarNavigation />
-        </SidebarContent>
-        <SidebarFooter className="p-4 border-t">
-            <Button variant="outline" size="sm" className="w-full rounded-full" asChild>
-                <Link href="https://firebase.google.com/docs/app-hosting" target="_blank" rel="noopener noreferrer">
-                    Powered by Firebase <ExternalLink className="ml-2 h-3 w-3" />
-                </Link>
-            </Button>
-        </SidebarFooter>
-      </Sidebar>
-      <SidebarInset>
-        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
-          <SidebarTrigger className="md:hidden" />
-          {/* Breadcrumbs or Page Title could go here */}
-        </header>
-        <main className="flex-1 p-4 md:p-6 space-y-6">
+    <>
+      {/* ScrollProgressBar and Toaster are global UI elements */}
+      <ScrollProgressBar />
+      <Toaster />
+
+      <div className="min-h-screen flex flex-col bg-background">
+        <Header 
+          onOpenSearch={() => setSearchOpen(true)}
+          onOpenMobileMenu={() => setMobileMenuOpen(true)}
+        />
+
+        {/* Breadcrumbs - Conditionally rendered */}
+        {shouldShowBreadcrumbs && breadcrumbItems && breadcrumbItems.length > 0 && (
+          <div className="container mx-auto px-4 md:px-6 py-4">
+            <CoreBreadcrumbs items={breadcrumbItems} />
+          </div>
+        )}
+
+        <main className={`flex-1 ${className}`}>
+          {/* Children typically wrapped in a container on the page level */}
           {children}
         </main>
-        <Toaster />
-        <Fab /> {/* Added */}
-      </SidebarInset>
-    </SidebarProvider>
+
+        <Footer />
+        
+        {/* FAB is kept as it's a global floating action button */}
+        <Fab /> 
+
+        <GlobalSearch 
+          isOpen={searchOpen}
+          onClose={() => setSearchOpen(false)}
+        />
+
+        <MobileMenu
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+          onOpenSearch={() => {
+            setMobileMenuOpen(false); // Close menu before opening search
+            setSearchOpen(true);
+          }}
+        />
+      </div>
+    </>
   );
 }

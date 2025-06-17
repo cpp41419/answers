@@ -1,0 +1,87 @@
+
+import Link from 'next/link';
+import { AppLogo } from '@/components/core/AppLogo';
+import { Button } from '@/components/ui/button';
+import { ExternalLink } from 'lucide-react';
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const footerLinks = [
+    {
+      title: 'Navigate',
+      links: [
+        { name: 'Home', href: '/' },
+        { name: 'Provider Quiz', href: '/quiz' },
+        { name: 'Comprehensive Guide', href: '/guide' },
+        { name: 'Regional Guide', href: '/regional-guide' },
+        { name: 'Popular Blogs', href: '/popular-blogs' },
+        { name: 'Data Insights', href: '/data-insights' },
+      ],
+    },
+    {
+      title: 'Resources',
+      links: [
+        { name: 'About Us', href: '/about' }, // Page doesn't exist yet
+        { name: 'Contact', href: '/contact' }, // Page doesn't exist yet
+        { name: 'Privacy Policy', href: '/privacy' }, // Page doesn't exist yet
+        { name: 'Terms of Service', href: '/terms' }, // Page doesn't exist yet
+      ],
+    },
+    {
+      title: 'Categories',
+      links: [
+        { name: 'Course Basics', href: '/questions/course-basics-enrollment' },
+        { name: 'Study Options', href: '/questions/study-options-duration' },
+        { name: 'Licensing', href: '/questions/state-licensing-requirements' },
+        { name: 'Career', href: '/questions/career-employment' },
+      ],
+    },
+  ];
+
+  return (
+    <footer className="border-t border-border bg-background">
+      <div className="container mx-auto px-4 md:px-6 py-12 lg:py-16">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          <div>
+            <AppLogo />
+            <p className="mt-4 text-sm text-muted-foreground max-w-xs">
+              Your independent guide to CPP41419 Certificate IV in Real Estate Practice across Australia.
+            </p>
+             <Button variant="outline" size="sm" className="w-full mt-6 rounded-full max-w-xs" asChild>
+                <a href="https://firebase.google.com/docs/app-hosting" target="_blank" rel="noopener noreferrer">
+                    Powered by Firebase <ExternalLink className="ml-2 h-3 w-3" />
+                </a>
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:col-span-2">
+            {footerLinks.map((section) => (
+              <div key={section.title}>
+                <p className="font-semibold text-foreground">{section.title}</p>
+                <ul className="mt-4 space-y-2 text-sm">
+                  {section.links.map((link) => (
+                    <li key={link.name}>
+                      <Link
+                        href={link.href}
+                        className="text-muted-foreground transition hover:text-primary hover:underline"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 border-t border-border pt-8">
+          <p className="text-center text-xs text-muted-foreground">
+            &copy; {currentYear} CPP41419 Q&A. All rights reserved. Information is for guidance only.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
