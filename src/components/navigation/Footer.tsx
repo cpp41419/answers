@@ -18,6 +18,7 @@ export default function Footer() {
         { name: 'Popular Blogs', href: '/popular-blogs' },
         { name: 'Data Insights', href: '/data-insights' },
         { name: 'Submit a Question', href: '/submit-question' },
+        { name: 'All Questions', href: '/questions' },
       ],
     },
     {
