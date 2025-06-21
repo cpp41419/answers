@@ -143,9 +143,25 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Knowledge Base Section */}
+      <section className="py-16 md:py-20 bg-slate-50 dark:bg-card">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex justify-center mb-12">
+             <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md rotate-1 shadow-md dark:text-gray-800">
+                🔍 Explore Question Categories
+             </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categories.map((category) => (
+              <CategoryCard key={category.slug} category={category} />
+            ))}
+          </div>
+        </div>
+      </section>
       
        {/* Featured Guides Section */}
-      <section className="py-16 md:py-20 bg-slate-50 dark:bg-card border-t">
+      <section className="py-16 md:py-20 bg-background border-t">
          <div className="container mx-auto px-4 md:px-6">
             <div className="flex justify-center mb-12">
               <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md -rotate-1 shadow-md dark:text-gray-800">
@@ -182,7 +198,7 @@ export default function HomePage() {
       </section>
 
       {/* RTO Sale Offer Section */}
-      <section id="sale-offer" className="py-16 md:py-20 text-center bg-background border-t">
+      <section id="sale-offer" className="py-16 md:py-20 text-center bg-slate-50 dark:bg-card border-t">
         <div className="container mx-auto px-4 md:px-6 flex justify-center">
           <Card className="relative group w-full max-w-lg bg-gradient-to-br from-primary to-[hsl(var(--deep-navy))] text-white overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 -rotate-2 hover:rotate-0">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></div>
@@ -221,22 +237,6 @@ export default function HomePage() {
          <p className="mt-6 text-sm text-muted-foreground">
             Are you an RTO? <Link href="https://cpp41419.com.au/logup" className="underline hover:text-primary" target="_blank" rel="noopener noreferrer">Learn about partnership opportunities.</Link>
         </p>
-      </section>
-
-      {/* Knowledge Base Section */}
-      <section className="py-16 md:py-20 bg-slate-50 dark:bg-card border-t">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex justify-center mb-12">
-             <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md rotate-1 shadow-md dark:text-gray-800">
-                🔍 Explore Question Categories
-             </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => (
-              <CategoryCard key={category.slug} category={category} />
-            ))}
-          </div>
-        </div>
       </section>
 
       <FaqSchema questions={allQuestions} />
