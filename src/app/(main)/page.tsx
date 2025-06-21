@@ -2,9 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { CategoryCard } from '@/components/qa/CategoryCard';
 import { categories } from '@/data/categories';
-import { ArrowRight, BookOpen, Map, BarChartBig } from 'lucide-react';
+import { ArrowRight, BookOpen, Map, BarChartBig, Lightbulb, ClipboardCheck, Star } from 'lucide-react';
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { getAllQuestions } from '@/data/questions';
@@ -144,19 +143,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section id="categories" className="py-20 md:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex justify-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md rotate-1 shadow-md dark:text-gray-800">
-              🔍 Explore Question Categories
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => (
-              <CategoryCard key={category.slug} category={category} />
-            ))}
-          </div>
+      {/* RTO Sale Offer Section */}
+      <section id="sale-offer" className="py-20 md:py-24">
+        <div className="container mx-auto px-4 md:px-6 flex justify-center">
+          <Card className="relative group w-full max-w-lg bg-gradient-to-br from-primary to-[hsl(var(--deep-navy))] text-white overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 -rotate-2 hover:rotate-0">
+            <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></div>
+            <div className="absolute bottom-0 left-0 -ml-12 -mb-12 w-48 h-48 rounded-full bg-white/10 group-hover:scale-110 transition-transform duration-500"></div>
+            <CardHeader className="relative z-10">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="p-3 bg-white/20 rounded-lg">
+                  <Star className="h-6 w-6 text-yellow-300" />
+                </span>
+                <CardTitle className="text-2xl font-bold text-white">Exclusive RTO Offer</CardTitle>
+              </div>
+              <CardDescription className="text-primary-foreground/80">
+                Limited time offer from our top-rated providers.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="relative z-10">
+              <p className="text-lg mb-4">
+                Save up to <span className="font-bold text-4xl text-yellow-300">25%</span> on your CPP41419 course fees.
+              </p>
+              <p className="text-primary-foreground/90 text-sm">
+                Take our 2-minute quiz to get matched with participating RTOs and unlock your exclusive discount.
+              </p>
+            </CardContent>
+            <CardFooter className="relative z-10 bg-black/20 p-4">
+              <Button asChild size="lg" className="w-full bg-accent text-accent-foreground font-bold hover:bg-accent/90">
+                <Link href="/quiz">
+                  Find Your Discount
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
       </section>
       
