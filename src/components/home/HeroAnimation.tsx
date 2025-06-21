@@ -31,7 +31,7 @@ export function HeroAnimation() {
     // Apply slow swing to the entire container to make it all swing together
     <div className="flex flex-col items-center gap-1 mb-10 relative animate-slow-swing">
       <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10 relative">
-        <h1 className="text-7xl md:text-9xl font-black uppercase tracking-wide text-primary">
+        <h1 className="text-5xl md:text-6xl font-black uppercase tracking-wide text-primary">
           Find Course
         </h1>
         {/* Attached "wood" card with a border */}
@@ -43,18 +43,18 @@ export function HeroAnimation() {
           </span>
         </div>
       </div>
-      <div className="bg-card rounded-lg px-6 py-3 shadow-2xl transform rotate-1 z-20 -my-5 h-[120px] flex items-center justify-center [perspective:1000px]">
+      <div className="bg-card rounded-lg px-6 py-3 shadow-2xl transform rotate-1 z-20 -my-3 h-[90px] flex items-center justify-center [perspective:1000px]">
         <h2
           key={currentIndex}
-          className="text-6xl md:text-8xl font-black uppercase tracking-wide text-accent animate-flip-in text-center"
+          className="text-4xl md:text-5xl font-black uppercase tracking-wide text-accent animate-flip-in text-center"
         >
           {cyclingWords[currentIndex]}
         </h2>
       </div>
       <div className="bg-card rounded-lg px-6 py-3 shadow-lg z-10">
         <Button asChild variant="link" className="p-0 h-auto hover:no-underline">
-          <Link href="/quiz" className="text-5xl md:text-7xl font-black uppercase tracking-wide text-primary flex items-center gap-2">
-            GET PREPARED <ArrowRight className="h-10 w-10" />
+          <Link href="/quiz" className="text-3xl md:text-4xl font-black uppercase tracking-wide text-primary flex items-center gap-2">
+            GET PREPARED <ArrowRight className="h-8 w-8" />
           </Link>
         </Button>
       </div>

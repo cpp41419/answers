@@ -12,6 +12,7 @@ import MobileMenu from '@/components/navigation/MobileMenu';
 import GlobalSearch from '@/components/search/GlobalSearch';
 import { StateFaqSection } from '@/components/core/StateFaqSection';
 import { AuditCta } from '@/components/core/AuditCta';
+import { NudgeBanner } from '@/components/core/NudgeBanner';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -62,6 +63,7 @@ export function MainLayout({
         <Footer />
         
         <Fab /> 
+        <NudgeBanner />
 
         <GlobalSearch 
           isOpen={searchOpen}
