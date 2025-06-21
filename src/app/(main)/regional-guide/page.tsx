@@ -351,9 +351,9 @@ export default function RegionalGuidePage() {
         </AccordionItem>
       </Accordion>
 
-      <Card className="mt-8 bg-accent/10 border-accent/30 rounded-xl shadow-lg">
+      <Card className="mt-8 bg-muted/50 border-border rounded-xl shadow-lg">
         <CardHeader>
-          <CardTitle className="text-xl flex items-center font-semibold">
+          <CardTitle className="text-xl flex items-center font-semibold text-foreground">
             <Info className="h-5 w-5 mr-2.5 text-primary" />
             Important Considerations
           </CardTitle>

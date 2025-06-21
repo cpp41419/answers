@@ -140,9 +140,9 @@ export default function PopularBlogsPage() {
         </div>
       )}
 
-      <Card className="mt-8 bg-accent/10 border-accent/30 rounded-xl shadow-lg">
+      <Card className="mt-8 bg-muted/50 border-border rounded-xl shadow-lg">
         <CardHeader>
-          <CardTitle className="text-xl flex items-center font-semibold text-accent-foreground dark:text-accent-foreground">
+          <CardTitle className="text-xl flex items-center font-semibold text-foreground">
             Contribute to Our Blog
           </CardTitle>
         </CardHeader>

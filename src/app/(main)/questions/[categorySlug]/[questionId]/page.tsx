@@ -83,9 +83,9 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
       <QuestionDisplay question={question} />
 
       {followUpQuestionsList && followUpQuestionsList.length > 0 && (
-        <Card className="mt-8 bg-accent/10 border border-accent/30 rounded-xl shadow-lg">
+        <Card className="mt-8 bg-muted/50 border-border rounded-xl shadow-lg">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl flex items-center font-semibold">
+            <CardTitle className="text-xl flex items-center font-semibold text-foreground">
               <Sparkles className="h-5 w-5 mr-2.5 text-primary" />
               Further Questions You Might Have
             </CardTitle>
