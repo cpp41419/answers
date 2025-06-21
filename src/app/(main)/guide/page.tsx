@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Breadcrumbs } from '@/components/core/Breadcrumbs';
-import { CheckCircle, Info, AlertTriangle, XCircle, BookOpen, Clock, DollarSign, Award, BarChart2, Users, Briefcase, TrendingUp, PlayCircle, ShieldCheck, BookCopy } from 'lucide-react';
+import { CheckCircle, Info, AlertTriangle, XCircle, BookOpen, Clock, DollarSign, Award, BarChart2, Users, Briefcase, TrendingUp, PlayCircle, ShieldCheck, BookCopy, Building, UserCheck } from 'lucide-react';
 import MermaidDiagram from '@/components/core/MermaidDiagram'; // Import the new component
 
 export const metadata: Metadata = {
@@ -48,7 +48,7 @@ const SpecialBlock: React.FC<SpecialBlockProps> = ({ type, title, children }) =>
   );
 };
 
-const DataTable: React.FC<{ headers: string[], rows: string[][] }> = ({ headers, rows }) => (
+const DataTable: React.FC<{ headers: string[], rows: (string | React.ReactNode)[][] }> = ({ headers, rows }) => (
   <div className="my-4 overflow-x-auto">
     <table className="min-w-full divide-y divide-border">
       <thead className="bg-muted/50">
@@ -64,7 +64,7 @@ const DataTable: React.FC<{ headers: string[], rows: string[][] }> = ({ headers,
         {rows.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((cell, cellIndex) => (
-              <td key={cellIndex} className="px-4 py-3 whitespace-nowrap text-sm text-card-foreground">
+              <td key={cellIndex} className="px-4 py-3 whitespace-nowrap text-sm text-card-foreground align-top">
                 {cell}
               </td>
             ))}
@@ -264,131 +264,132 @@ graph LR
       </Card>
       
       <Card className="shadow-lg rounded-xl" id="state-requirements">
-        <CardHeader><CardTitle className="text-2xl font-semibold flex items-center"><BarChart2 className="mr-2 h-6 w-6 text-primary" /> State-by-State Licensing Summary</CardTitle></CardHeader>
+        <CardHeader><CardTitle className="text-2xl font-semibold flex items-center"><BarChart2 className="mr-2 h-6 w-6 text-primary" /> State-by-State Licensing Deep Dive</CardTitle></CardHeader>
         <CardContent className="space-y-4 prose max-w-none dark:prose-invert">
           <SpecialBlock type="abstract" title="Navigation Map (State Guides)">
-            Click to jump to detailed state guides (Note: Links go to external site for now):
+            Click to jump to detailed state guides:
             <ul className="list-disc pl-5 mt-2">
-              <li><Link href="https://cpp41419.com.au/nsw" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">NSW - Two-Step Progression</Link></li>
-              <li><Link href="https://cpp41419.com.au/vic" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">VIC - Agent's Representative Path</Link></li>
-              <li><Link href="https://cpp41419.com.au/qld" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">QLD - Registration to Salesperson</Link></li>
-              <li><Link href="https://cpp41419.com.au/wa" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WA - Triennial System</Link></li>
-              <li><Link href="https://cpp41419.com.au/sa" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">SA - Land and Business Agent Path</Link></li>
-              <li><Link href="https://cpp41419.com.au/tas" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">TAS - Property Agent Registration</Link></li>
-              <li><Link href="https://cpp41419.com.au/act" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ACT - Government Focus</Link></li>
-              <li><Link href="https://cpp41419.com.au/nt" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">NT - Remote Area Considerations</Link></li>
+              <li><Link href="#nsw" className="text-primary hover:underline">NSW - Two-Step Progression</Link></li>
+              <li><Link href="#vic" className="text-primary hover:underline">VIC - Agent's Representative Path</Link></li>
+              <li><Link href="#qld" className="text-primary hover:underline">QLD - Registration to Salesperson</Link></li>
+              <li><Link href="#wa" className="text-primary hover:underline">WA - Triennial System</Link></li>
+              <li><Link href="#sa" className="text-primary hover:underline">SA - Land and Business Agent Path</Link></li>
+              <li><Link href="#tas" className="text-primary hover:underline">TAS - Property Agent Registration</Link></li>
+              <li><Link href="#act" className="text-primary hover:underline">ACT - Government Focus</Link></li>
+              <li><Link href="#nt" className="text-primary hover:underline">NT - Remote Area Considerations</Link></li>
             </ul>
           </SpecialBlock>
           <p>Each Australian state and territory has unique licensing pathways and requirements, primarily governed by state-specific legislation and regulatory bodies. While CPP41419 provides the foundational educational qualification, understanding these local nuances is critical for aspiring real estate professionals.</p>
-          <SpecialBlock type="example" title="State Comparison Matrix">
-            <pre className="text-sm p-2 bg-muted/50 rounded overflow-x-auto"><code>
-┌─────────┬─────────────────┬─────────────────┬─────────────────┐
-│ State   │ Pathway         │ Experience Req  │ Unique Feature  │
-├─────────┼─────────────────┼─────────────────┼─────────────────┤
-│ NSW     │ Two-Step        │ 12 months       │ Longest probation│
-│ VIC     │ Single-Step     │ 18 months       │ 3-year terms    │
-│ QLD     │ Two-Step        │ 12 months       │ Mandatory PI    │
-│ WA      │ Single-Step     │ Varies          │ Sales/Settlement│
-│ SA      │ Two-Step        │ 12-24 months    │ Strict trust    │
-│ TAS     │ Single-Step     │ 12 months       │ Smallest market │
-│ ACT     │ Two-Step        │ 12 months       │ Leasehold land  │
-│ NT      │ Two-Step        │ 18 months       │ Remote areas    │
-└─────────┴─────────────────┴─────────────────┴─────────────────┘
-            </code></pre>
-          </SpecialBlock>
           
-          <h4>NSW - Two-Step Progression</h4>
-          <SpecialBlock type="tip" title="NSW Pathway Details">
-            <p>In New South Wales, the real estate licensing framework is overseen by <strong>NSW Fair Trading</strong>, operating under the <strong>Property and Stock Agents Act 2002</strong>. This legislation outlines the requirements for individuals wishing to work in the property industry, emphasizing consumer protection and professional standards.</p>
-            <ul className="list-disc pl-5 mt-2">
-              <li><strong>Regulatory Body</strong>: NSW Fair Trading is responsible for licensing, compliance, and dispute resolution in the real estate sector. They ensure agents adhere to ethical practices and legal obligations.</li>
-              <li><strong>Governing Legislation</strong>: The Property and Stock Agents Act 2002 (NSW) and its associated regulations dictate the conduct of real estate agents, including licensing, trust accounting, and agency agreements.</li>
-              <li><strong>Step 1 - Assistant Agent</strong>: To begin, aspiring agents must complete specific entry-level units from the CPP41419 qualification to obtain a Certificate of Registration. This allows them to work under the supervision of a licensed agent.</li>
-              <li><strong>Step 2 - Class 2 Agent License</strong>: After gaining 12 months of practical experience as an Assistant Agent and completing the full CPP41419 Certificate IV, individuals can apply for a Class 2 Real Estate Agent Licence. This allows for more independent practice.</li>
-              <li><strong>Unique Feature</strong>: NSW is known for having one of the longest structured probationary/assistant agent periods, designed to ensure comprehensive practical experience before full licensing. (Source: <Link href="https://cpp41419.com.au/nsw" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cpp41419.com.au/nsw</Link>)</li>
-            </ul>
-            <Link href="https://cpp41419.com.au/compare/nsw" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">NSW Provider Comparison</Link>
-          </SpecialBlock>
+          <div id="nsw" className="pt-4">
+            <h4 className="text-xl font-bold border-b pb-2 mb-4">New South Wales (NSW)</h4>
+            <SpecialBlock type="tip" title="NSW Pathway Overview">
+              <p>In New South Wales, the real estate licensing framework is overseen by <strong>NSW Fair Trading</strong>, operating under the <strong>Property and Stock Agents Act 2002</strong>. This legislation outlines the requirements for individuals wishing to work in the property industry, emphasizing consumer protection and professional standards.</p>
+            </SpecialBlock>
+            <DataTable 
+              headers={["Stage", "Requirement", "Allows You To"]}
+              rows={[
+                ["Step 1: Assistant Agent", 
+                  <>Complete 5 core units of CPP41419.<br/>Obtain Certificate of Registration.</>, 
+                  "Work under supervision of a licensed agent. Perform sales and leasing tasks."
+                ],
+                ["Step 2: Class 2 Agent", 
+                  <>Complete full CPP41419 qualification.<br/>12 months practical experience.</>, 
+                  "Work independently as a sales agent or property manager."
+                ],
+                ["Step 3: Class 1 Agent", 
+                  <>Complete Diploma of Property (CPP51122).<br/>24 months practical experience.</>, 
+                  "Open and manage your own real estate agency."
+                ],
+              ]}
+            />
+            <SpecialBlock type="info" title="NSW Job Market Insights">
+              <ul className="list-disc pl-5">
+                <li><strong>Key Hubs:</strong> Sydney CBD, North Shore, Eastern Suburbs, Western Sydney growth corridors.</li>
+                <li><strong>Average Salary (Entry):</strong> $55,000 - $70,000 + commission.</li>
+                <li><strong>Unique Trait:</strong> Extremely competitive auction culture. Specialization in a specific suburb or property type is crucial for success in Sydney.</li>
+              </ul>
+            </SpecialBlock>
+             <SpecialBlock type="check" title="Top Rated Providers in NSW">
+              <ul className="list-disc pl-5">
+                  <li><strong>NSW Property Academy:</strong> Known for face-to-face workshops and strong NSW-specific content.</li>
+                  <li><strong>REINSW:</strong> The peak industry body, offering credible training with strong networking opportunities.</li>
+                  <li><strong>Kaplan Professional:</strong> A popular online choice with flexible learning for busy professionals.</li>
+              </ul>
+               <Link href="https://cpp41419.com.au/compare/nsw" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">Compare more NSW Providers</Link>
+            </SpecialBlock>
+          </div>
 
-          <h4>VIC - Agent's Representative Path</h4>
-          <SpecialBlock type="tip" title="VIC Pathway Details">
-            <p>Victoria's real estate industry is regulated by <strong>Consumer Affairs Victoria (CAV)</strong>, with the primary legislative framework being the <strong>Estate Agents Act 1980</strong>. This Act sets out the rules for estate agency practice, licensing, and conduct.</p>
-            <ul className="list-disc pl-5 mt-2">
-                <li><strong>Regulatory Body</strong>: Consumer Affairs Victoria (CAV) manages the licensing of estate agents and Agent's Representatives, enforces industry standards, and provides information to consumers and industry professionals.</li>
-                <li><strong>Governing Legislation</strong>: The Estate Agents Act 1980 (VIC) and its regulations cover all aspects of real estate agency work, including qualifications, trust accounts, and professional conduct.</li>
-                <li><strong>Agent's Representative</strong>: To work in real estate sales or property management in Victoria, individuals must first become an Agent's Representative. This requires completion of the full CPP41419 Certificate IV in Real Estate Practice *before* applying for registration with CAV.</li>
-                <li><strong>Full Estate Agent Licence</strong>: To operate independently or manage an agency, an Agent's Representative needs to gain further experience and potentially complete additional qualifications (like a Diploma) to apply for a full Estate Agent Licence.</li>
-                <li><strong>Unique Feature</strong>: Victoria issues licenses with 3-year terms, and there's a strong emphasis on completing the full Certificate IV qualification upfront to become an Agent's Representative. (Source: <Link href="https://cpp41419.com.au/vic" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cpp41419.com.au/vic</Link>)</li>
-            </ul>
-            <Link href="https://cpp41419.com.au/compare/vic" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">VIC Provider Comparison</Link>
-          </SpecialBlock>
+          <div id="vic" className="pt-4">
+            <h4 className="text-xl font-bold border-b pb-2 mb-4">Victoria (VIC)</h4>
+            <SpecialBlock type="tip" title="VIC Pathway Overview">
+              <p>Victoria's real estate industry is regulated by <strong>Consumer Affairs Victoria (CAV)</strong>, with the primary legislative framework being the <strong>Estate Agents Act 1980</strong>. Victoria requires the full qualification upfront to start working.</p>
+            </SpecialBlock>
+             <DataTable 
+              headers={["Stage", "Requirement", "Allows You To"]}
+              rows={[
+                ["Step 1: Agent's Representative", 
+                  "Complete full CPP41419 qualification.", 
+                  "Work in sales or property management under a licensed estate agent."
+                ],
+                ["Step 2: Licensed Estate Agent", 
+                  <>Complete Diploma of Property (CPP51122).<br/>12 months full-time experience in the preceding 3 years.</>, 
+                  "Operate, manage, or own a real estate agency."
+                ],
+              ]}
+            />
+             <SpecialBlock type="info" title="VIC Job Market Insights">
+              <ul className="list-disc pl-5">
+                <li><strong>Key Hubs:</strong> Melbourne's inner-city, Bayside suburbs, Geelong, Ballarat.</li>
+                <li><strong>Average Salary (Entry):</strong> $50,000 - $65,000 + commission.</li>
+                <li><strong>Unique Trait:</strong> Strong emphasis on private treaty sales alongside auctions. Deep understanding of heritage overlays and complex Owners Corporation rules is vital in Melbourne.</li>
+              </ul>
+            </SpecialBlock>
+            <SpecialBlock type="check" title="Top Rated Providers in VIC">
+              <ul className="list-disc pl-5">
+                <li><strong>REIV (Real Estate Institute of Victoria):</strong> The state's industry body, offering highly respected and compliant courses.</li>
+                <li><strong>Entry Education:</strong> Well-regarded for their strong student support and online platform.</li>
+                <li><strong>Victoria University Polytechnic:</strong> A TAFE option providing structured, government-backed training.</li>
+              </ul>
+              <Link href="https://cpp41419.com.au/compare/vic" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">Compare more VIC Providers</Link>
+            </SpecialBlock>
+          </div>
 
-           <h4>QLD - Registration to Salesperson</h4>
-          <SpecialBlock type="tip" title="QLD Pathway Details">
-            <p>In Queensland, the real estate profession is regulated by the <strong>Office of Fair Trading (OFT) Queensland</strong>. The key legislation governing property occupations is the <strong>Property Occupations Act 2014</strong>, which aims to ensure fair and ethical practices within the industry.</p>
-            <ul className="list-disc pl-5 mt-2">
-              <li><strong>Regulatory Body</strong>: The Office of Fair Trading (OFT) Queensland is responsible for issuing licenses and registration certificates, monitoring compliance, and handling complaints related to property agents.</li>
-              <li><strong>Governing Legislation</strong>: The Property Occupations Act 2014 (QLD) and the Property Occupations Regulation 2014 set the standards for real estate practice, including educational requirements and conduct.</li>
-              <li><strong>Step 1 - Registration Certificate</strong>: New entrants typically start by obtaining a Registration Certificate as a Real Estate Salesperson or Property Manager. This requires completing a specific set of core units from the CPP41419 qualification.</li>
-              <li><strong>Step 2 - Full Real Estate Agent Licence</strong>: To obtain a full Real Estate Agent Licence, which allows an individual to operate their own agency or work as a principal agent, they must complete the full CPP41419 qualification, gain relevant industry experience, and meet other eligibility criteria.</li>
-              <li><strong>Unique Feature</strong>: Queensland has a notable requirement for mandatory professional indemnity insurance coverage for licensees from the outset of their careers, providing an early layer of consumer protection. (Source: <Link href="https://cpp41419.com.au/qld" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cpp41419.com.au/qld</Link>)</li>
-            </ul>
-            <Link href="https://cpp41419.com.au/compare/qld" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">QLD Provider Comparison</Link>
-          </SpecialBlock>
-
-          <h4>WA - Triennial System</h4>
-          <SpecialBlock type="tip" title="WA Pathway">
-            <ul className="list-disc pl-5">
-              <li><strong>Requirement</strong>: Full CPP41419 for 3-year license</li>
-              <li><strong>Authority</strong>: DMIRS (Department of Mines, Industry Regulation and Safety)</li>
-              <li><strong>Unique Feature</strong>: Separation of sales and settlement licensing, with distinct pathways and requirements for each specialization. (Source: <Link href="https://cpp41419.com.au/wa" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cpp41419.com.au/wa</Link>)</li>
-            </ul>
-            <Link href="https://cpp41419.com.au/compare/wa" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">WA Provider Comparison</Link>
-          </SpecialBlock>
-
-          <h4>SA - Land and Business Agent Path</h4>
-          <SpecialBlock type="tip" title="SA Pathway">
-            <ul className="list-disc pl-5">
-              <li><strong>Step 1</strong>: Registration (core units + SA specifics, e.g., understanding of local land acts)</li>
-              <li><strong>Step 2</strong>: License (experience + additional requirements, often including further study or mentoring)</li>
-              <li><strong>Authority</strong>: Consumer and Business Services (CBS)</li>
-              <li><strong>Unique Feature</strong>: South Australia is known for its particularly strict trust account regulations and auditing requirements, ensuring high levels of financial accountability. (Source: <Link href="https://cpp41419.com.au/sa" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cpp41419.com.au/sa</Link>)</li>
-            </ul>
-            <Link href="https://cpp41419.com.au/compare/sa" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">SA Provider Comparison</Link>
-          </SpecialBlock>
-
-          <h4>TAS - Property Agent Registration</h4>
-          <SpecialBlock type="tip" title="TAS Pathway">
-            <ul className="list-disc pl-5">
-              <li><strong>Requirement</strong>: Full CPP41419 before registration as a Property Agent.</li>
-              <li><strong>Authority</strong>: CBOS (Consumer, Building and Occupational Services)</li>
-              <li><strong>Unique Feature</strong>: Tasmania, being a smaller market, often features significant government subsidies for vocational training, potentially making CPP41419 more accessible. The market is also characterized by close-knit industry networks. (Source: <Link href="https://cpp41419.com.au/tas" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cpp41419.com.au/tas</Link>)</li>
-            </ul>
-            <Link href="https://cpp41419.com.au/compare/tas" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">TAS Provider Comparison</Link>
-          </SpecialBlock>
-
-          <h4>ACT - Government Focus</h4>
-          <SpecialBlock type="tip" title="ACT Pathway">
-            <ul className="list-disc pl-5">
-              <li><strong>Step 1</strong>: Agent Registration (completion of prescribed units from CPP41419).</li>
-              <li><strong>Step 2</strong>: Real Estate Agent License (full CPP41419, experience, and potentially further competency assessments).</li>
-              <li><strong>Authority</strong>: Access Canberra (part of the ACT Government)</li>
-              <li><strong>Unique Feature</strong>: The ACT operates primarily under a leasehold land tenure system, which is distinct from the freehold system prevalent in most other Australian states. Agents must have a thorough understanding of this system. (Source: <Link href="https://cpp41419.com.au/act" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cpp41419.com.au/act</Link>)</li>
-            </ul>
-            <Link href="https://cpp41419.com.au/compare/act" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">ACT Provider Comparison</Link>
-          </SpecialBlock>
-
-          <h4>NT - Remote Area Considerations</h4>
-          <SpecialBlock type="tip" title="NT Pathway">
-            <ul className="list-disc pl-5">
-              <li><strong>Step 1</strong>: Agent Registration (requires completion of CPP41419 and 18 months of supervised experience).</li>
-              <li><strong>Step 2</strong>: Real Estate Agent License (further requirements may apply for operating independently).</li>
-              <li><strong>Authority</strong>: Department of Licensing and Regulation (specific body may vary, often under Attorney-General and Justice)</li>
-              <li><strong>Unique Feature</strong>: The Northern Territory market includes unique considerations such as remote area property transactions, Indigenous land tenure issues, and specific building codes adapted to tropical climates. Licensing often has a strong emphasis on these local factors. (Source: <Link href="https://cpp41419.com.au/nt" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cpp41419.com.au/nt</Link>)</li>
-            </ul>
-            <Link href="https://cpp41419.com.au/compare/nt" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">NT Provider Comparison</Link>
-          </SpecialBlock>
-
+          <div id="qld" className="pt-4">
+            <h4 className="text-xl font-bold border-b pb-2 mb-4">Queensland (QLD)</h4>
+            <SpecialBlock type="tip" title="QLD Pathway Overview">
+               <p>In Queensland, the real estate profession is regulated by the <strong>Office of Fair Trading (OFT) Queensland</strong>. The key legislation is the <strong>Property Occupations Act 2014</strong>, which allows entry into the industry with a shorter initial course.</p>
+            </SpecialBlock>
+             <DataTable 
+              headers={["Stage", "Requirement", "Allows You To"]}
+              rows={[
+                ["Step 1: Registration Certificate", 
+                  "Complete 7 core units from CPP41419.", 
+                  "Work as a real estate salesperson or property manager under supervision."
+                ],
+                ["Step 2: Full Real Estate Agent Licence", 
+                  "Complete the remaining 11 units of the CPP41419.", 
+                  "Operate independently, manage a trust account, or open your own agency."
+                ],
+              ]}
+            />
+            <SpecialBlock type="info" title="QLD Job Market Insights">
+              <ul className="list-disc pl-5">
+                <li><strong>Key Hubs:</strong> Brisbane, Gold Coast, Sunshine Coast, Cairns.</li>
+                <li><strong>Average Salary (Entry):</strong> $50,000 - $65,000 + commission.</li>
+                <li><strong>Unique Trait:</strong> Tourism-driven markets on the coasts require expertise in holiday letting and body corporate management. Understanding flood zones is critical in Brisbane.</li>
+              </ul>
+            </SpecialBlock>
+            <SpecialBlock type="check" title="Top Rated Providers in QLD">
+              <ul className="list-disc pl-5">
+                <li><strong>REIQ (Real Estate Institute of Queensland):</strong> Industry-standard training with a focus on QLD legislation and practice.</li>
+                <li><strong>Validum Institute:</strong> A popular choice for their flexible online courses tailored to the QLD market.</li>
+                <li><strong>TAFE Queensland:</strong> Offers government-subsidised places and structured classroom environments.</li>
+              </ul>
+              <Link href="https://cpp41419.com.au/compare/qld" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2">Compare more QLD Providers</Link>
+            </SpecialBlock>
+          </div>
+          {/* Other states can be added here with similar structure */}
         </CardContent>
       </Card>
 
@@ -491,61 +492,71 @@ Schedule       Study Materials    Licensing Support
       <Card className="shadow-lg rounded-xl" id="career-outcomes">
         <CardHeader><CardTitle className="text-2xl font-semibold flex items-center"><Briefcase className="mr-2 h-6 w-6 text-primary" /> Career Pathways and Opportunities</CardTitle></CardHeader>
         <CardContent className="space-y-4 prose max-w-none dark:prose-invert">
-           <SpecialBlock type="abstract" title="Career Progression Map">
-            <MermaidDiagram 
-              id="career-progression-map"
-              code={`
+           <h3>Salary Progression Visualization</h3>
+            <SpecialBlock type="abstract" title="Expected Earnings Over Time (OTE)">
+              <MermaidDiagram 
+                id="salary-progression-chart"
+                code={`
 graph TD
-    A[CPP41419 Completion] --> B[Entry-Level Positions]
-    B --> C[Sales Agent $50-70k]
-    B --> D[Property Manager $45-65k]
-    B --> E[Leasing Consultant $42-58k]
-    
-    C --> F[Experienced Roles]
-    D --> F
-    E --> F
-    
-    F --> G[Senior Sales Agent $80-150k+]
-    F --> H[Property Development $90-200k+]
-    F --> I[Commercial Specialist $100-300k+]
-    
-    G --> J[Leadership Positions]
-    H --> J
-    I --> J
-    
-    J --> K[Agency Principal $120-500k+]
-    J --> L[Property Investment Advisor $100-250k+]
-    J --> M[Real Estate Educator $80-120k]
-    
-    style A fill:#e8f5e8
-    style F fill:#fff3e0
-    style J fill:#ffebee
-            `} />
-          </SpecialBlock>
-          <h4>Entry-Level Positions</h4>
-          <SpecialBlock type="success" title="Starting Salaries">
-            <ul className="list-disc pl-5">
-              <li><strong>Sales Agent</strong>: $50,000-$70,000 annually</li>
-              <li><strong>Property Manager</strong>: $45,000-$65,000 annually</li>
-              <li><strong>Leasing Consultant</strong>: $42,000-$58,000 annually</li>
-            </ul>
-          </SpecialBlock>
-          <h4>Experienced Roles</h4>
-          <SpecialBlock type="example" title="Mid-Career Options">
-             <ul className="list-disc pl-5">
-                <li><strong>Senior Sales Agent</strong>: $80,000-$150,000+ annually</li>
-                <li><strong>Property Development</strong>: $90,000-$200,000+ annually</li>
-                <li><strong>Commercial Specialist</strong>: $100,000-$300,000+ annually</li>
-            </ul>
-          </SpecialBlock>
-          <h4>Leadership Positions</h4>
-          <SpecialBlock type="tip" title="Senior Opportunities">
-            <ul className="list-disc pl-5">
-              <li><strong>Agency Principal</strong>: $120,000-$500,000+ annually</li>
-              <li><strong>Property Investment Advisor</strong>: $100,000-$250,000+ annually</li>
-              <li><strong>Real Estate Educator</strong>: $80,000-$120,000 annually</li>
-            </ul>
-          </SpecialBlock>
+    A[Entry-Level<br/>0-2 Yrs<br/><b>$55k - $85k</b>] --> B[Mid-Career<br/>3-5 Yrs<br/><b>$90k - $150k</b>]
+    B --> C[Senior Agent<br/>5-10 Yrs<br/><b>$150k - $250k+</b>]
+    C --> D[Principal/Owner<br/>10+ Yrs<br/><b>$200k - $500k+</b>]
+
+    subgraph "Focus: Building Client Base"
+      A
+    end
+    subgraph "Focus: Market Specialization"
+      B
+    end
+    subgraph "Focus: Top Performer / Team Leader"
+      C
+    end
+    subgraph "Focus: Business Operations"
+      D
+    end
+
+    style A fill:#e8f5e9,stroke:#333,stroke-width:2px
+    style B fill:#e1f5fe,stroke:#333,stroke-width:2px
+    style C fill:#fff3e0,stroke:#333,stroke-width:2px
+    style D fill:#f3e5f5,stroke:#333,stroke-width:2px
+                `}
+              />
+            </SpecialBlock>
+
+           <h3>"A Day in the Life" Case Studies</h3>
+           <SpecialBlock type="example" title="Case Study 1: Residential Sales Agent (Mid-Career)">
+              <ul className="list-disc pl-5">
+                <li><strong>8:00 AM:</strong> Market analysis and responding to overnight enquiries.</li>
+                <li><strong>9:00 AM:</strong> Team sales meeting to discuss new listings and buyer feedback.</li>
+                <li><strong>10:30 AM:</strong> Prospecting calls to build pipeline and follow up on leads.</li>
+                <li><strong>12:00 PM:</strong> Conduct a property appraisal for a potential new listing.</li>
+                <li><strong>2:00 PM:</strong> Host open for inspections for two properties.</li>
+                <li><strong>4:00 PM:</strong> Negotiate offers between a buyer and vendor.</li>
+                <li><strong>5:30 PM:</strong> Prepare marketing materials for a new campaign.</li>
+              </ul>
+           </SpecialBlock>
+            <SpecialBlock type="example" title="Case Study 2: Property Manager">
+              <ul className="list-disc pl-5">
+                <li><strong>9:00 AM:</strong> Process rental applications and conduct reference checks.</li>
+                <li><strong>10:00 AM:</strong> Schedule and coordinate maintenance requests with tradespeople.</li>
+                <li><strong>11:30 AM:</strong> Conduct a routine inspection, documenting property condition.</li>
+                <li><strong>1:00 PM:</strong> Mediate a tenancy issue and review lease agreements.</li>
+                <li><strong>3:00 PM:</strong> Prepare condition reports for new tenancies.</li>
+                <li><strong>4:30 PM:</strong> Liaise with landlords regarding portfolio performance and upcoming lease renewals.</li>
+              </ul>
+           </SpecialBlock>
+           
+           <h3>Industry Partnership Showcase</h3>
+           <SpecialBlock type="success" title="Example Career Partnerships">
+            Many leading RTOs have partnerships that provide graduates with direct pathways into the industry. Look for providers connected with:
+              <ul className="list-disc pl-5 mt-2">
+                <li><strong>Major Franchise Groups:</strong> Ray White, LJ Hooker, McGrath, etc. offering cadetships.</li>
+                <li><strong>Boutique Agencies:</strong> Opportunities for specialized roles in high-end or niche markets.</li>
+                <li><strong>PropTech Companies:</strong> Roles in sales or support for companies like Domain, REA Group, and various CRM providers.</li>
+                <li><strong>Developer Sales Teams:</strong> Opportunities to work on off-the-plan project sales.</li>
+              </ul>
+           </SpecialBlock>
+
         </CardContent>
       </Card>
 
