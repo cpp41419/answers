@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -35,7 +34,7 @@ const FeaturedGuideCard = ({
   rotationClass: string;
 }) => (
     <Card className={cn(
-        "flex flex-col h-full bg-amber-100/80 dark:bg-amber-900/30 text-gray-800 dark:text-gray-200 border-amber-200 dark:border-amber-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-105",
+        "flex flex-col h-full bg-amber-100/80 dark:bg-amber-900/30 text-gray-800 dark:text-gray-200 border-amber-200 dark:border-amber-800/50 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-105",
         rotationClass
       )}>
       <CardHeader>
@@ -52,10 +51,10 @@ const FeaturedGuideCard = ({
                 <TabsTrigger value="info">Info</TabsTrigger>
                 <TabsTrigger value="faqs">FAQs</TabsTrigger>
             </TabsList>
-            <TabsContent value="info" className="pt-4 text-sm text-gray-700 dark:text-gray-300 flex-grow">
+            <TabsContent value="info" className="pt-3 text-sm text-gray-700 dark:text-gray-300 flex-grow">
                 {infoContent}
             </TabsContent>
-            <TabsContent value="faqs" className="pt-4 flex-grow max-h-[150px] overflow-y-auto">
+            <TabsContent value="faqs" className="pt-3 flex-grow max-h-[150px] overflow-y-auto">
                 <ul className="space-y-3 text-sm">
                     {relatedFaqs.length > 0 ? (
                         relatedFaqs.slice(0, 4).map((faq) => ( // limit to 4 FAQs
@@ -73,7 +72,7 @@ const FeaturedGuideCard = ({
             </TabsContent>
         </Tabs>
       </CardContent>
-      <CardFooter className="mt-auto border-t border-amber-300/50 dark:border-amber-700/50 pt-4">
+      <CardFooter className="mt-auto border-t border-amber-300/50 dark:border-amber-700/50 pt-3">
         <Button asChild variant="ghost" className="w-full text-gray-800 dark:text-gray-200 hover:bg-amber-200/80 dark:hover:bg-amber-800/50">
           <Link href={href}>
             Read Full Guide <ArrowRight className="ml-2 h-4 w-4" />
@@ -101,7 +100,7 @@ export default function HomePage() {
   return (
     <div className="bg-background">
       {/* Hero Section */}
-      <section className="py-20 md:py-28 bg-[hsl(var(--deep-navy))]">
+      <section className="py-16 md:py-24 bg-[hsl(var(--deep-navy))]">
         <div className="container mx-auto px-4 md:px-6 text-center">
           
           <div className="flex flex-col items-center gap-1 mb-10 relative">
@@ -124,7 +123,7 @@ export default function HomePage() {
             </div>
           </div>
           
-          <p className="max-w-3xl mx-auto text-lg text-primary-foreground/80 my-12">
+          <p className="max-w-3xl mx-auto text-lg text-primary-foreground/80 my-10">
             Australia’s only independent platform protecting students from poor training decisions. Get matched with verified providers through our anonymous evaluation system - no marketing pressure, just honest assessment.
           </p>
 
@@ -146,14 +145,14 @@ export default function HomePage() {
       </section>
       
        {/* Featured Guides Section */}
-      <section className="py-20 md:py-24 bg-slate-50 dark:bg-card border-t">
+      <section className="py-16 md:py-20 bg-slate-50 dark:bg-card border-t">
          <div className="container mx-auto px-4 md:px-6">
             <div className="flex justify-center mb-12">
               <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md -rotate-1 shadow-md dark:text-gray-800">
                   📘 In-Depth Resources
               </h2>
             </div>
-            <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
                <FeaturedGuideCard 
                   icon={<BookOpen className="h-6 w-6" />}
                   title="Comprehensive Guide"
@@ -183,7 +182,7 @@ export default function HomePage() {
       </section>
 
       {/* RTO Sale Offer Section */}
-      <section id="sale-offer" className="py-20 md:py-24 text-center bg-background border-t">
+      <section id="sale-offer" className="py-16 md:py-20 text-center bg-background border-t">
         <div className="container mx-auto px-4 md:px-6 flex justify-center">
           <Card className="relative group w-full max-w-lg bg-gradient-to-br from-primary to-[hsl(var(--deep-navy))] text-white overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 -rotate-2 hover:rotate-0">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></div>
@@ -225,7 +224,7 @@ export default function HomePage() {
       </section>
 
       {/* Knowledge Base Section */}
-      <section className="py-20 md:py-24 bg-slate-50 dark:bg-card border-t">
+      <section className="py-16 md:py-20 bg-slate-50 dark:bg-card border-t">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-center mb-12">
              <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md rotate-1 shadow-md dark:text-gray-800">
