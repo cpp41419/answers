@@ -9,7 +9,7 @@ const cyclingWords = ['ANSWERS', 'QUESTIONS', 'FINAL EXAM 2025'];
 
 export function HeroAnimation() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [bannerPositions, setBannerPositions] = useState<{ top: string; left: string; transform: string }[]>([]);
+  const [bannerPositions, setBannerPositions] = useState<{ text: string, top: string; left: string; transform: string }[]>([]);
 
   useEffect(() => {
     const mainInterval = setInterval(() => {
@@ -17,10 +17,12 @@ export function HeroAnimation() {
     }, 2500);
 
     // Generate positions for the banners on the client side to avoid hydration mismatch.
-    const positions = Array.from({ length: 6 }).map((_, i) => ({
-        top: '-0.75rem',
-        left: `${5 + i * 15 + (Math.random() * 5 - 2.5)}%`,
-        transform: `rotate(${Math.random() * 20 - 10}deg)`,
+    const bannerWords = ['Guides', 'Licensing', 'Careers', 'RTOs'];
+    const positions = bannerWords.map((word, i) => ({
+      text: word,
+      top: '-0.75rem',
+      left: `${5 + i * 22 + (Math.random() * 4 - 2)}%`, // Adjusted spacing for 4 items
+      transform: `rotate(${Math.random() * 20 - 10}deg)`,
     }));
     setBannerPositions(positions);
 
@@ -33,13 +35,13 @@ export function HeroAnimation() {
     // Apply slow swing to the entire container to make it all swing together
     <div className="flex flex-col items-center gap-1 mb-10 relative animate-slow-swing">
       <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10 relative">
-        {bannerPositions.map((pos, index) => (
+        {bannerPositions.map((banner, index) => (
             <div 
                 key={index}
                 className="absolute bg-amber-800 text-white text-xs font-bold uppercase py-1 px-2 rounded-sm shadow-lg border-2 border-amber-900/50"
-                style={{ top: pos.top, left: pos.left, transform: pos.transform }}
+                style={{ top: banner.top, left: banner.left, transform: banner.transform }}
             >
-                CAREER GUIDES
+                {banner.text}
             </div>
         ))}
         <h1 className="text-6xl md:text-7xl font-black uppercase tracking-wide text-primary">
