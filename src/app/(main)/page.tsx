@@ -38,12 +38,12 @@ export default function HomePage() {
   return (
     <div className="bg-background">
       {/* Hero Section */}
-      <section className="py-20 md:py-28 bg-slate-50 dark:bg-card border-b">
+      <section className="py-20 md:py-28 bg-[hsl(var(--deep-navy))]">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary-foreground mb-4">
             Australia's Largest CPP41419 Q&A Resource
           </h1>
-          <p className="max-w-3xl mx-auto text-lg text-muted-foreground mb-8">
+          <p className="max-w-3xl mx-auto text-lg text-primary-foreground/80 mb-8">
             Your independent, community-driven guide to the Certificate IV in Real Estate Practice. Find answers, ask questions, and get expert insights.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -53,7 +53,7 @@ export default function HomePage() {
                 Submit a Question
               </Link>
             </Button>
-            <Button size="lg" variant="secondary" asChild>
+            <Button size="lg" variant="ghost" className="hover:bg-primary-foreground/10 text-primary-foreground" asChild>
               <Link href="#categories">
                 Explore Categories <ArrowRight className="ml-2" />
               </Link>
