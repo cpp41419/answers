@@ -233,6 +233,7 @@ timeline
              <strong>Delivery</strong>: Online, classroom, or blended learning options<br/>
              <strong>Assessment</strong>: Project-based assignments (no exams)
           </SpecialBlock>
+
           <h4>Core Units (Mandatory for All Students)</h4>
           <MermaidDiagram 
             id="core-unit-map"
@@ -244,23 +245,55 @@ graph LR
     C --> D[CPPREP4004<br/>Marketing & Communication]
     D --> E[CPPREP4005<br/>Trust Accounts]
           `} />
-          <ol className="list-decimal pl-5">
-            <li><strong>CPPREP4001</strong>: Prepare for professional practice in real estate</li>
-            <li><strong>CPPREP4002</strong>: Access and interpret ethical practice in real estate</li>
-            <li><strong>CPPREP4003</strong>: Access and interpret legislation in real estate</li>
-            <li><strong>CPPREP4004</strong>: Establish marketing and communication profiles in real estate</li>
-            <li><strong>CPPREP4005</strong>: Prepare to work with real estate trust accounts</li>
-          </ol>
-          <h4>Common Elective Units</h4>
-          <SpecialBlock type="example" title="Popular Electives">
-            <ul className="list-disc pl-5">
-              <li><strong>CPPREP4006</strong>: Lease residential property</li>
-              <li><strong>CPPREP4007</strong>: Manage tenancy disputes and claims for compensation</li>
-              <li><strong>CPPREP4008</strong>: Conduct on-site property auctions</li>
-              <li><strong>CPPREP4009</strong>: Market and offer property for sale</li>
-              <li><strong>CPPREP4010</strong>: Conduct property inspections</li>
-            </ul>
+          <div className="space-y-3 mt-4">
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1.5 rounded-md">CPPREP4001</span>
+              <p className="flex-1 text-sm text-card-foreground">Prepare for professional practice in real estate</p>
+            </div>
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1.5 rounded-md">CPPREP4002</span>
+              <p className="flex-1 text-sm text-card-foreground">Access and interpret ethical practice in real estate</p>
+            </div>
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1.5 rounded-md">CPPREP4003</span>
+              <p className="flex-1 text-sm text-card-foreground">Access and interpret legislation in real estate</p>
+            </div>
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1.5 rounded-md">CPPREP4004</span>
+              <p className="flex-1 text-sm text-card-foreground">Establish marketing and communication profiles in real estate</p>
+            </div>
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1.5 rounded-md">CPPREP4005</span>
+              <p className="flex-1 text-sm text-card-foreground">Prepare to work with real estate trust accounts</p>
+            </div>
+          </div>
+          
+          <h4 className="pt-4">Common Elective Units</h4>
+          <SpecialBlock type="example" title="Popular Elective Streams">
+            Providers typically bundle elective units based on common career paths like sales or property management. Here are some of the most frequently offered elective units from different specializations:
           </SpecialBlock>
+          <div className="space-y-3 mt-4">
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-accent bg-accent/10 px-2.5 py-1.5 rounded-md">CPPREP4102</span>
+              <p className="flex-1 text-sm text-card-foreground">Market property (Sales)</p>
+            </div>
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-accent bg-accent/10 px-2.5 py-1.5 rounded-md">CPPREP4105</span>
+              <p className="flex-1 text-sm text-card-foreground">Sell property (Sales)</p>
+            </div>
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-accent bg-accent/10 px-2.5 py-1.5 rounded-md">CPPREP4121</span>
+              <p className="flex-1 text-sm text-card-foreground">Establish and maintain property management portfolio (Property Management)</p>
+            </div>
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-accent bg-accent/10 px-2.5 py-1.5 rounded-md">CPPREP4122</span>
+              <p className="flex-1 text-sm text-card-foreground">Manage tenant relationships (Property Management)</p>
+            </div>
+            <div className="flex items-center gap-4 rounded-lg border bg-card p-3 shadow-sm">
+              <span className="font-mono text-xs font-bold text-accent bg-accent/10 px-2.5 py-1.5 rounded-md">CPPREP4162</span>
+              <p className="flex-1 text-sm text-card-foreground">Conduct and complete property sale by auction (Auctioneering)</p>
+            </div>
+          </div>
         </CardContent>
       </Card>
       
