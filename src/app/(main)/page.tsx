@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { CategoryCard } from '@/components/qa/CategoryCard';
 import { categories } from '@/data/categories';
 import { ArrowRight, BookOpen, Map, BarChartBig } from 'lucide-react';
+import React from 'react';
 
 export const metadata: Metadata = {
   title: 'ANSWERS - Your CPP41419 Real Estate Authority Resource',
@@ -33,6 +34,29 @@ const FeaturedGuideCard = ({ icon, title, description, href }: { icon: React.Rea
     </CardFooter>
   </Card>
 );
+
+const popularTopics = [
+  { name: 'Licensing', href: '/questions/state-licensing-requirements' },
+  { name: 'Course Costs', href: '/questions/costs-payment' },
+  { name: 'Career Paths', href: '/questions/career-employment' },
+  { name: 'Online Study', href: '/questions/study-options-duration' },
+  { name: 'Enrollment', href: '/questions/course-basics-enrollment' },
+  { name: 'RPL', href: '/questions/assessment-completion' },
+  { name: 'Assessments', href: '/questions/assessment-completion' },
+  { name: 'Provider Reviews', href: '/questions/provider-selection' },
+  { name: 'TAFE vs RTO', href: '/questions/provider-selection' },
+  { name: 'CPD Points', href: '/questions/advanced-questions' },
+  { name: 'NSW Licensing', href: '/questions/state-licensing-requirements' },
+  { name: 'VIC Licensing', href: '/questions/state-licensing-requirements' },
+  { name: 'QLD Licensing', href: '/questions/state-licensing-requirements' },
+  { name: 'WA Licensing', href: '/questions/state-licensing-requirements' },
+  { name: 'SA Licensing', href: '/questions/state-licensing-requirements' },
+  { name: 'TAS Licensing', href: '/questions/state-licensing-requirements' },
+  { name: 'Job Outlook', href: '/questions/career-employment' },
+  { name: 'Salary', href: '/questions/career-employment' },
+  { name: 'Exams', href: '/questions/assessment-completion' },
+  { name: 'Prerequisites', href: '/questions/course-basics-enrollment' }
+];
 
 export default function HomePage() {
   return (
@@ -63,14 +87,42 @@ export default function HomePage() {
             <p className="text-sm text-primary-foreground/60 mb-3">
               Or jump to a popular topic:
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground/80 font-medium">
-              <Link href="/questions/state-licensing-requirements" className="hover:text-primary-foreground hover:underline">Licensing</Link>
-              <span className="hidden sm:inline">•</span>
-              <Link href="/questions/costs-payment" className="hover:text-primary-foreground hover:underline">Course Costs</Link>
-              <span className="hidden sm:inline">•</span>
-              <Link href="/questions/career-employment" className="hover:text-primary-foreground hover:underline">Career Paths</Link>
-              <span className="hidden sm:inline">•</span>
-              <Link href="/questions/study-options-duration" className="hover:text-primary-foreground hover:underline">Online Study</Link>
+            <div className="flex flex-col items-center gap-1.5">
+              {/* Tier 1 - Visible on all screens */}
+              <div className="flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground font-medium">
+                {popularTopics.slice(0, 5).map((topic, index) => (
+                  <React.Fragment key={topic.name}>
+                    <Link href={topic.href} className="hover:underline">
+                      {topic.name}
+                    </Link>
+                    {index < 4 && <span className="text-primary-foreground/50">•</span>}
+                  </React.Fragment>
+                ))}
+              </div>
+              
+              {/* Tier 2 - Hidden on mobile */}
+              <div className="hidden md:flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground/90 font-medium">
+                {popularTopics.slice(5, 12).map((topic, index) => (
+                  <React.Fragment key={topic.name}>
+                    <Link href={topic.href} className="hover:underline">
+                      {topic.name}
+                    </Link>
+                    {index < popularTopics.slice(5, 12).length - 1 && <span className="text-primary-foreground/50">•</span>}
+                  </React.Fragment>
+                ))}
+              </div>
+              
+              {/* Tier 3 - Hidden on mobile */}
+              <div className="hidden md:flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground/80 font-medium">
+                 {popularTopics.slice(12, 20).map((topic, index) => (
+                  <React.Fragment key={topic.name}>
+                    <Link href={topic.href} className="hover:underline">
+                      {topic.name}
+                    </Link>
+                    {index < popularTopics.slice(12, 20).length - 1 && <span className="text-primary-foreground/50">•</span>}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </div>
         </div>
