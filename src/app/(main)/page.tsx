@@ -150,6 +150,8 @@ export default function HomePage() {
           <Card className="relative group w-full max-w-lg bg-gradient-to-br from-primary to-[hsl(var(--deep-navy))] text-white overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 -rotate-2 hover:rotate-0">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></div>
             <div className="absolute bottom-0 left-0 -ml-12 -mb-12 w-48 h-48 rounded-full bg-white/10 group-hover:scale-110 transition-transform duration-500"></div>
+            <div className="absolute top-20 left-10 w-8 h-8 rounded-full bg-white/5 opacity-50 group-hover:scale-150 transition-transform duration-700"></div>
+            <div className="absolute bottom-16 right-24 w-12 h-12 rounded-full bg-white/5 opacity-30 group-hover:scale-125 transition-transform duration-700 delay-200"></div>
             <CardHeader className="relative z-10">
               <div className="flex items-center gap-3 mb-2">
                 <span className="p-3 bg-white/20 rounded-lg">
@@ -189,7 +191,7 @@ export default function HomePage() {
          <div className="container mx-auto px-4 md:px-6">
             <div className="flex justify-center mb-12">
               <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md -rotate-1 shadow-md dark:text-gray-800">
-                  📌 In-Depth Resources
+                  📘 In-Depth Resources
               </h2>
             </div>
             <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -203,20 +205,7 @@ export default function HomePage() {
                <FeaturedGuideCard 
                   icon={<Map className="h-6 w-6" />}
                   title="Regional Real Estate"
-                  content={
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-left">
-                        <ul className="list-disc list-inside space-y-1">
-                            <li>Sydney</li>
-                            <li>Melbourne</li>
-                            <li>Brisbane</li>
-                        </ul>
-                        <ul className="list-disc list-inside space-y-1">
-                            <li>Perth</li>
-                            <li>Adelaide</li>
-                            <li>Canberra</li>
-                        </ul>
-                    </div>
-                  }
+                  content={<p>Insights into studying and working in real estate across major Australian cities and regional areas.</p>}
                   href="/regional-guide"
                   rotationClass="transform rotate-1 hover:rotate-0"
                />
