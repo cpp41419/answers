@@ -114,7 +114,7 @@ export default function HomePage() {
                 That Delivers Results
               </h2>
             </div>
-            <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform rotate-3 z-10">
+            <div className="bg-card rounded-lg px-6 py-3 shadow-lg z-10 animate-slow-swing">
               <Button asChild variant="link" className="p-0 h-auto hover:no-underline">
                 <Link href="/quiz" className="text-2xl md:text-4xl font-black uppercase tracking-wider text-destructive flex items-center gap-2">
                   Start Your Search <ArrowRight className="h-6 w-6" />

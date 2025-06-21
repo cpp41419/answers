@@ -82,11 +82,17 @@ export default {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+        'slow-swing': {
+            '0%': { transform: 'rotate(4deg)' },
+            '50%': { transform: 'rotate(-2deg)' },
+            '100%': { transform: 'rotate(4deg)' },
+        }
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+        'slow-swing': 'slow-swing 6s ease-in-out infinite'
   		}
   	}
   },
