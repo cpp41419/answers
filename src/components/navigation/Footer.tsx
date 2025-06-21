@@ -22,10 +22,10 @@ export default function Footer() {
     {
       title: 'Resources',
       links: [
-        { name: 'About Us', href: '/about' }, // Page doesn't exist yet
-        { name: 'Contact', href: '/contact' }, // Page doesn't exist yet
-        { name: 'Privacy Policy', href: '/privacy' }, // Page doesn't exist yet
-        { name: 'Terms of Service', href: '/terms' }, // Page doesn't exist yet
+        { name: 'About Us', href: 'https://cpp41419.com.au/about' },
+        { name: 'Contact', href: 'https://cpp41419.com.au/contact' },
+        { name: 'Privacy Policy', href: 'https://cpp41419.com.au/privacy' },
+        { name: 'Terms of Service', href: 'https://cpp41419.com.au/terms' },
       ],
     },
     {
@@ -65,6 +65,8 @@ export default function Footer() {
                       <Link
                         href={link.href}
                         className="text-muted-foreground transition hover:text-primary hover:underline"
+                        target={link.href.startsWith('http') ? '_blank' : undefined}
+                        rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       >
                         {link.name}
                       </Link>

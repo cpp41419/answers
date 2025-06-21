@@ -15,14 +15,6 @@ import { Breadcrumbs } from '@/components/core/Breadcrumbs';
 import { processLeadInquiry, type ProcessLeadInquiryInput, type ProcessLeadInquiryOutput } from '@/ai/flows/process-lead-inquiry';
 import { useToast } from '@/hooks/use-toast';
 
-
-// Note: Next.js Metadata should be defined in a separate metadata export if needed for SSR,
-// or handled client-side if that's sufficient. For this example, we'll focus on the component logic.
-// export const metadata: Metadata = {
-//   title: 'Find Your CPP41419 Provider - Training Matcher | CPP41419 Q&A',
-//   description: 'Find the perfect CPP41419 training provider that matches your learning style and location.',
-// };
-
 interface ThoughtBubble {
   id: string;
   text: string;
@@ -111,7 +103,7 @@ export default function QuizPage() {
       toast({
         title: "Inquiry Sent!",
         description: output.confirmationMessage,
-        variant: "default", // Or "success" if you have one
+        variant: "default",
       });
     } catch (error) {
       console.error("Error processing lead inquiry:", error);
@@ -126,7 +118,6 @@ export default function QuizPage() {
     }
   };
   
-  // Add a useEffect to set the page title dynamically if needed, since Metadata export is for SSR
   useEffect(() => {
     document.title = 'Find Your CPP41419 Provider - Training Matcher | CPP41419 Q&A';
   }, []);
@@ -175,7 +166,7 @@ export default function QuizPage() {
               left: bubble.x,
               top: bubble.y,
               color: bubble.color,
-              zIndex: 10, // Ensure bubbles are above content
+              zIndex: 10,
             }}
           >
             {bubble.text}
@@ -199,10 +190,10 @@ export default function QuizPage() {
                   </div>
                 </div>
                 <Button variant="link" asChild>
-                  <Link href="/"> {/* Placeholder: Link to /schools or a comparison page */}
+                  <a href="https://cpp41419.com.au/compare" target="_blank" rel="noopener noreferrer">
                     Compare RTOs
                     <ChevronRight className="w-4 h-4 ml-1" />
-                  </Link>
+                  </a>
                 </Button>
               </div>
 
@@ -292,10 +283,10 @@ export default function QuizPage() {
                   Start New Search
                 </Button>
                 <Button variant="link" asChild>
-                  <Link href="/"> {/* Placeholder */}
+                  <a href="https://cpp41419.com.au/providers" target="_blank" rel="noopener noreferrer">
                     View All Providers
                     <ChevronRight className="w-4 h-4 ml-1" />
-                  </Link>
+                  </a>
                 </Button>
               </div>
               
@@ -364,13 +355,13 @@ export default function QuizPage() {
                     </CardContent>
                     <CardFooter className="flex flex-wrap gap-3 md:gap-4 pt-6 border-t">
                        <Button size="lg" asChild>
-                          <a href={results[0].guide || "/CPP41419-UPDATED-2-25-COURSE-GUIDE.pdf"} target="_blank" rel="noopener noreferrer">
+                          <a href={results[0].guide} target="_blank" rel="noopener noreferrer">
                             <GraduationCap className="mr-2 h-5 w-5" />
                             Visit Provider
                           </a>
                        </Button>
                        <Button size="lg" variant="outline" asChild>
-                          <a href="/CPP41419-UPDATED-2-25-COURSE-GUIDE.pdf" target="_blank" rel="noopener noreferrer"> {/* General Guide */}
+                          <a href="https://cpp41419.com.au/CPP41419-UPDATED-2-25-COURSE-GUIDE.pdf" target="_blank" rel="noopener noreferrer">
                             Download Course Guide
                           </a>
                        </Button>
@@ -397,7 +388,7 @@ export default function QuizPage() {
                             </CardContent>
                             <CardFooter>
                               <Button variant="link" className="p-0 h-auto" asChild>
-                                <a href={result.guide || '#'} target="_blank" rel="noopener noreferrer">
+                                <a href={result.guide} target="_blank" rel="noopener noreferrer">
                                   Learn More
                                   <ChevronRight className="w-4 h-4 ml-1" />
                                 </a>
@@ -425,5 +416,3 @@ export default function QuizPage() {
     </div>
   );
 }
-
-    

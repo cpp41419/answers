@@ -22,7 +22,7 @@ const allRTOs: RTO[] = [
     delivery: ['online', 'blended'],
     states: ['All'],
     features: ['24/7 Online Access', 'Dedicated Tutors', 'Industry Connections', 'Payment Plans Available'],
-    guide: 'https://example.com/nrec',
+    guide: 'https://cpp41419.com.au/providers/national-real-estate-college',
     cost: 1895,
     duration: "4-6 months"
   },
@@ -34,7 +34,7 @@ const allRTOs: RTO[] = [
     delivery: ['in-person', 'blended'],
     states: ['NSW'],
     features: ['Face-to-Face Workshops', 'NSW Specific Content', 'Job Placement Assistance', 'Small Class Sizes'],
-    guide: 'https://example.com/nswpa',
+    guide: 'https://cpp41419.com.au/providers/nsw-property-academy',
     cost: 2200,
     duration: "6 months"
   },
@@ -46,7 +46,7 @@ const allRTOs: RTO[] = [
     delivery: ['blended', 'in-person'],
     states: ['VIC'],
     features: ['Industry Body Endorsed', 'VIC Licensing Experts', 'Networking Events', 'CPD Pathways'],
-    guide: 'https://example.com/vrei',
+    guide: 'https://cpp41419.com.au/providers/vic-real-estate-institute',
     cost: 2450,
     duration: "5-7 months"
   },
@@ -58,7 +58,7 @@ const allRTOs: RTO[] = [
     delivery: ['online'],
     states: ['QLD'],
     features: ['Fast Track Option', 'Lowest Price Guarantee', 'QLD Specific Modules', 'Easy Online Platform'],
-    guide: 'https://example.com/qldotp',
+    guide: 'https://cpp41419.com.au/providers/qld-online-training-pros',
     cost: 1495,
     duration: "3-5 months"
   },
@@ -70,7 +70,7 @@ const allRTOs: RTO[] = [
     delivery: ['blended', 'online'],
     states: ['WA'],
     features: ['WA Market Focus', 'Local Mentors', 'Flexible Online Portal', 'Triennial Certificate Support'],
-    guide: 'https://example.com/wape',
+    guide: 'https://cpp41419.com.au/providers/wa-property-experts',
     cost: 1999,
     duration: "4-6 months"
   },
@@ -82,7 +82,7 @@ const allRTOs: RTO[] = [
     delivery: ["online", "blended"],
     states: ["SA"],
     features: ["SA Licensing Pathway Expertise", "Industry Networking", "Small Group Workshops", "Career Support"],
-    guide: "https://example.com/sahub",
+    guide: "https://cpp41419.com.au/providers/sa-real-estate-hub",
     cost: 2100,
     duration: "5-7 months"
   },
@@ -94,7 +94,7 @@ const allRTOs: RTO[] = [
     delivery: ["blended", "in-person"],
     states: ["TAS"],
     features: ["Local TAS Knowledge", "Government Funding Links", "Supportive Learning Environment", "Job Assistance"],
-    guide: "https://example.com/tastrain",
+    guide: "https://cpp41419.com.au/providers/tasmanian-training-co",
     cost: 1950,
     duration: "6-8 months"
   },
@@ -106,7 +106,7 @@ const allRTOs: RTO[] = [
     delivery: ["online", "blended"],
     states: ["ACT"],
     features: ["ACT Leasehold Expertise", "Government Sector Links", "Flexible Study Options", "Modern Curriculum"],
-    guide: "https://example.com/actcollege",
+    guide: "https://cpp41419.com.au/providers/act-capital-region-college",
     cost: 2150,
     duration: "4-6 months"
   },
@@ -118,7 +118,7 @@ const allRTOs: RTO[] = [
     delivery: ["online", "blended"],
     states: ["NT"],
     features: ["NT Specific Content", "Remote Learning Support", "Cultural Awareness Training", "Experienced Local Trainers"],
-    guide: "https://example.com/nttrain",
+    guide: "https://cpp41419.com.au/providers/nt-property-training-solutions",
     cost: 2300,
     duration: "5-7 months"
   },
@@ -130,7 +130,7 @@ const allRTOs: RTO[] = [
     delivery: ['online', 'blended'],
     states: ['All'],
     features: ['Fast-Track Options', 'Guaranteed Work Experience Interviews', 'Advanced Digital Marketing Modules', 'Lifetime Career Support', 'AI-Powered Learning Tools'],
-    guide: 'https://realestatesuccess.edu.au/', // Example sponsored link
+    guide: 'https://realestatesuccess.edu.au/',
     cost: 2750,
     duration: "3-6 months (flexible)"
   }
@@ -150,10 +150,8 @@ export function matchRTO(formData: FormData): RTO[] {
     return deliveryMatch && stateMatch;
   });
 
-  // Simple ranking: higher rating first, then by cost (lower is better if rating is same)
-  // Ensure sponsored RTO is always first if it matches criteria
   const sortedRTOs = filteredRTOs.sort((a, b) => {
-    if (a.rto.includes('(Sponsored)')) return -1; // Sponsored always first among matches
+    if (a.rto.includes('(Sponsored)')) return -1;
     if (b.rto.includes('(Sponsored)')) return 1;
 
     if (b.rating === a.rating) {
@@ -164,5 +162,3 @@ export function matchRTO(formData: FormData): RTO[] {
 
   return sortedRTOs;
 }
-
-    

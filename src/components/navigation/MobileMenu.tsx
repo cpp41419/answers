@@ -1,10 +1,9 @@
-
 'use client';
 
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Changed from next/router
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, ChevronRight, Home, Search, Briefcase, BarChart2, BookOpen, Users, Info, ClipboardCheck, Lightbulb } from 'lucide-react';
 
 interface MenuItem {
@@ -28,20 +27,20 @@ const menuItems: MenuItem[] = [
     icon: Home,
   },
   {
-    name: 'Find Providers', // This page does not exist yet
-    href: '/providers',
+    name: 'Find Providers',
+    href: 'https://cpp41419.com.au/providers',
     icon: Briefcase,
     description: 'Browse 87 CPP41419 providers',
   },
   {
-    name: 'Compare RTOs', // This page does not exist yet
-    href: '/compare',
+    name: 'Compare RTOs',
+    href: 'https://cpp41419.com.au/compare',
     icon: BarChart2,
     description: 'Side-by-side comparison',
   },
   {
     name: 'Take Quiz',
-    href: '/quiz', // Changed from /evaluate to match existing quiz page
+    href: '/quiz',
     icon: ClipboardCheck,
     description: 'Find your perfect course',
     highlight: true,
@@ -54,14 +53,10 @@ const menuItems: MenuItem[] = [
   },
   {
     name: 'State Guides',
-    href: '/regional-guide', // Changed to match existing regional guide page
+    href: '/regional-guide',
     icon: BookOpen,
     description: 'Licensing by state',
     submenu: [
-      // These specific state links would require pages like /regional-guide/nsw etc.
-      // For now, they link to sections within the main regional guide if possible, or just the main guide.
-      // Or, if the regional guide already has accordion items for states, these could link to those anchor IDs.
-      // For simplicity, I am linking them to the main regional guide page.
       { name: 'NSW', href: '/regional-guide#nsw' },
       { name: 'VIC', href: '/regional-guide#vic' },
       { name: 'QLD', href: '/regional-guide#qld' },
@@ -73,14 +68,14 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    name: 'Insights', // This could link to /data-insights or /popular-blogs
+    name: 'Insights',
     href: '/data-insights',
-    icon: Users, // Using Users as a placeholder icon
+    icon: Users,
     description: 'Expert analysis',
   },
   {
-    name: 'About', // This page does not exist yet
-    href: '/about',
+    name: 'About',
+    href: 'https://cpp41419.com.au/about',
     icon: Info,
     description: 'Our mission',
   },
@@ -94,7 +89,7 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenuProps) {
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
-  const pathname = usePathname(); // Changed from useRouter
+  const pathname = usePathname();
 
   const toggleExpanded = (itemName: string) => {
     setExpandedItems(prev => ({
@@ -105,8 +100,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenu
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
-    // For App Router, ensure it matches the start of the pathname for parent routes
-    return pathname.startsWith(href);
+    return pathname.startsWith(href.split('#')[0]);
   };
 
   if (!isOpen) return null;
@@ -164,6 +158,8 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenu
                   <Link
                     href={item.href}
                     onClick={onClose}
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className={`flex-1 flex items-center p-3 rounded-lg transition-colors text-sm
                       ${
                         item.highlight
@@ -230,7 +226,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenu
         {/* Footer */}
         <div className="border-t border-border p-4 mt-auto">
           <Link
-            href="/quiz" // Changed from /evaluate
+            href="/quiz"
             onClick={onClose}
             className="block w-full bg-primary text-primary-foreground text-center py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors duration-200"
           >

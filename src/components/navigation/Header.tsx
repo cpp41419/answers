@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -13,12 +12,11 @@ interface HeaderProps {
 
 export default function Header({ onOpenMobileMenu, onOpenSearch }: HeaderProps) {
   const navLinks = [
-    { name: 'Find Providers', href: '/providers' }, // Page doesn't exist yet
-    { name: 'Compare RTOs', href: '/compare' }, // Page doesn't exist yet
+    { name: 'Find Providers', href: 'https://cpp41419.com.au/providers' },
+    { name: 'Compare RTOs', href: 'https://cpp41419.com.au/compare' },
     { name: 'Take Quiz', href: '/quiz' },
     { name: 'State Guides', href: '/regional-guide' },
-    { name: 'Insights', href: '/data-insights' }, // Or /popular-blogs
-    // { name: 'About', href: '/about' }, // Page doesn't exist yet
+    { name: 'Insights', href: '/data-insights' },
   ];
 
   return (
@@ -34,6 +32,8 @@ export default function Header({ onOpenMobileMenu, onOpenSearch }: HeaderProps) 
               key={link.name}
               href={link.href}
               className="transition-colors hover:text-primary text-foreground/80"
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             >
               {link.name}
             </Link>
