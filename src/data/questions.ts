@@ -503,7 +503,7 @@ export const questions: FAQQuestion[] = [
     averageRating: undefined,
     ratingCount: undefined,
   },
-    {
+  {
     id: generateId(),
     question: "What are the specific CPD requirements for a Class 2 Agent in NSW?",
     answer: "In NSW, a Class 2 Agent must complete 12 hours of Continuing Professional Development (CPD) each year. This must include 3 hours of compulsory topics set by NSW Fair Trading, with the remaining 9 hours being elective topics relevant to your role.",
@@ -580,6 +580,215 @@ export const questions: FAQQuestion[] = [
     last_updated: defaultLastUpdated,
     averageRating: 4.6,
     ratingCount: 120,
+  },
+  // --- Start of new questions ---
+  // NSW
+  {
+    id: generateId(), question: "What are the annual CPD requirements for a Class 1 Agent in NSW?",
+    answer: "A Class 1 Agent in NSW must complete 9 hours of CPD annually, which includes 3 hours of compulsory topics and 6 hours of elective topics. This is different from the 12 hours required for Class 2 Agents.",
+    category: "State Licensing Requirements", keywords: ["CPD", "NSW", "Class 1"], state_specific: "NSW", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Can I manage a trust account as an Assistant Agent in NSW?",
+    answer: "No, an Assistant Agent in NSW cannot withdraw money from a trust account. They can perform other trust account functions under the direct supervision of a Class 1 or Class 2 agent, but they cannot be a signatory.",
+    category: "State Licensing Requirements", keywords: ["trust account", "NSW", "Assistant Agent"], state_specific: "NSW", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "How long is a Certificate of Registration valid for in NSW?",
+    answer: "A Certificate of Registration for an Assistant Agent in NSW is valid for four years and is non-renewable. You must progress to a Class 2 Licence within this period to continue working in the industry.",
+    category: "State Licensing Requirements", keywords: ["validity", "NSW", "Certificate of Registration"], state_specific: "NSW", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the rules around underquoting in NSW real estate?",
+    answer: "NSW has strict laws against underquoting. An agent must provide an estimated selling price in the agency agreement that is reasonable and based on market evidence. This estimate must be updated if it changes.",
+    category: "State Licensing Requirements", keywords: ["underquoting", "NSW", "compliance"], state_specific: "NSW", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "How do I disclose material facts about a property in NSW?",
+    answer: "Agents in NSW must disclose all material facts they know or ought to reasonably know to potential buyers before they enter into a contract. This can include issues like major building defects, strata issues, or even psychological stigmas.",
+    category: "State Licensing Requirements", keywords: ["material facts", "disclosure", "NSW"], state_specific: "NSW", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  // VIC
+  {
+    id: generateId(), question: "What is the statement of information and when must it be provided in VIC?",
+    answer: "In Victoria, a Statement of Information must be displayed at all open for inspections, included with any online advertising, and given to a prospective buyer within two business days of a request. It must include an indicative selling price, details of three comparable properties, and the median house price for the suburb.",
+    category: "State Licensing Requirements", keywords: ["Statement of Information", "VIC", "advertising"], state_specific: "VIC", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Can I conduct an auction as an Agent's Representative in VIC?",
+    answer: "No, only a fully licensed estate agent who is also an accredited auctioneer can conduct public auctions in Victoria. An Agent's Representative can assist at auctions but cannot call for bids.",
+    category: "State Licensing Requirements", keywords: ["auction", "VIC", "Agent's Representative"], state_specific: "VIC", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the key responsibilities of an Officer in Effective Control (OIEC) in Victoria?",
+    answer: "The OIEC in a Victorian agency is responsible for supervising the agency's operations, ensuring compliance with the Estate Agents Act, and properly managing the trust account. They must be a fully licensed estate agent.",
+    category: "State Licensing Requirements", keywords: ["OIEC", "Victoria", "compliance"], state_specific: "VIC", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Do I need to complete the full CPP41419 before I can start working in VIC?",
+    answer: "Yes. Unlike some other states, Victoria requires you to have completed the full CPP41419 Certificate IV in Real Estate Practice before you can apply to the Business Licensing Authority (BLA) to become an Agent's Representative and start working.",
+    category: "State Licensing Requirements", keywords: ["entry", "VIC", "full qualification"], state_specific: "VIC", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the rules for price advertising for residential properties in Victoria?",
+    answer: "In Victoria, it is illegal to advertise a property at a price that is less than the seller's asking price, the agent's estimated selling price, or a price that has already been rejected by the seller. Price ranges must not exceed 10%.",
+    category: "State Licensing Requirements", keywords: ["advertising", "price", "VIC"], state_specific: "VIC", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  // QLD
+  {
+    id: generateId(), question: "What is a Form 6 appointment in Queensland?",
+    answer: "A Form 6 (Appointment and reappointment of a property agent) is a legally required document in QLD that a client must sign to formally appoint a real estate agent to act on their behalf for selling, buying, leasing, or managing a property.",
+    category: "State Licensing Requirements", keywords: ["Form 6", "QLD", "appointment"], state_specific: "QLD", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Can I operate a trust account with a Registration Certificate in QLD?",
+    answer: "No, a person holding a Salesperson Registration Certificate in Queensland cannot open or manage a trust account. This responsibility is reserved for fully licensed real estate agents.",
+    category: "State Licensing Requirements", keywords: ["trust account", "QLD", "Registration Certificate"], state_specific: "QLD", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "How does the Property Occupations Act 2014 impact daily work in QLD?",
+    answer: "This Act governs all aspects of real estate practice in QLD, including licensing, appointments (Form 6), advertising, trust accounts, and conduct. Compliance is mandatory and overseen by the Office of Fair Trading (OFT).",
+    category: "State Licensing Requirements", keywords: ["Property Occupations Act", "QLD", "compliance"], state_specific: "QLD", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the regulations around body corporates in QLD?",
+    answer: "Queensland has extensive legislation for community titles schemes (body corporates). Agents dealing with properties in these schemes must understand disclosure requirements, by-laws, and levy structures. A Community Management Statement (CMS) is a key document.",
+    category: "State Licensing Requirements", keywords: ["body corporate", "strata", "QLD"], state_specific: "QLD", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Are there specific CPD topics required by the OFT in Queensland?",
+    answer: "The Office of Fair Trading (OFT) in Queensland may specify certain topics as mandatory for annual CPD. Agents should check the OFT website each year to see the current requirements for their licence or registration category.",
+    category: "State Licensing Requirements", keywords: ["CPD", "OFT", "QLD"], state_specific: "QLD", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  // WA
+  {
+    id: generateId(), question: "What is the triennial certificate system in Western Australia?",
+    answer: "In WA, real estate licences and registrations are issued for a period of three years, rather than annually. This is known as a triennial certificate. Renewal requires demonstrating completion of the required CPD points over that three-year period.",
+    category: "State Licensing Requirements", keywords: ["triennial certificate", "WA", "licensing"], state_specific: "WA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "How many CPD points are required over the three-year licensing period in WA?",
+    answer: "A total of 10 CPD points are required for each triennial period. These points must be accrued through training on mandatory and elective topics as determined by DMIRS (Department of Mines, Industry Regulation and Safety).",
+    category: "State Licensing Requirements", keywords: ["CPD", "WA", "points"], state_specific: "WA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Can a sales representative in WA operate their own business?",
+    answer: "No, a Registered Sales Representative in WA must be employed and supervised by a licensed real estate agent (the licensee of an agency). To operate an agency, you must obtain a Real Estate and Business Agent's Licence.",
+    category: "State Licensing Requirements", keywords: ["sales representative", "WA", "independent"], state_specific: "WA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the key functions of DMIRS in relation to the WA property industry?",
+    answer: "DMIRS is the main regulatory body in WA. Its functions include issuing licences and registrations, setting CPD requirements, investigating complaints, and enforcing compliance with the Real Estate and Business Agents Act 1978.",
+    category: "State Licensing Requirements", keywords: ["DMIRS", "regulator", "WA"], state_specific: "WA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Are there specific contracts for sale and purchase that must be used in WA?",
+    answer: "Yes, it is common practice in WA to use the Contract for Sale of Land or Strata Title by Offer and Acceptance, which is a standard form document jointly published by REIWA and the Law Society of Western Australia.",
+    category: "State Licensing Requirements", keywords: ["contract", "offer and acceptance", "WA"], state_specific: "WA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  // SA
+  {
+    id: generateId(), question: "What is Form 1 (Vendor's Statement) and its importance in SA?",
+    answer: "The Form 1 is a critical disclosure document in South Australia that the vendor must provide to the purchaser. It contains important information about the property, including encumbrances, council rates, and other statutory details. An error in Form 1 can give the buyer rights to withdraw from the contract.",
+    category: "State Licensing Requirements", keywords: ["Form 1", "Vendor's Statement", "SA"], state_specific: "SA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "How do I become a Registered Land Agent in SA?",
+    answer: "To become a Registered Land Agent (the equivalent of a full licence holder) in SA, you generally need to complete a Diploma level qualification, demonstrate relevant experience, and meet probity requirements set by Consumer and Business Services (CBS).",
+    category: "State Licensing Requirements", keywords: ["Land Agent", "SA", "licence"], state_specific: "SA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the rules for trust account management in South Australia?",
+    answer: "In SA, trust accounts must be audited annually by a qualified auditor. The Land Agents Act 1994 sets out strict rules for handling, banking, and disbursing trust money, which are overseen by CBS.",
+    category: "State Licensing Requirements", keywords: ["trust account", "audit", "SA"], state_specific: "SA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "How do I handle multiple offers on a property in South Australia?",
+    answer: "In SA, agents must treat all buyers fairly and ethically. This often involves informing all interested parties that multiple offers have been received and giving them an opportunity to submit their best and final offer by a deadline.",
+    category: "State Licensing Requirements", keywords: ["multiple offers", "SA", "ethics"], state_specific: "SA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Can I work in both sales and property management with the initial registration in SA?",
+    answer: "Yes, an initial registration as a Sales Representative or Property Manager in SA allows you to work in that specific field under supervision. To work across both, you need to ensure your registration covers both activities.",
+    category: "State Licensing Requirements", keywords: ["dual role", "sales", "property management", "SA"], state_specific: "SA", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  // TAS
+  {
+    id: generateId(), question: "What body governs real estate practice in Tasmania?",
+    answer: "Real estate practice in Tasmania is regulated by the Property Agents Board. The Board is responsible for licensing, setting standards, and handling complaints against agents.",
+    category: "State Licensing Requirements", keywords: ["regulator", "TAS", "Property Agents Board"], state_specific: "TAS", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What qualifications do I need to be a Property Representative in Tasmania?",
+    answer: "To become a Property Representative in Tasmania, you must complete the CPP41419 Certificate IV in Real Estate Practice and meet the probity requirements of the Property Agents Board.",
+    category: "State Licensing Requirements", keywords: ["Property Representative", "TAS", "qualification"], state_specific: "TAS", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the key elements of the Property Agents and Land Transactions Act 2016 (TAS)?",
+    answer: "This Act is the primary legislation governing Tasmanian real estate. Key elements include licensing requirements, rules of conduct for agents, trust account regulations, and disclosure requirements for property transactions.",
+    category: "State Licensing Requirements", keywords: ["legislation", "TAS", "Act"], state_specific: "TAS", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Are there specific regulations for managing short-stay/holiday properties in TAS?",
+    answer: "Yes, Tasmania has specific planning rules for short-stay accommodation. Agents managing these properties need to be aware of local council regulations, land use permits, and the code of conduct for the short-term accommodation sector.",
+    category: "State Licensing Requirements", keywords: ["short-stay", "holiday letting", "TAS"], state_specific: "TAS", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What is the process for renewing a property agent registration in Tasmania?",
+    answer: "To renew your registration in Tasmania, you must submit an application to the Property Agents Board before it expires, pay the required fee, and provide evidence of having completed the mandatory annual Continuing Professional Development (CPD).",
+    category: "State Licensing Requirements", keywords: ["renewal", "TAS", "registration"], state_specific: "TAS", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  // ACT
+  {
+    id: generateId(), question: "How does the leasehold system in the ACT affect property sales?",
+    answer: "In the ACT, most property is held under a 99-year Crown lease, not freehold title. This means buyers are purchasing the rights to the land for that period. Agents must understand how this affects contracts, land use (purpose clauses), and valuations.",
+    category: "State Licensing Requirements", keywords: ["leasehold", "ACT", "Crown lease"], state_specific: "ACT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What is the role of Access Canberra in regulating real estate agents?",
+    answer: "Access Canberra is the ACT Government body responsible for licensing real estate agents, investigating complaints, and ensuring compliance with the Agents Act 2003 and other relevant legislation.",
+    category: "State Licensing Requirements", keywords: ["Access Canberra", "regulator", "ACT"], state_specific: "ACT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the licensing tiers in the ACT?",
+    answer: "The ACT has a tiered licensing system, including Registered Salespersons (who must work under supervision) and Licensed Agents (who can operate a business). Progressing requires further experience and qualifications.",
+    category: "State Licensing Requirements", keywords: ["licensing tiers", "ACT", "salesperson"], state_specific: "ACT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Can I work across the border in NSW with an ACT licence?",
+    answer: "Generally, no. You need to be licensed in the state where the property is located. While there are mutual recognition provisions, an agent with only an ACT licence cannot legally sell property in NSW without obtaining a NSW licence or certificate.",
+    category: "State Licensing Requirements", keywords: ["mutual recognition", "ACT", "NSW"], state_specific: "ACT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "How are unit titles and owners corporations managed under ACT legislation?",
+    answer: "The ACT has specific legislation, the Unit Titles (Management) Act 2011, which governs the operation of owners corporations (body corporates). Agents must be familiar with its rules on levies, meetings, and disclosure requirements.",
+    category: "State Licensing Requirements", keywords: ["unit titles", "owners corporation", "ACT"], state_specific: "ACT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  // NT
+  {
+    id: generateId(), question: "What building codes are important for properties in cyclone-prone areas like Darwin?",
+    answer: "Properties in the NT, especially Darwin, must comply with specific building codes for cyclonic conditions (the 'Deemed to Comply' standards). Agents should be aware of a property's compliance rating as it significantly impacts insurance and safety.",
+    category: "State Licensing Requirements", keywords: ["cyclone code", "NT", "Darwin"], state_specific: "NT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What are the specific challenges of real estate practice in remote areas of the NT?",
+    answer: "Challenges include vast travel distances, limited access to services, unique market drivers (e.g., mining or government projects), and the need for high levels of cultural awareness, particularly when dealing with Indigenous communities and land.",
+    category: "State Licensing Requirements", keywords: ["remote", "NT", "challenges"], state_specific: "NT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "Are there unique considerations for properties under Indigenous land tenure in the NT?",
+    answer: "Yes. A significant portion of the NT is held under various forms of Indigenous land tenure (e.g., Aboriginal Land Rights Act). Transactions involving these properties are complex and require specialist knowledge and respect for traditional ownership.",
+    category: "State Licensing Requirements", keywords: ["Indigenous land", "NT", "tenure"], state_specific: "NT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "What body oversees real estate licensing in the Northern Territory?",
+    answer: "The Agents Licensing Board of the Northern Territory is responsible for granting licences to real estate agents and business agents, and for inquiring into the conduct of agents.",
+    category: "State Licensing Requirements", keywords: ["regulator", "NT", "Agents Licensing Board"], state_specific: "NT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
+  },
+  {
+    id: generateId(), question: "How does the market in Darwin differ from Alice Springs?",
+    answer: "The Darwin market is heavily influenced by government, defence, and resource projects, with a tropical climate affecting property design. The Alice Springs market is a key service hub for Central Australia, influenced by tourism, pastoral industries, and unique outback lifestyle factors.",
+    category: "State Licensing Requirements", keywords: ["market difference", "Darwin", "Alice Springs", "NT"], state_specific: "NT", provider_specific: false, priority: 3, last_updated: defaultLastUpdated
   }
 ];
 

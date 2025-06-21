@@ -143,11 +143,11 @@ export default function QuizPage() {
       
       <header className="bg-primary bg-gradient-to-b from-primary to-[hsl(var(--deep-navy))] text-primary-foreground py-16 md:py-20 px-4 rounded-xl shadow-xl">
         <div className="max-w-3xl mx-auto text-center">
-          <School className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 text-primary-foreground/90" />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          <School className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 text-white/90" />
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight text-white">
             Find Your Perfect CPP41419 Provider
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground/80 max-w-xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto leading-relaxed">
             A fast and simple provider matcher that helps you find the ideal CPP41419 training solution.
           </p>
         </div>
