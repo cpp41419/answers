@@ -49,7 +49,7 @@ export default function Footer() {
           <div>
             <AppLogo />
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-              Your independent guide to CPP41419 Certificate IV in Real Estate Practice across Australia.
+              Your independent guide to the CPP41419 Certificate IV in Real Estate Practice—across Australia.
             </p>
              <Button variant="outline" size="sm" className="w-full mt-6 rounded-full max-w-xs" asChild>
                 <a href="https://firebase.google.com/docs/app-hosting" target="_blank" rel="noopener noreferrer">
@@ -83,7 +83,7 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-border pt-8">
           <p className="text-center text-xs text-muted-foreground">
-            &copy; {currentYear} CPP41419 Q&A. All rights reserved. Information is for guidance only.
+            &copy; {currentYear} CPP41419 Q&A. All rights reserved. Information provided is general guidance only.
           </p>
         </div>
       </div>
