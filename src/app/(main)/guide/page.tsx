@@ -665,6 +665,7 @@ graph LR
                     <li><Link href="https://cpp41419.com.au/qld" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">QLD CPP41419 Guide</Link> - Queensland registration process</li>
                     <li><Link href="https://cpp41419.com.au/compare" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Provider Comparison Tool</Link> - Interactive provider selector</li>
                     <li><Link href="https://cpp41419.com.au/calculator" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Cost Calculator</Link> - Estimate your total education investment</li>
+                    <li><Link href="https://www.cpp41419.com.au/logup" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Partner Login/Signup</Link> - Access provider resources and dashboards</li>
                 </ul>
             </SpecialBlock>
             <h3>Citations & Sources</h3>
