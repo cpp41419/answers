@@ -92,7 +92,7 @@ export default function HomePage() {
               <div className="flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground font-medium">
                 {popularTopics.slice(0, 5).map((topic, index) => (
                   <React.Fragment key={topic.name}>
-                    <Link href={topic.href} className="hover:underline">
+                    <Link href={topic.href} className="hover:underline text-white">
                       {topic.name}
                     </Link>
                     {index < 4 && <span className="text-primary-foreground/50">•</span>}
@@ -104,7 +104,7 @@ export default function HomePage() {
               <div className="hidden md:flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground/90 font-medium">
                 {popularTopics.slice(5, 12).map((topic, index) => (
                   <React.Fragment key={topic.name}>
-                    <Link href={topic.href} className="hover:underline">
+                    <Link href={topic.href} className="hover:underline text-white">
                       {topic.name}
                     </Link>
                     {index < popularTopics.slice(5, 12).length - 1 && <span className="text-primary-foreground/50">•</span>}
@@ -116,13 +116,21 @@ export default function HomePage() {
               <div className="hidden md:flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground/80 font-medium">
                  {popularTopics.slice(12, 20).map((topic, index) => (
                   <React.Fragment key={topic.name}>
-                    <Link href={topic.href} className="hover:underline">
+                    <Link href={topic.href} className="hover:underline text-white">
                       {topic.name}
                     </Link>
                     {index < popularTopics.slice(12, 20).length - 1 && <span className="text-primary-foreground/50">•</span>}
                   </React.Fragment>
                 ))}
               </div>
+            </div>
+          </div>
+          {/* Trust Bar */}
+          <div className="mt-12 text-center">
+            <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm text-primary-foreground/70">
+                <span>✅ Independent & Unbiased</span>
+                <span>✅ Up-to-Date Information</span>
+                <span>✅ 150+ Providers Compared</span>
             </div>
           </div>
         </div>
