@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, ChevronRight, Home, Search, Briefcase, BarChart2, BookOpen, Users, Info, ClipboardCheck, Lightbulb } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight, Home, Search, BookText, Map, BarChartBig, Rss, ClipboardCheck, Lightbulb } from 'lucide-react';
 
 interface MenuItem {
   name: string;
@@ -27,34 +27,22 @@ const menuItems: MenuItem[] = [
     icon: Home,
   },
   {
-    name: 'Find Providers',
-    href: 'https://cpp41419.com.au/providers',
-    icon: Briefcase,
-    description: 'Browse 87 CPP41419 providers',
-  },
-  {
-    name: 'Compare RTOs',
-    href: 'https://cpp41419.com.au/compare',
-    icon: BarChart2,
-    description: 'Side-by-side comparison',
-  },
-  {
-    name: 'Take Quiz',
+    name: 'Provider Quiz',
     href: '/quiz',
     icon: ClipboardCheck,
     description: 'Find your perfect course',
     highlight: true,
   },
   {
-    name: 'Submit a Question',
-    href: '/submit-question',
-    icon: Lightbulb,
-    description: 'Ask the community',
+    name: 'Comprehensive Guide',
+    href: '/guide',
+    icon: BookText,
+    description: 'The complete course overview'
   },
   {
-    name: 'State Guides',
+    name: 'Regional Guide',
     href: '/regional-guide',
-    icon: BookOpen,
+    icon: Map,
     description: 'Licensing by state',
     submenu: [
       { name: 'NSW', href: '/regional-guide#nsw' },
@@ -68,17 +56,23 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    name: 'Insights',
+    name: 'Popular Blogs',
+    href: '/popular-blogs',
+    icon: Rss,
+    description: 'Latest articles & insights',
+  },
+  {
+    name: 'Data Insights',
     href: '/data-insights',
-    icon: Users,
+    icon: BarChartBig,
     description: 'Expert analysis',
   },
   {
-    name: 'About',
-    href: 'https://cpp41419.com.au/about',
-    icon: Info,
-    description: 'Our mission',
-  },
+    name: 'Submit a Question',
+    href: '/submit-question',
+    icon: Lightbulb,
+    description: 'Ask the community',
+  }
 ];
 
 interface MobileMenuProps {
@@ -100,7 +94,9 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenu
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
-    return pathname.startsWith(href.split('#')[0]);
+    const cleanHref = href.split('#')[0];
+    if (!cleanHref || cleanHref === '/') return false;
+    return pathname.startsWith(cleanHref);
   };
 
   if (!isOpen) return null;
@@ -157,7 +153,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenu
                 <div className="flex items-center">
                   <Link
                     href={item.href}
-                    onClick={onClose}
+                    onClick={item.submenu ? (e) => { e.preventDefault(); toggleExpanded(item.name); } : onClose}
                     target={item.href.startsWith('http') ? '_blank' : undefined}
                     rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className={`flex-1 flex items-center p-3 rounded-lg transition-colors text-sm
@@ -186,7 +182,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenu
                   {item.submenu && (
                     <button
                       onClick={() => toggleExpanded(item.name)}
-                      className="p-3 text-muted-foreground hover:text-foreground transition-colors"
+                      className="p-3 text-muted-foreground hover:text-foreground transition-colors -ml-10"
                       aria-expanded={expandedItems[item.name] || false}
                       aria-controls={`submenu-${item.name}`}
                     >
@@ -202,13 +198,14 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenu
                 {/* Submenu */}
                 {item.submenu && expandedItems[item.name] && (
                   <div id={`submenu-${item.name}`} className="ml-5 mt-1 pl-3 border-l border-border space-y-1">
+                    <Link href={item.href} onClick={onClose} className="block p-2 rounded-md text-sm font-medium text-foreground/80 hover:bg-muted hover:text-foreground">All {item.name}</Link>
                     {item.submenu.map((subItem) => (
                       <Link
                         key={subItem.name}
                         href={subItem.href}
                         onClick={onClose}
                         className={`block p-2 rounded-md text-sm transition-colors ${
-                          isActive(subItem.href)
+                          pathname.includes(subItem.href)
                             ? 'bg-primary/10 text-primary font-medium'
                             : 'text-foreground/80 hover:bg-muted hover:text-foreground'
                         }`}
@@ -230,7 +227,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch }: MobileMenu
             onClick={onClose}
             className="block w-full bg-primary text-primary-foreground text-center py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors duration-200"
           >
-            Get Started
+            Take the Quiz
           </Link>
         </div>
       </div>

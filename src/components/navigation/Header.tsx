@@ -12,10 +12,10 @@ interface HeaderProps {
 
 export default function Header({ onOpenMobileMenu, onOpenSearch }: HeaderProps) {
   const navLinks = [
-    { name: 'Find Providers', href: 'https://cpp41419.com.au/providers' },
-    { name: 'Compare RTOs', href: 'https://cpp41419.com.au/compare' },
-    { name: 'Take Quiz', href: '/quiz' },
-    { name: 'State Guides', href: '/regional-guide' },
+    { name: 'Quiz', href: '/quiz' },
+    { name: 'Guide', href: '/guide' },
+    { name: 'Regions', href: '/regional-guide' },
+    { name: 'Blogs', href: '/popular-blogs' },
     { name: 'Insights', href: '/data-insights' },
   ];
 
@@ -63,7 +63,7 @@ export default function Header({ onOpenMobileMenu, onOpenSearch }: HeaderProps) 
             <Link href="/submit-question">Submit Question</Link>
           </Button>
            <Button asChild className="hidden md:inline-flex rounded-full">
-            <Link href="/quiz">Get Started</Link>
+            <Link href="/quiz">Take the Quiz</Link>
           </Button>
         </div>
       </div>

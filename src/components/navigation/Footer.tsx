@@ -9,7 +9,7 @@ export default function Footer() {
 
   const footerLinks = [
     {
-      title: 'Navigate',
+      title: 'Site Links',
       links: [
         { name: 'Home', href: '/' },
         { name: 'Provider Quiz', href: '/quiz' },
@@ -17,11 +17,14 @@ export default function Footer() {
         { name: 'Regional Guide', href: '/regional-guide' },
         { name: 'Popular Blogs', href: '/popular-blogs' },
         { name: 'Data Insights', href: '/data-insights' },
+        { name: 'Submit a Question', href: '/submit-question' },
       ],
     },
     {
-      title: 'Resources',
+      title: 'External Resources',
       links: [
+        { name: 'Find Providers', href: 'https://cpp41419.com.au/providers' },
+        { name: 'Compare RTOs', href: 'https://cpp41419.com.au/compare' },
         { name: 'About Us', href: 'https://cpp41419.com.au/about' },
         { name: 'Contact', href: 'https://cpp41419.com.au/contact' },
         { name: 'Privacy Policy', href: 'https://cpp41419.com.au/privacy' },
@@ -29,7 +32,7 @@ export default function Footer() {
       ],
     },
     {
-      title: 'Categories',
+      title: 'Question Categories',
       links: [
         { name: 'Course Basics', href: '/questions/course-basics-enrollment' },
         { name: 'Study Options', href: '/questions/study-options-duration' },
