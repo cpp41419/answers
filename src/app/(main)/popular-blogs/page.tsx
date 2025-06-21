@@ -1,7 +1,6 @@
 'use client'; // This page now needs client-side state for filtering
 
 import { useState, useMemo, useEffect } from 'react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -159,9 +158,3 @@ export default function PopularBlogsPage() {
     </div>
   );
 }
-
-export const metadata: Metadata = {
-  title: 'Popular Real Estate Blogs & Articles | CPP41419 Q&A',
-  description: 'Discover insightful articles and blog posts on real estate practice, market trends, and career development related to CPP41419.',
-  keywords: ['real estate blog', 'property articles', 'real estate insights', 'CPP41419 career', 'market trends Australia'],
-};
