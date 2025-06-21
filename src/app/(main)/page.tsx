@@ -6,17 +6,34 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { categories } from '@/data/categories';
 import { ArrowRight, BookOpen, Map, BarChartBig, Lightbulb, ClipboardCheck, Star, CheckCircle } from 'lucide-react';
 import React from 'react';
-import { cn } from '@/lib/utils';
+import { cn, slugify } from '@/lib/utils';
 import { getAllQuestions } from '@/data/questions';
 import { FaqSchema } from '@/components/core/FaqSchema';
 import { CategoryCard } from '@/components/qa/CategoryCard';
+import type { FAQQuestion } from '@/types';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 
 export const metadata: Metadata = {
   title: 'ANSWERS - Your Real Estate Authority Resource',
   description: 'The definitive, community-driven guide to the CPP41419 Certificate IV in Real Estate Practice. Gain clarity on licensing, costs, course options, career pathways, and more.',
 };
 
-const FeaturedGuideCard = ({ icon, title, content, href, rotationClass }: { icon: React.ReactNode, title: string, content: React.ReactNode, href: string, rotationClass: string }) => (
+const FeaturedGuideCard = ({
+  icon,
+  title,
+  infoContent,
+  relatedFaqs,
+  href,
+  rotationClass
+}: {
+  icon: React.ReactNode;
+  title: string;
+  infoContent: React.ReactNode;
+  relatedFaqs: FAQQuestion[];
+  href: string;
+  rotationClass: string;
+}) => (
     <Card className={cn(
         "flex flex-col h-full bg-amber-100/80 dark:bg-amber-900/30 text-gray-800 dark:text-gray-200 border-amber-200 dark:border-amber-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-105",
         rotationClass
@@ -29,13 +46,37 @@ const FeaturedGuideCard = ({ icon, title, content, href, rotationClass }: { icon
           <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100">{title}</CardTitle>
         </div>
       </CardHeader>
-      <CardContent className="flex-grow">
-        <div className="text-gray-700 dark:text-gray-300 text-sm">{content}</div>
+      <CardContent className="flex-grow flex flex-col">
+        <Tabs defaultValue="info" className="w-full flex-grow flex flex-col">
+            <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="info">Info</TabsTrigger>
+                <TabsTrigger value="faqs">FAQs</TabsTrigger>
+            </TabsList>
+            <TabsContent value="info" className="pt-4 text-sm text-gray-700 dark:text-gray-300 flex-grow">
+                {infoContent}
+            </TabsContent>
+            <TabsContent value="faqs" className="pt-4 flex-grow max-h-[150px] overflow-y-auto">
+                <ul className="space-y-3 text-sm">
+                    {relatedFaqs.length > 0 ? (
+                        relatedFaqs.slice(0, 4).map((faq) => ( // limit to 4 FAQs
+                            <li key={faq.id}>
+                                <Link href={`/questions/${slugify(faq.category)}/${faq.id}`} className="flex items-start gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-amber-200 hover:underline">
+                                    <ArrowRight className="h-4 w-4 mt-0.5 shrink-0 opacity-70"/>
+                                    <span className="line-clamp-2">{faq.question}</span>
+                                </Link>
+                            </li>
+                        ))
+                    ) : (
+                        <p className="text-gray-500 italic">No related FAQs found.</p>
+                    )}
+                </ul>
+            </TabsContent>
+        </Tabs>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="mt-auto border-t border-amber-300/50 dark:border-amber-700/50 pt-4">
         <Button asChild variant="ghost" className="w-full text-gray-800 dark:text-gray-200 hover:bg-amber-200/80 dark:hover:bg-amber-800/50">
           <Link href={href}>
-            Read Guide <ArrowRight className="ml-2 h-4 w-4" />
+            Read Full Guide <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </CardFooter>
@@ -43,7 +84,19 @@ const FeaturedGuideCard = ({ icon, title, content, href, rotationClass }: { icon
 );
 
 export default function HomePage() {
-  const questions = getAllQuestions();
+  const allQuestions = getAllQuestions();
+
+  const guideFaqs = allQuestions.filter(q => 
+    ["Course Basics & Enrollment", "Costs & Payment", "Study Options & Duration"].includes(q.category)
+  );
+
+  const regionalFaqs = allQuestions.filter(q => 
+    q.category === "State Licensing Requirements"
+  );
+  
+  const dataFaqs = allQuestions.filter(q => 
+    q.category === "Provider Selection"
+  );
 
   return (
     <div className="bg-background">
@@ -91,25 +144,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Knowledge Base Section */}
-      <section className="py-20 md:py-24 bg-slate-50 dark:bg-card border-t">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex justify-center mb-12">
-             <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md rotate-1 shadow-md dark:text-gray-800">
-                🔍 Explore Question Categories
-             </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => (
-              <CategoryCard key={category.slug} category={category} />
-            ))}
-          </div>
-        </div>
-      </section>
       
-      {/* Featured Guides Section */}
-      <section className="py-20 md:py-24 bg-background border-t">
+       {/* Featured Guides Section */}
+      <section className="py-20 md:py-24 bg-slate-50 dark:bg-card border-t">
          <div className="container mx-auto px-4 md:px-6">
             <div className="flex justify-center mb-12">
               <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md -rotate-1 shadow-md dark:text-gray-800">
@@ -120,21 +157,24 @@ export default function HomePage() {
                <FeaturedGuideCard 
                   icon={<BookOpen className="h-6 w-6" />}
                   title="Comprehensive Guide"
-                  content={<p>The full breakdown of CPP41419: structure, content, providers, costs, timeframes, and outcomes.</p>}
+                  infoContent={<p>The full breakdown of CPP41419: structure, content, providers, costs, timeframes, and outcomes.</p>}
+                  relatedFaqs={guideFaqs}
                   href="/guide"
                   rotationClass="transform -rotate-2 hover:-rotate-1"
                />
                <FeaturedGuideCard 
                   icon={<Map className="h-6 w-6" />}
                   title="Regional Real Estate"
-                  content={<p>Insights into studying and working in real estate across major Australian cities and regional areas.</p>}
+                  infoContent={<p>Insights into studying and working in real estate across major Australian cities and regional areas.</p>}
+                  relatedFaqs={regionalFaqs}
                   href="/regional-guide"
                   rotationClass="transform rotate-1 hover:rotate-0"
                />
                <FeaturedGuideCard 
                   icon={<BarChartBig className="h-6 w-6" />}
                   title="Data Insights"
-                  content={<p>See how providers compare. Red flags. Trends. Real stories from students and alumni.</p>}
+                  infoContent={<p>See how providers compare. Red flags. Trends. Real stories from students and alumni.</p>}
+                  relatedFaqs={dataFaqs}
                   href="/data-insights"
                   rotationClass="transform rotate-3 hover:rotate-1"
                />
@@ -143,7 +183,7 @@ export default function HomePage() {
       </section>
 
       {/* RTO Sale Offer Section */}
-      <section id="sale-offer" className="py-20 md:py-24 text-center">
+      <section id="sale-offer" className="py-20 md:py-24 text-center bg-background border-t">
         <div className="container mx-auto px-4 md:px-6 flex justify-center">
           <Card className="relative group w-full max-w-lg bg-gradient-to-br from-primary to-[hsl(var(--deep-navy))] text-white overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 -rotate-2 hover:rotate-0">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></div>
@@ -184,7 +224,23 @@ export default function HomePage() {
         </p>
       </section>
 
-      <FaqSchema questions={questions} />
+      {/* Knowledge Base Section */}
+      <section className="py-20 md:py-24 bg-slate-50 dark:bg-card border-t">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex justify-center mb-12">
+             <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md rotate-1 shadow-md dark:text-gray-800">
+                🔍 Explore Question Categories
+             </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categories.map((category) => (
+              <CategoryCard key={category.slug} category={category} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FaqSchema questions={allQuestions} />
     </div>
   );
 }
