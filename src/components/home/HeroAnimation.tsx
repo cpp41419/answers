@@ -6,24 +6,26 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 const cyclingWords = ['ANSWERS', 'QUESTIONS', 'FINAL EXAM 2025'];
-const woodCardWords = ['Real Estate Course', 'Licensing Info', 'Career Guides'];
 
 export function HeroAnimation() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [woodCardIndex, setWoodCardIndex] = useState(0);
+  const [bannerPositions, setBannerPositions] = useState<{ top: string; left: string; transform: string }[]>([]);
 
   useEffect(() => {
     const mainInterval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cyclingWords.length);
-    }, 2500); // Change word every 2.5 seconds
+    }, 2500);
 
-    const woodCardInterval = setInterval(() => {
-        setWoodCardIndex((prevIndex) => (prevIndex + 1) % woodCardWords.length);
-    }, 2800); // Change slightly slower to avoid sync
+    // Generate positions for the banners on the client side to avoid hydration mismatch.
+    const positions = Array.from({ length: 6 }).map((_, i) => ({
+        top: '-0.75rem',
+        left: `${5 + i * 15 + (Math.random() * 5 - 2.5)}%`,
+        transform: `rotate(${Math.random() * 20 - 10}deg)`,
+    }));
+    setBannerPositions(positions);
 
     return () => {
-        clearInterval(mainInterval);
-        clearInterval(woodCardInterval);
+      clearInterval(mainInterval);
     };
   }, []);
 
@@ -31,22 +33,23 @@ export function HeroAnimation() {
     // Apply slow swing to the entire container to make it all swing together
     <div className="flex flex-col items-center gap-1 mb-10 relative animate-slow-swing">
       <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10 relative">
-        <h1 className="text-5xl md:text-6xl font-black uppercase tracking-wide text-primary">
+        {bannerPositions.map((pos, index) => (
+            <div 
+                key={index}
+                className="absolute bg-amber-800 text-white text-xs font-bold uppercase py-1 px-2 rounded-sm shadow-lg border-2 border-amber-900/50"
+                style={{ top: pos.top, left: pos.left, transform: pos.transform }}
+            >
+                CAREER GUIDES
+            </div>
+        ))}
+        <h1 className="text-6xl md:text-7xl font-black uppercase tracking-wide text-primary">
           Find Course
         </h1>
-        {/* Attached "wood" card with a border */}
-        <div
-            className="absolute -top-3 -right-6 bg-amber-800 text-white text-xs font-bold uppercase py-1 px-2 rounded-sm shadow-lg transform rotate-12 border-2 border-amber-900/50 [perspective:1000px]"
-        >
-          <span key={woodCardIndex} className="inline-block animate-flip-in">
-            {woodCardWords[woodCardIndex]}
-          </span>
-        </div>
       </div>
       <div className="bg-primary rounded-lg px-8 py-4 shadow-2xl drop-shadow-xl transform rotate-1 z-20 -my-5 h-[135px] flex items-center justify-center [perspective:1000px]">
         <h2
           key={currentIndex}
-          className="text-6xl md:text-7xl font-black uppercase tracking-wide text-primary-foreground animate-flip-in text-center"
+          className="text-7xl md:text-8xl font-black uppercase tracking-wide text-primary-foreground animate-flip-in text-center"
         >
           {cyclingWords[currentIndex]}
         </h2>
