@@ -4,7 +4,7 @@ export function AppLogo() {
   return (
     <div className="flex items-center gap-2 text-xl font-bold text-primary">
       <LibrarySquare className="h-7 w-7" />
-      <span>CPP41419 Q&amp;A</span>
+      <span>ANSWERS</span>
     </div>
   );
 }

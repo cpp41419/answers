@@ -7,7 +7,7 @@ import { categories } from '@/data/categories';
 import { ArrowRight, BookOpen, Map, BarChartBig, Lightbulb } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'CPP41419 Q&A - Answers for Australian Real Estate Training',
+  title: 'ANSWERS - Your CPP41419 Real Estate Authority Resource',
   description: 'Your independent, community-driven guide to the CPP41419 Certificate IV in Real Estate Practice. Find answers, ask questions, and get expert insights.',
 };
 
@@ -41,10 +41,10 @@ export default function HomePage() {
       <section className="py-20 md:py-28 bg-[hsl(var(--deep-navy))]">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary-foreground mb-4">
-            Australia's Largest CPP41419 Q&A Resource
+            ANSWERS: Your Real Estate Authority Resource
           </h1>
           <p className="max-w-3xl mx-auto text-lg text-primary-foreground/80 mb-8">
-            Your independent, community-driven guide to the Certificate IV in Real Estate Practice. Find answers, ask questions, and get expert insights.
+            The definitive, community-driven guide for the CPP41419 Certificate IV in Real Estate Practice. Get clarity on costs, licensing, career paths, and more.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" asChild>
@@ -58,6 +58,26 @@ export default function HomePage() {
                 Explore Categories <ArrowRight className="ml-2" />
               </Link>
             </Button>
+          </div>
+           {/* New tags section */}
+          <div className="mt-10 text-center">
+            <p className="text-sm text-primary-foreground/60 mb-3">
+              Or jump to a popular topic:
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+              <Button asChild variant="outline" size="sm" className="rounded-full bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20">
+                <Link href="/questions/state-licensing-requirements">Licensing</Link>
+              </Button>
+              <Button asChild variant="outline" size="sm" className="rounded-full bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20">
+                <Link href="/questions/costs-payment">Course Costs</Link>
+              </Button>
+              <Button asChild variant="outline" size="sm" className="rounded-full bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20">
+                <Link href="/questions/career-employment">Career Paths</Link>
+              </Button>
+              <Button asChild variant="outline" size="sm" className="rounded-full bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20">
+                <Link href="/questions/study-options-duration">Online Study</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
