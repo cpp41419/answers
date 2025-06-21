@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { ReactNode } from 'react';
@@ -9,6 +10,7 @@ import Header from '@/components/navigation/Header';
 import Footer from '@/components/navigation/Footer';
 import MobileMenu from '@/components/navigation/MobileMenu';
 import GlobalSearch from '@/components/search/GlobalSearch';
+import { StateFaqSection } from '@/components/core/StateFaqSection';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -52,6 +54,8 @@ export function MainLayout({
         <main className={`flex-1 ${className}`}>
           {children}
         </main>
+
+        <StateFaqSection />
 
         <Footer />
         
