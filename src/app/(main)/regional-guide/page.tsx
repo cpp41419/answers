@@ -1,6 +1,4 @@
-
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Breadcrumbs } from '@/components/core/Breadcrumbs';
@@ -59,7 +57,9 @@ export default function RegionalGuidePage() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-4 px-2 md:px-4">
-            <Image src="https://placehold.co/800x300.png" alt="NSW Skyline" width={800} height={300} className="rounded-lg mb-6 object-cover" data-ai-hint="Sydney skyline harbour bridge" />
+            <div className="flex items-center justify-center w-full h-[200px] bg-muted/50 rounded-lg mb-6">
+              <Building2 className="h-16 w-16 text-muted-foreground/50" />
+            </div>
             <div className="grid md:grid-cols-2 gap-6">
               <RegionDetailCard
                 title="Sydney"
@@ -121,7 +121,9 @@ export default function RegionalGuidePage() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-4 px-2 md:px-4">
-            <Image src="https://placehold.co/800x300.png" alt="VIC Landscape" width={800} height={300} className="rounded-lg mb-6 object-cover" data-ai-hint="Melbourne laneway city" />
+             <div className="flex items-center justify-center w-full h-[200px] bg-muted/50 rounded-lg mb-6">
+                <Landmark className="h-16 w-16 text-muted-foreground/50" />
+            </div>
             <div className="grid md:grid-cols-2 gap-6">
               <RegionDetailCard
                 title="Melbourne"
@@ -169,7 +171,9 @@ export default function RegionalGuidePage() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-4 px-2 md:px-4">
-            <Image src="https://placehold.co/800x300.png" alt="QLD Beach" width={800} height={300} className="rounded-lg mb-6 object-cover" data-ai-hint="Gold Coast beach" />
+             <div className="flex items-center justify-center w-full h-[200px] bg-muted/50 rounded-lg mb-6">
+                <Sun className="h-16 w-16 text-muted-foreground/50" />
+            </div>
             <div className="grid md:grid-cols-2 gap-6">
               <RegionDetailCard
                 title="Brisbane"
@@ -224,7 +228,9 @@ export default function RegionalGuidePage() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-4 px-2 md:px-4">
-            <Image src="https://placehold.co/800x300.png" alt="SA Vineyard" width={800} height={300} className="rounded-lg mb-6 object-cover" data-ai-hint="Barossa Valley vineyard" />
+             <div className="flex items-center justify-center w-full h-[200px] bg-muted/50 rounded-lg mb-6">
+                <Sprout className="h-16 w-16 text-muted-foreground/50" />
+            </div>
             <div className="grid md:grid-cols-2 gap-6">
               <RegionDetailCard
                 title="Adelaide"
@@ -258,7 +264,9 @@ export default function RegionalGuidePage() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-4 px-2 md:px-4">
-            <Image src="https://placehold.co/800x300.png" alt="WA Coastline" width={800} height={300} className="rounded-lg mb-6 object-cover" data-ai-hint="Perth cityscape Swan River" />
+            <div className="flex items-center justify-center w-full h-[200px] bg-muted/50 rounded-lg mb-6">
+                <Sun className="h-16 w-16 text-muted-foreground/50" />
+            </div>
             <div className="grid md:grid-cols-2 gap-6">
               <RegionDetailCard
                 title="Perth"
@@ -292,7 +300,9 @@ export default function RegionalGuidePage() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-4 px-2 md:px-4">
-            <Image src="https://placehold.co/800x300.png" alt="TAS Wilderness" width={800} height={300} className="rounded-lg mb-6 object-cover" data-ai-hint="Hobart waterfront Mount Wellington" />
+             <div className="flex items-center justify-center w-full h-[200px] bg-muted/50 rounded-lg mb-6">
+                <MountainSnow className="h-16 w-16 text-muted-foreground/50" />
+            </div>
             <div className="grid md:grid-cols-2 gap-6">
               <RegionDetailCard
                 title="Hobart"
@@ -319,7 +329,9 @@ export default function RegionalGuidePage() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-4 px-2 md:px-4">
-            <Image src="https://placehold.co/800x300.png" alt="NT Outback" width={800} height={300} className="rounded-lg mb-6 object-cover" data-ai-hint="Darwin waterfront outback landscape" />
+            <div className="flex items-center justify-center w-full h-[200px] bg-muted/50 rounded-lg mb-6">
+                <Sun className="h-16 w-16 text-muted-foreground/50" />
+            </div>
             <div className="grid md:grid-cols-2 gap-6">
               <RegionDetailCard
                 title="Darwin"

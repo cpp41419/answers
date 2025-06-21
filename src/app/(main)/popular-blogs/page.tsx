@@ -1,9 +1,7 @@
-
 'use client'; // This page now needs client-side state for filtering
 
-import { useState, useMemo } from 'react';
-import type { Metadata } from 'next'; // Metadata is typically for server components or page.tsx exports
-import Image from 'next/image';
+import { useState, useMemo, useEffect } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,32 +9,18 @@ import { Breadcrumbs } from '@/components/core/Breadcrumbs';
 import { ArrowRight, Rss } from 'lucide-react';
 import { CategoryFilter } from '@/components/filters/CategoryFilter'; // Import the filter
 
-// export const metadata: Metadata = { // Keep for SSR if possible, or manage title dynamically
-//   title: 'Popular Real Estate Blogs & Articles | CPP41419 Q&A',
-//   description: 'Discover insightful articles and blog posts on real estate practice, market trends, and career development related to CPP41419.',
-//   keywords: ['real estate blog', 'property articles', 'real estate insights', 'CPP41419 career', 'market trends Australia'],
-// };
-
-interface BlogPost { // Renamed from BlogPostCardProps for clarity and added category
+interface BlogPost {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;
-  imageHint: string;
-  href?: string;
+  href: string;
   category: string; // e.g., 'guides', 'digital-trends'
 }
 
-const BlogPostCard: React.FC<BlogPost> = ({ title, description, imageUrl, imageHint, href, category }) => (
+const BlogPostCard: React.FC<BlogPost> = ({ title, description, href, category }) => (
   <Card className="flex flex-col overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 h-full">
-    <div className="relative w-full h-48">
-      <Image
-        src={imageUrl}
-        alt={title}
-        layout="fill"
-        objectFit="cover"
-        data-ai-hint={imageHint}
-      />
+    <div className="flex h-48 w-full items-center justify-center bg-muted/50">
+      <Rss className="h-16 w-16 text-muted-foreground/40" />
     </div>
     <CardHeader>
       <CardTitle className="text-xl font-semibold">{title}</CardTitle>
@@ -47,7 +31,7 @@ const BlogPostCard: React.FC<BlogPost> = ({ title, description, imageUrl, imageH
     <CardFooter className="flex justify-between items-center">
       <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">{category}</span>
       <Button asChild variant="outline" size="sm" className="group">
-        <Link href={href || "#"} target={href ? "_blank" : "_self"} rel={href ? "noopener noreferrer" : ""}>
+        <Link href={href} target="_blank" rel="noopener noreferrer">
           Read More <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Link>
       </Button>
@@ -55,14 +39,11 @@ const BlogPostCard: React.FC<BlogPost> = ({ title, description, imageUrl, imageH
   </Card>
 );
 
-// Initial blog posts data - ensure each has a category matching filterCategories
 const initialBlogPosts: BlogPost[] = [
   {
     id: 'blog-1',
     title: "Navigating Your First Year as a Real Estate Agent",
     description: "Tips and tricks for surviving and thriving in your initial year in the competitive real estate market. Learn how to build your network and close your first deals.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "new agent office",
     href: "https://cpp41419.com.au/blog/first-year-agent",
     category: "student-advice" 
   },
@@ -70,50 +51,43 @@ const initialBlogPosts: BlogPost[] = [
     id: 'blog-2',
     title: "Understanding the Latest PropTech Innovations",
     description: "An overview of cutting-edge technologies transforming the property industry, from AI-powered valuations to virtual reality tours.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "proptech innovation interface",
+    href: "https://cpp41419.com.au/blog/proptech-innovations",
     category: "digital-trends"
   },
   {
     id: 'blog-3',
     title: "Mastering Digital Marketing for Real Estate in 2025",
     description: "Essential digital marketing strategies for agents, including social media engagement, SEO for listings, and effective email campaigns.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "digital marketing real estate",
+    href: "https://cpp41419.com.au/blog/digital-marketing-2025",
     category: "digital-trends"
   },
   {
     id: 'blog-4',
     title: "The Future of Sustainable Housing in Australia",
     description: "Exploring trends in eco-friendly building practices, green certifications, and how they impact property values and buyer preferences.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "sustainable housing modern",
+    href: "https://cpp41419.com.au/blog/sustainable-housing-trends",
     category: "guides" 
   },
   {
     id: 'blog-5',
     title: "Deep Dive into NSW Licensing Changes",
     description: "A comprehensive look at the latest updates to NSW real estate licensing and what they mean for agents.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "legal document nsw",
+    href: "https://cpp41419.com.au/blog/nsw-licensing-updates",
     category: "licensing"
   },
   {
     id: 'blog-6',
     title: "Choosing the Right RTO: A Student's Perspective",
     description: "An honest review and guide on selecting a Registered Training Organisation that fits your learning style and career goals.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "student studying online",
+    href: "https://cpp41419.com.au/blog/choosing-an-rto-guide",
     category: "rto-reviews"
   }
 ];
-
 
 export default function PopularBlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Set document title dynamically for client components
   useEffect(() => {
     document.title = 'Popular Real Estate Blogs & Articles | CPP41419 Q&A';
   }, []);
@@ -128,15 +102,9 @@ export default function PopularBlogsPage() {
     });
   }, [selectedCategory, searchTerm]);
 
-  const pageBreadcrumbs = [
-    { label: 'Home', href: '/' }, 
-    { label: 'Popular Blogs' }
-  ];
-
   return (
     <div className="container mx-auto py-8 px-4 md:px-6 space-y-8">
-      {/* Breadcrumbs are now handled by MainLayout, but we pass the items */}
-      {/* <Breadcrumbs items={pageBreadcrumbs} /> */}
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Popular Blogs' }]} />
       
       <header className="pb-6 border-b border-border">
         <h1 className="text-4xl font-bold tracking-tight text-foreground flex items-center">
@@ -152,7 +120,7 @@ export default function PopularBlogsPage() {
         onCategoryChange={setSelectedCategory}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
-        articles={initialBlogPosts} // Pass all articles for counting
+        articles={initialBlogPosts}
       />
 
       {filteredBlogPosts.length > 0 ? (
@@ -182,7 +150,7 @@ export default function PopularBlogsPage() {
         <CardContent className="pt-2 text-sm text-foreground/90 space-y-2">
           <p>Have an interesting article or insight you'd like to share? We are always looking for fresh perspectives on the real estate industry, especially related to CPP41419 and career development.</p>
           <Button variant="secondary" asChild>
-            <Link href="/contact-us"> {/* Assuming a contact page might exist or be created */}
+            <Link href="https://cpp41419.com.au/contact" target="_blank" rel="noopener noreferrer">
               Submit Your Article Idea
             </Link>
           </Button>
@@ -192,24 +160,8 @@ export default function PopularBlogsPage() {
   );
 }
 
-// It's good practice to define a metadata object for Next.js App Router if needed,
-// but for dynamic titles in client components, useEffect is common.
-// If this page were a Server Component, this would be the way:
 export const metadata: Metadata = {
   title: 'Popular Real Estate Blogs & Articles | CPP41419 Q&A',
   description: 'Discover insightful articles and blog posts on real estate practice, market trends, and career development related to CPP41419.',
   keywords: ['real estate blog', 'property articles', 'real estate insights', 'CPP41419 career', 'market trends Australia'],
 };
-
-// This line is needed to ensure the Breadcrumbs in MainLayout receive the correct items
-// If you want to manage breadcrumbs from page level directly.
-export function getStaticProps() {
-  return {
-    props: {
-      breadcrumbItems: [
-        { label: 'Home', href: '/' },
-        { label: 'Popular Blogs' }
-      ]
-    }
-  };
-}

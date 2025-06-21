@@ -1,37 +1,52 @@
-
 'use client';
 
 import { Fragment, useEffect, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react'; // Using Headless UI for modal as an example
-import { Search, X } from 'lucide-react';
+import { Dialog, Transition } from '@headlessui/react';
+import { Search, X, FileText, MessageSquare } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { getAllQuestions } from '@/data/questions';
+import { slugify } from '@/lib/utils';
 
-interface GlobalSearchProps {
-  isOpen: boolean;
-  onClose: () => void;
+interface SearchResult {
+  id: string;
+  title: string;
+  href: string;
+  category: string;
+  type: 'page' | 'question';
 }
 
-// Mock search results - replace with actual search logic
-const mockResults = [
-  { id: '1', title: 'Comprehensive Guide to CPP41419', href: '/guide', category: 'Guides' },
-  { id: '2', title: 'NSW Licensing Requirements', href: '/questions/state-licensing-requirements/some-nsw-question-id', category: 'Licensing' },
-  { id: '3', title: 'Online Study Options', href: '/questions/study-options-duration/some-online-study-question-id', category: 'Study Options' },
-  { id: '4', title: 'Understanding PropTech', href: '/popular-blogs', category: 'Digital Trends' },
+const searchablePages: Omit<SearchResult, 'type'>[] = [
+  { id: 'guide', title: 'Comprehensive Guide to CPP41419', href: '/guide', category: 'Guides' },
+  { id: 'regional-guide', title: 'Regional Real Estate Guide', href: '/regional-guide', category: 'Guides' },
+  { id: 'data-insights', title: 'Data Insights: Suspect Provider Behavior', href: '/data-insights', category: 'Analysis' },
+  { id: 'popular-blogs', title: 'Popular Real Estate Blogs & Articles', href: '/popular-blogs', category: 'Articles' },
+  { id: 'quiz', title: 'Find Your Perfect CPP41419 Provider Quiz', href: '/quiz', category: 'Tools' },
 ];
 
+const allQuestions = getAllQuestions();
+const allSearchableContent: SearchResult[] = [
+  ...searchablePages.map(p => ({ ...p, type: 'page' as const })),
+  ...allQuestions.map(q => ({
+    id: q.id,
+    title: q.question,
+    href: `/questions/${slugify(q.category)}/${q.id}`,
+    category: q.category,
+    type: 'question' as const
+  }))
+];
 
-export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
+export default function GlobalSearch({ isOpen, onClose }: { isOpen: boolean; onClose: () => void; }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [results, setResults] = useState<typeof mockResults>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
 
   useEffect(() => {
     if (searchTerm.length > 1) {
-      // Simulate API call or filtering
-      const filtered = mockResults.filter(item =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchTerm.toLowerCase())
+      const lowercasedTerm = searchTerm.toLowerCase();
+      const filtered = allSearchableContent.filter(item =>
+        item.title.toLowerCase().includes(lowercasedTerm) ||
+        item.category.toLowerCase().includes(lowercasedTerm)
       );
       setResults(filtered);
     } else {
@@ -40,12 +55,21 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
   }, [searchTerm]);
 
   useEffect(() => {
-    // Clear search term when modal is closed
     if (!isOpen) {
-      setSearchTerm('');
-      setResults([]);
+      setTimeout(() => {
+        setSearchTerm('');
+        setResults([]);
+      }, 200);
     }
   }, [isOpen]);
+
+  const getIcon = (type: 'page' | 'question') => {
+    switch (type) {
+      case 'page': return <FileText className="h-5 w-5 text-muted-foreground" />;
+      case 'question': return <MessageSquare className="h-5 w-5 text-muted-foreground" />;
+      default: return <FileText className="h-5 w-5 text-muted-foreground" />;
+    }
+  };
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -101,16 +125,19 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
 
                 {results.length > 0 && (
                   <div className="max-h-[60vh] overflow-y-auto p-4 sm:p-6">
-                    <Dialog.Description as="div" className="space-y-2">
+                    <Dialog.Description as="div" className="space-y-1">
                       {results.map((item) => (
                         <Link
                           key={item.id}
                           href={item.href}
                           onClick={onClose}
-                          className="block rounded-lg p-3 hover:bg-muted transition-colors"
+                          className="flex items-center gap-3 rounded-lg p-3 hover:bg-muted transition-colors"
                         >
-                          <p className="text-sm font-medium text-foreground">{item.title}</p>
-                          <p className="text-xs text-muted-foreground">{item.category}</p>
+                          {getIcon(item.type)}
+                          <div className="flex-1">
+                             <p className="text-sm font-medium text-foreground">{item.title}</p>
+                             <p className="text-xs text-muted-foreground">{item.category}</p>
+                          </div>
                         </Link>
                       ))}
                     </Dialog.Description>
