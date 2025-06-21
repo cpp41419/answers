@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   description: 'The definitive, community-driven guide to the CPP41419 Certificate IV in Real Estate Practice. Gain clarity on licensing, costs, course options, career pathways, and more.',
 };
 
-const FeaturedGuideCard = ({ icon, title, description, href, rotationClass }: { icon: React.ReactNode, title: string, description: string, href: string, rotationClass: string }) => (
+const FeaturedGuideCard = ({ icon, title, content, href, rotationClass }: { icon: React.ReactNode, title: string, content: React.ReactNode, href: string, rotationClass: string }) => (
     <Card className={cn(
         "flex flex-col h-full bg-amber-100/80 dark:bg-amber-900/30 text-gray-800 dark:text-gray-200 border-amber-200 dark:border-amber-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-105",
         rotationClass
@@ -28,7 +29,7 @@ const FeaturedGuideCard = ({ icon, title, description, href, rotationClass }: { 
         </div>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-gray-700 dark:text-gray-300 text-sm">{description}</p>
+        <div className="text-gray-700 dark:text-gray-300 text-sm">{content}</div>
       </CardContent>
       <CardFooter>
         <Button asChild variant="ghost" className="w-full text-gray-800 dark:text-gray-200 hover:bg-amber-200/80 dark:hover:bg-amber-800/50">
@@ -144,7 +145,7 @@ export default function HomePage() {
       </section>
 
       {/* RTO Sale Offer Section */}
-      <section id="sale-offer" className="py-20 md:py-24">
+      <section id="sale-offer" className="py-20 md:py-24 text-center">
         <div className="container mx-auto px-4 md:px-6 flex justify-center">
           <Card className="relative group w-full max-w-lg bg-gradient-to-br from-primary to-[hsl(var(--deep-navy))] text-white overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 -rotate-2 hover:rotate-0">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></div>
@@ -157,7 +158,7 @@ export default function HomePage() {
                 <CardTitle className="text-2xl font-bold text-white">Exclusive RTO Offer</CardTitle>
               </div>
               <CardDescription className="text-primary-foreground/80">
-                Limited time offer from our top-rated providers.
+                Limited time offer from our top-rated providers (Demo Offer).
               </CardDescription>
             </CardHeader>
             <CardContent className="relative z-10">
@@ -178,6 +179,9 @@ export default function HomePage() {
             </CardFooter>
           </Card>
         </div>
+         <p className="mt-6 text-sm text-muted-foreground">
+            Are you an RTO? <Link href="https://cpp41419.com.au/logup" className="underline hover:text-primary" target="_blank" rel="noopener noreferrer">Learn about partnership opportunities.</Link>
+        </p>
       </section>
       
       {/* Featured Guides Section */}
@@ -192,21 +196,34 @@ export default function HomePage() {
                <FeaturedGuideCard 
                   icon={<BookOpen className="h-6 w-6" />}
                   title="Comprehensive Guide"
-                  description="The full breakdown of CPP41419: structure, content, providers, costs, timeframes, and outcomes."
+                  content={<p>The full breakdown of CPP41419: structure, content, providers, costs, timeframes, and outcomes.</p>}
                   href="/guide"
                   rotationClass="transform -rotate-2 hover:-rotate-1"
                />
                <FeaturedGuideCard 
                   icon={<Map className="h-6 w-6" />}
                   title="Regional Real Estate"
-                  description="Insights into studying and working in real estate across major Australian cities and regional areas."
+                  content={
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-left">
+                        <ul className="list-disc list-inside space-y-1">
+                            <li>Sydney</li>
+                            <li>Melbourne</li>
+                            <li>Brisbane</li>
+                        </ul>
+                        <ul className="list-disc list-inside space-y-1">
+                            <li>Perth</li>
+                            <li>Adelaide</li>
+                            <li>Canberra</li>
+                        </ul>
+                    </div>
+                  }
                   href="/regional-guide"
                   rotationClass="transform rotate-1 hover:rotate-0"
                />
                <FeaturedGuideCard 
                   icon={<BarChartBig className="h-6 w-6" />}
                   title="Data Insights"
-                  description="See how providers compare. Red flags. Trends. Real stories from students and alumni."
+                  content={<p>See how providers compare. Red flags. Trends. Real stories from students and alumni.</p>}
                   href="/data-insights"
                   rotationClass="transform rotate-3 hover:rotate-1"
                />
