@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Breadcrumbs } from '@/components/core/Breadcrumbs';
-import { MapPin, Building, Briefcase, TrendingUp, Landmark, MountainSnow, Sun, Waves, Anchor, Leaf, Sprout, Building2, Banknote, Users, Scale, Home } from 'lucide-react';
+import { MapPin, Building, Briefcase, TrendingUp, Landmark, MountainSnow, Sun, Waves, Anchor, Leaf, Sprout, Building2, Banknote, Users, Scale, Home, Info } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Regional Real Estate Guide: Australia | CPP41419 Q&A',
