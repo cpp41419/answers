@@ -25,32 +25,34 @@ export function HeroAnimation() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-4 mb-10">
-      <div className="bg-primary rounded-lg px-8 py-4 shadow-2xl drop-shadow-xl z-10 w-full max-w-2xl relative">
-        <h1 className="text-7xl md:text-8xl font-black uppercase tracking-wide text-primary-foreground text-center">
-          Find Course
-        </h1>
-        {/* Attached Wood Card */}
-        <div className="absolute -bottom-5 -right-5 [perspective:1000px]">
-            <div 
-                key={woodCardIndex}
-                className="bg-[#4a2c2a] text-white text-xs font-bold uppercase py-2 px-3 rounded-sm shadow-md border border-black/30 transform rotate-12 animate-flip-in">
-                {woodCardWords[woodCardIndex]}
-            </div>
+    <div className="relative bg-black/5 p-4 md:p-6 rounded-2xl border border-white/10 mb-10">
+      <div className="flex flex-col items-center gap-4">
+        <div className="bg-primary rounded-lg px-8 py-4 shadow-2xl drop-shadow-xl z-10 w-full max-w-2xl relative">
+          <h1 className="text-7xl md:text-8xl font-black uppercase tracking-wide text-primary-foreground text-center">
+            Find Course
+          </h1>
+          {/* Attached Wood Card */}
+          <div className="absolute -bottom-5 -right-5 [perspective:1000px]">
+              <div 
+                  key={woodCardIndex}
+                  className="bg-[#4a2c2a] text-white text-xs font-bold uppercase py-2 px-3 rounded-sm shadow-md border border-black/30 transform rotate-12 animate-flip-in">
+                  {woodCardWords[woodCardIndex]}
+              </div>
+          </div>
         </div>
-      </div>
 
-      <div className="bg-accent rounded-lg px-8 py-6 shadow-2xl drop-shadow-xl z-20 -my-6 w-full max-w-lg h-[155px] flex items-center justify-center [perspective:1000px]">
-        <h2
-          key={mainIndex}
-          className="text-9xl md:text-[10rem] font-black uppercase tracking-wide text-accent-foreground animate-flip-in text-center"
-        >
-          {cyclingWords[mainIndex]}
-        </h2>
-      </div>
+        <div className="bg-accent rounded-lg px-8 py-6 shadow-2xl drop-shadow-xl z-20 -my-6 w-full max-w-lg h-[155px] flex items-center justify-center [perspective:1000px]">
+          <h2
+            key={mainIndex}
+            className="text-9xl md:text-[10rem] font-black uppercase tracking-wide text-accent-foreground animate-flip-in text-center"
+          >
+            {cyclingWords[mainIndex]}
+          </h2>
+        </div>
 
-      <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10 animate-slow-swing">
-        <p className="text-xl font-bold uppercase tracking-wider text-primary">GET PREPARED</p>
+        <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10 animate-slow-swing">
+          <p className="text-xl font-bold uppercase tracking-wider text-primary">GET PREPARED</p>
+        </div>
       </div>
     </div>
   );

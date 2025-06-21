@@ -21,7 +21,7 @@ interface SpecialBlockProps {
 }
 
 const SpecialBlock: React.FC<SpecialBlockProps> = ({ type, title, children }) => {
-  let IconComponent: React.ElementType = Info;
+  let IconComponent: React.ElementType = Info; // Default icon
   let alertVariant: "default" | "destructive" = "default";
   let effectiveTitle = title || type.charAt(0).toUpperCase() + type.slice(1);
 
@@ -35,6 +35,7 @@ const SpecialBlock: React.FC<SpecialBlockProps> = ({ type, title, children }) =>
     case 'important': IconComponent = AlertTriangle; break;
     case 'check': IconComponent = CheckCircle; break;
     case 'question': IconComponent = Info; break; 
+ case 'cta': IconComponent = UserCheck; break; // Icon for CTA
     case 'note': IconComponent = Info; break;
     case 'success': IconComponent = CheckCircle; break;
     default: IconComponent = Info;
@@ -525,6 +526,13 @@ Schedule       Study Materials    Licensing Support
                   <Link href="/quiz">Find a Provider & Ask Anonymously</Link>
               </Button>
           </SpecialBlock>
+ <SpecialBlock type="cta" title="Chat with Us">
+ <p>Ready to find the perfect real estate course for you? Chat with our digital consultant for personalized guidance tailored to your career goals and location.</p>
+ <Button asChild className="mt-3">
+ <Link href="https://cal.com/digitalconsultant" target="_blank" rel="noopener noreferrer">Book a Consultation</Link>
+ </Button>
+ </SpecialBlock>
+
         </CardContent>
       </Card>
 
