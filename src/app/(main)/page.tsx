@@ -6,33 +6,37 @@ import { CategoryCard } from '@/components/qa/CategoryCard';
 import { categories } from '@/data/categories';
 import { ArrowRight, BookOpen, Map, BarChartBig } from 'lucide-react';
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'ANSWERS - Your CPP41419 Real Estate Authority Resource',
   description: 'The definitive, community-driven guide to the CPP41419 Certificate IV in Real Estate Practice. Gain clarity on licensing, costs, course options, career pathways, and more.',
 };
 
-const FeaturedGuideCard = ({ icon, title, description, href }: { icon: React.ReactNode, title: string, description: string, href: string }) => (
-  <Card className="flex flex-col h-full shadow-lg hover:shadow-xl transition-shadow rounded-xl">
-    <CardHeader>
-      <div className="flex items-center gap-3 mb-2">
-        <span className="p-3 bg-primary/10 text-primary rounded-lg">
-          {icon}
-        </span>
-        <CardTitle className="text-xl font-semibold">{title}</CardTitle>
-      </div>
-    </CardHeader>
-    <CardContent className="flex-grow">
-      <p className="text-muted-foreground text-sm">{description}</p>
-    </CardContent>
-    <CardFooter>
-      <Button asChild variant="outline" className="w-full">
-        <Link href={href}>
-          Read Guide <ArrowRight className="ml-2 h-4 w-4" />
-        </Link>
-      </Button>
-    </CardFooter>
-  </Card>
+const FeaturedGuideCard = ({ icon, title, description, href, rotationClass }: { icon: React.ReactNode, title: string, description: string, href: string, rotationClass: string }) => (
+    <Card className={cn(
+        "flex flex-col h-full bg-amber-100/80 dark:bg-amber-900/30 text-gray-800 dark:text-gray-200 border-amber-200 dark:border-amber-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-105",
+        rotationClass
+      )}>
+      <CardHeader>
+        <div className="flex items-center gap-3 mb-2">
+          <span className="p-3 bg-amber-200/80 dark:bg-amber-800/50 text-amber-700 dark:text-amber-200 rounded-lg">
+            {icon}
+          </span>
+          <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100">{title}</CardTitle>
+        </div>
+      </CardHeader>
+      <CardContent className="flex-grow">
+        <p className="text-gray-700 dark:text-gray-300 text-sm">{description}</p>
+      </CardContent>
+      <CardFooter>
+        <Button asChild variant="ghost" className="w-full text-gray-800 dark:text-gray-200 hover:bg-amber-200/80 dark:hover:bg-amber-800/50">
+          <Link href={href}>
+            Read Guide <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
 );
 
 const popularTopics = [
@@ -153,27 +157,32 @@ export default function HomePage() {
       {/* Featured Guides Section */}
       <section className="py-20 md:py-24 bg-slate-50 dark:bg-card border-t">
          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
-                📘 In-Depth Resources
-            </h2>
+            <div className="flex justify-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md -rotate-1 shadow-md dark:text-gray-800">
+                  📌 In-Depth Resources
+              </h2>
+            </div>
             <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                <FeaturedGuideCard 
                   icon={<BookOpen className="h-6 w-6" />}
                   title="Comprehensive Guide"
                   description="The full breakdown of CPP41419: structure, content, providers, costs, timeframes, and outcomes."
                   href="/guide"
+                  rotationClass="transform -rotate-2 hover:-rotate-1"
                />
                <FeaturedGuideCard 
                   icon={<Map className="h-6 w-6" />}
                   title="Regional Real Estate"
                   description="Insights into studying and working in real estate across major Australian cities and regional areas."
                   href="/regional-guide"
+                  rotationClass="transform rotate-1 hover:rotate-0"
                />
                <FeaturedGuideCard 
                   icon={<BarChartBig className="h-6 w-6" />}
                   title="Data Insights"
                   description="See how providers compare. Red flags. Trends. Real stories from students and alumni."
                   href="/data-insights"
+                  rotationClass="transform rotate-3 hover:rotate-1"
                />
             </div>
          </div>
