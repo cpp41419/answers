@@ -12,7 +12,7 @@ import { FaqSchema } from '@/components/core/FaqSchema';
 import { CategoryCard } from '@/components/qa/CategoryCard';
 
 export const metadata: Metadata = {
-  title: 'ANSWERS - Your CPP41419 Real Estate Authority Resource',
+  title: 'ANSWERS - Your Real Estate Authority Resource',
   description: 'The definitive, community-driven guide to the CPP41419 Certificate IV in Real Estate Practice. Gain clarity on licensing, costs, course options, career pathways, and more.',
 };
 
@@ -145,48 +145,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* RTO Sale Offer Section */}
-      <section id="sale-offer" className="py-20 md:py-24 text-center">
-        <div className="container mx-auto px-4 md:px-6 flex justify-center">
-          <Card className="relative group w-full max-w-lg bg-gradient-to-br from-primary to-[hsl(var(--deep-navy))] text-white overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 -rotate-2 hover:rotate-0">
-            <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></div>
-            <div className="absolute bottom-0 left-0 -ml-12 -mb-12 w-48 h-48 rounded-full bg-white/10 group-hover:scale-110 transition-transform duration-500"></div>
-            <div className="absolute top-20 left-10 w-8 h-8 rounded-full bg-white/5 opacity-50 group-hover:scale-150 transition-transform duration-700"></div>
-            <div className="absolute bottom-16 right-24 w-12 h-12 rounded-full bg-white/5 opacity-30 group-hover:scale-125 transition-transform duration-700 delay-200"></div>
-            <CardHeader className="relative z-10">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="p-3 bg-white/20 rounded-lg">
-                  <Star className="h-6 w-6 text-yellow-300" />
-                </span>
-                <CardTitle className="text-2xl font-bold text-white">Exclusive RTO Offer</CardTitle>
-              </div>
-              <CardDescription className="text-primary-foreground/80">
-                Limited time offer from our top-rated providers (Demo Offer).
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="relative z-10">
-              <p className="text-lg mb-4">
-                Save up to <span className="font-bold text-4xl text-yellow-300">25%</span> on your CPP41419 course fees.
-              </p>
-              <p className="text-primary-foreground/90 text-sm">
-                Take our 2-minute quiz to get matched with participating RTOs and unlock your exclusive discount.
-              </p>
-            </CardContent>
-            <CardFooter className="relative z-10 bg-black/20 p-4">
-              <Button asChild size="lg" className="w-full bg-accent text-accent-foreground font-bold hover:bg-accent/90">
-                <Link href="/quiz">
-                  Find Your Discount
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-         <p className="mt-6 text-sm text-muted-foreground">
-            Are you an RTO? <Link href="https://cpp41419.com.au/logup" className="underline hover:text-primary" target="_blank" rel="noopener noreferrer">Learn about partnership opportunities.</Link>
-        </p>
-      </section>
-
       {/* Knowledge Base Section */}
       <section className="py-20 md:py-24 bg-slate-50 dark:bg-card border-t">
         <div className="container mx-auto px-4 md:px-6">
@@ -235,6 +193,48 @@ export default function HomePage() {
                />
             </div>
          </div>
+      </section>
+
+      {/* RTO Sale Offer Section */}
+      <section id="sale-offer" className="py-20 md:py-24 text-center">
+        <div className="container mx-auto px-4 md:px-6 flex justify-center">
+          <Card className="relative group w-full max-w-lg bg-gradient-to-br from-primary to-[hsl(var(--deep-navy))] text-white overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 -rotate-2 hover:rotate-0">
+            <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></div>
+            <div className="absolute bottom-0 left-0 -ml-12 -mb-12 w-48 h-48 rounded-full bg-white/10 group-hover:scale-110 transition-transform duration-500"></div>
+            <div className="absolute top-20 left-10 w-8 h-8 rounded-full bg-white/5 opacity-50 group-hover:scale-150 transition-transform duration-700"></div>
+            <div className="absolute bottom-16 right-24 w-12 h-12 rounded-full bg-white/5 opacity-30 group-hover:scale-125 transition-transform duration-700 delay-200"></div>
+            <CardHeader className="relative z-10">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="p-3 bg-white/20 rounded-lg">
+                  <Star className="h-6 w-6 text-yellow-300" />
+                </span>
+                <CardTitle className="text-2xl font-bold text-white">Exclusive RTO Offer</CardTitle>
+              </div>
+              <CardDescription className="text-primary-foreground/80">
+                Limited time offer from our top-rated providers (Demo Offer).
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="relative z-10">
+              <p className="text-lg mb-4">
+                Save up to <span className="font-bold text-4xl text-yellow-300">25%</span> on your CPP41419 course fees.
+              </p>
+              <p className="text-primary-foreground/90 text-sm">
+                Take our 2-minute quiz to get matched with participating RTOs and unlock your exclusive discount.
+              </p>
+            </CardContent>
+            <CardFooter className="relative z-10 bg-black/20 p-4">
+              <Button asChild size="lg" className="w-full bg-accent text-accent-foreground font-bold hover:bg-accent/90">
+                <Link href="/quiz">
+                  Find Your Discount
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+         <p className="mt-6 text-sm text-muted-foreground">
+            Are you an RTO? <Link href="https://cpp41419.com.au/logup" className="underline hover:text-primary" target="_blank" rel="noopener noreferrer">Learn about partnership opportunities.</Link>
+        </p>
       </section>
 
       <FaqSchema questions={questions} />
