@@ -7,7 +7,7 @@ import { MapPin, Building, Briefcase, TrendingUp, Landmark, MountainSnow, Sun, W
 export const metadata: Metadata = {
   title: 'Regional Real Estate Guide: Australia | CPP41419 Q&A',
   description: 'Explore the unique differences and considerations for becoming a real estate agent in major cities and regions across Australia, from Sydney to Perth.',
-  keywords: ['real estate regions Australia', 'become real estate agent Sydney', 'Melbourne property market', 'Brisbane real estate career', 'Perth agent requirements', 'regional real estate guide'],
+  keywords: ['regional real estate Australia', 'real estate jobs Sydney', 'Melbourne property market guide', 'Brisbane real estate career', 'Perth agent requirements', 'working in real estate NSW', 'real estate VIC', 'property market QLD', 'SA real estate guide', 'TAS property agent'],
 };
 
 interface RegionDetailProps {

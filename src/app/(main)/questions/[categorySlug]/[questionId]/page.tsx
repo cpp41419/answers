@@ -7,9 +7,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle, Sparkles } from 'lucide-react'; // Changed Info to AlertCircle
+import { AlertCircle, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { generateFollowUpQuestions, GenerateFollowUpQuestionsInput } from '@/ai/flows/generate-follow-up-questions';
+import { QuestionSchema } from '@/components/core/QuestionSchema';
 
 interface QuestionPageProps {
   params: { categorySlug: string; questionId: string };
@@ -56,7 +57,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
     return (
        <div className="text-center py-10">
          <Alert variant="destructive" className="max-w-md mx-auto">
-          <AlertCircle className="h-4 w-4" /> {/* Changed Info to AlertCircle */}
+          <AlertCircle className="h-4 w-4" />
           <AlertTitle>Content Not Found</AlertTitle>
           <AlertDescription>
             The question or category you are looking for does not exist or the URL is incorrect.
@@ -72,41 +73,44 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
   const followUpQuestionsList = await getFollowUpQuestions(question.question, question.answer);
 
   return (
-    <div className="space-y-8">
-      <Breadcrumbs 
-        items={[
-          { label: 'Home', href: '/' }, 
-          { label: category.name, href: `/questions/${category.slug}` },
-          { label: question.question.length > 50 ? question.question.substring(0, 50) + '...' : question.question }
-        ]} 
-      />
-      <QuestionDisplay question={question} />
+    <>
+      <QuestionSchema question={question} />
+      <div className="space-y-8">
+        <Breadcrumbs 
+          items={[
+            { label: 'Home', href: '/' }, 
+            { label: category.name, href: `/questions/${category.slug}` },
+            { label: question.question.length > 50 ? question.question.substring(0, 50) + '...' : question.question }
+          ]} 
+        />
+        <QuestionDisplay question={question} />
 
-      {followUpQuestionsList && followUpQuestionsList.length > 0 && (
-        <Card className="mt-8 bg-muted/50 border-border rounded-xl shadow-lg">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-xl flex items-center font-semibold text-foreground">
-              <Sparkles className="h-5 w-5 mr-2.5 text-primary" />
-              Further Questions You Might Have
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-2">
-            <ul className="list-disc list-outside pl-5 space-y-2 text-sm text-foreground/90">
-              {followUpQuestionsList.map((fq, index) => (
-                <li key={index} className="hover:text-primary transition-colors cursor-pointer">
-                  {fq}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      )}
+        {followUpQuestionsList && followUpQuestionsList.length > 0 && (
+          <Card className="mt-8 bg-muted/50 border-border rounded-xl shadow-lg">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl flex items-center font-semibold text-foreground">
+                <Sparkles className="h-5 w-5 mr-2.5 text-primary" />
+                Further Questions You Might Have
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-2">
+              <ul className="list-disc list-outside pl-5 space-y-2 text-sm text-foreground/90">
+                {followUpQuestionsList.map((fq, index) => (
+                  <li key={index} className="hover:text-primary transition-colors cursor-pointer">
+                    {fq}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
 
-      <div className="mt-10 text-center">
-        <Button asChild variant="outline">
-          <Link href={`/questions/${category.slug}`}>Back to {category.name}</Link>
-        </Button>
+        <div className="mt-10 text-center">
+          <Button asChild variant="outline">
+            <Link href={`/questions/${category.slug}`}>Back to {category.name}</Link>
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 export const metadata: Metadata = {
   title: 'CPP41419 Certificate IV - Complete Australian Guide | CPP41419 Q&A',
   description: 'A comprehensive guide to the CPP41419 Certificate IV in Real Estate Practice across Australia, covering course history, state licensing, costs, providers, and career pathways.',
-  keywords: ['CPP41419 guide', 'real estate course Australia', 'Certificate IV Real Estate Practice', 'licensing requirements', 'RTO comparison', 'career pathways real estate'],
+  keywords: ['CPP41419 complete guide', 'Certificate IV in Real Estate Practice', 'real estate course Australia', 'how to become a real estate agent', 'NSW real estate license', 'VIC agent representative', 'QLD real estate registration', 'RTO course comparison', 'real estate career pathways', 'real estate salary Australia'],
 };
 
 interface SpecialBlockProps {
@@ -486,7 +486,6 @@ graph TD
         <CardHeader><CardTitle className="text-2xl font-semibold flex items-center"><Users className="mr-2 h-6 w-6 text-primary" /> Provider Comparison Framework</CardTitle></CardHeader>
         <CardContent className="space-y-4 prose max-w-none dark:prose-invert">
           <SpecialBlock type="abstract" title="Decision Matrix">
-            Use these criteria to evaluate CPP41419 providers:
             <pre className="text-sm p-2 bg-muted/50 rounded"><code>
 Study Mode → Support Services → State Specialization
      ↓              ↓                    ↓

@@ -7,7 +7,7 @@ import { AlertCircle, BarChartBig, CheckCircle, ExternalLink, Info, ListChecks, 
 export const metadata: Metadata = {
   title: 'Data Insights: Identifying Suspect Provider Behavior | CPP41419 Q&A',
   description: 'Explore data-driven insights into potential suspect behaviors of education and training providers. Learn what to look out for to make informed decisions.',
-  keywords: ['data insights', 'education provider', 'training provider', 'suspect behavior', 'red flags', 'RTO analysis', 'CPP41419'],
+  keywords: ['RTO data insights', 'education provider red flags', 'training provider analysis', 'suspect RTO behavior', 'real estate course scams', 'CPP41419 provider review', 'student outcome data'],
 };
 
 interface InsightPointProps {

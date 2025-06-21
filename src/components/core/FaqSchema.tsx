@@ -13,6 +13,8 @@ const cleanAnswerText = (text: string): string => {
   cleanedText = cleanedText.replace(/\^\[\d+\]/g, '');
   // Remove markdown characters and box drawing chars
   cleanedText = cleanedText.replace(/[#*_`>|┌├└─→]/g, '');
+  // Convert escaped newlines to spaces for a concise answer
+  cleanedText = cleanedText.replace(/\\n/g, ' ');
   // Collapse multiple newlines/spaces into a single space
   cleanedText = cleanedText.replace(/\s\s+/g, ' ').trim();
   return cleanedText;
