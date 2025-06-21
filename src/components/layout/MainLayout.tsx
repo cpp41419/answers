@@ -11,6 +11,7 @@ import Footer from '@/components/navigation/Footer';
 import MobileMenu from '@/components/navigation/MobileMenu';
 import GlobalSearch from '@/components/search/GlobalSearch';
 import { StateFaqSection } from '@/components/core/StateFaqSection';
+import { AuditCta } from '@/components/core/AuditCta';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -55,6 +56,7 @@ export function MainLayout({
           {children}
         </main>
 
+        <AuditCta />
         <StateFaqSection />
 
         <Footer />
