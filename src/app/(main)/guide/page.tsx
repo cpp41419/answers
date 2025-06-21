@@ -6,6 +6,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Breadcrumbs } from '@/components/core/Breadcrumbs';
 import { CheckCircle, Info, AlertTriangle, XCircle, BookOpen, Clock, DollarSign, Award, BarChart2, Users, Briefcase, TrendingUp, PlayCircle, ShieldCheck, BookCopy, Building, UserCheck } from 'lucide-react';
 import MermaidDiagram from '@/components/core/MermaidDiagram'; // Import the new component
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'CPP41419 Certificate IV - Complete Australian Guide | CPP41419 Q&A',
@@ -485,6 +486,12 @@ Schedule       Study Materials    Licensing Support
               <li><strong>Market Insights</strong>: Regional property trends and career opportunities</li>
               <li><strong>Licensing Support</strong>: Guidance through state registration processes</li>
             </ul>
+          </SpecialBlock>
+           <SpecialBlock type="tip" title="Get Anonymous Answers From Providers">
+              <p>Want to ask about course costs, support, or start dates without sharing your details? Our Provider Quiz matches you with top RTOs and lets you ask questions anonymously.</p>
+              <Button asChild className="mt-3">
+                  <Link href="/quiz">Find a Provider & Ask Anonymously</Link>
+              </Button>
           </SpecialBlock>
         </CardContent>
       </Card>

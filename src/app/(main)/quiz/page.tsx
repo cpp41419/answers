@@ -4,7 +4,6 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import { School, MapPin, GraduationCap, Star, ChevronRight, ArrowRight, CheckCircle, Clock, Users, BookOpen, Sparkles, Send } from 'lucide-react';
 import { matchRTO, type RTO } from '@/lib/decision-engine'; // Adjusted path
 import { v4 as uuidv4 } from 'uuid';
@@ -328,16 +327,16 @@ export default function QuizPage() {
                       {!leadSubmissionResult ? (
                         <Alert className="mt-6 bg-green-500/10 border-green-500/30 text-green-700 dark:text-green-300">
                           <Sparkles className="h-5 w-5 text-green-600 dark:text-green-400" />
-                          <AlertTitle className="font-semibold text-green-700 dark:text-green-300">Want to know more, anonymously?</AlertTitle>
+                          <AlertTitle className="font-semibold text-green-700 dark:text-green-300">Get Your Questions Answered Anonymously</AlertTitle>
                           <AlertDescription className="text-green-600 dark:text-green-400/90">
-                            We handle your enquiry for you and send you back the answers—no spam, no pressure. Just press the button below and we'll find out more for you.
+                            Want specific details about course costs, start dates, or support? We'll contact the provider on your behalf and get the answers for you. No spam, no pressure.
                           </AlertDescription>
                           <Button
                             onClick={() => handleLeadInquiry(results[0])}
                             disabled={isSubmittingLead}
                             className="mt-4 w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white dark:bg-green-600 dark:hover:bg-green-700"
                           >
-                            {isSubmittingLead ? 'Submitting...' : 'Request More Info Anonymously'}
+                            {isSubmittingLead ? 'Getting Answers...' : 'Get My Questions Answered'}
                             <Send className="ml-2 h-4 w-4" />
                           </Button>
                         </Alert>
