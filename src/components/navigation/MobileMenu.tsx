@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // Changed from next/router
-import { Menu, X, ChevronDown, ChevronRight, Home, Search, Briefcase, BarChart2, BookOpen, Users, Info, ClipboardCheck } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight, Home, Search, Briefcase, BarChart2, BookOpen, Users, Info, ClipboardCheck, Lightbulb } from 'lucide-react';
 
 interface MenuItem {
   name: string;
@@ -45,6 +45,12 @@ const menuItems: MenuItem[] = [
     icon: ClipboardCheck,
     description: 'Find your perfect course',
     highlight: true,
+  },
+  {
+    name: 'Submit a Question',
+    href: '/submit-question',
+    icon: Lightbulb,
+    description: 'Ask the community',
   },
   {
     name: 'State Guides',

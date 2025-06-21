@@ -59,6 +59,9 @@ export default function Header({ onOpenMobileMenu, onOpenSearch }: HeaderProps) 
           >
             <Menu className="h-6 w-6" />
           </Button>
+           <Button asChild variant="outline" className="hidden md:inline-flex rounded-full">
+            <Link href="/submit-question">Submit Question</Link>
+          </Button>
            <Button asChild className="hidden md:inline-flex rounded-full">
             <Link href="/quiz">Get Started</Link>
           </Button>
