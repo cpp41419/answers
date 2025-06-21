@@ -33,7 +33,7 @@ export function HeroAnimation() {
 
   return (
     // Apply slow swing to the entire container to make it all swing together
-    <div className="flex flex-col items-center gap-1 mb-10 relative animate-slow-swing">
+    <div className="flex flex-col items-center gap-1 mb-10 relative">
       <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10 relative">
         {bannerPositions.map((banner, index) => (
             <div 
@@ -56,7 +56,7 @@ export function HeroAnimation() {
           {cyclingWords[currentIndex]}
         </h2>
       </div>
-      <div className="bg-card rounded-lg px-6 py-3 shadow-lg z-10">
+      <div className="bg-card rounded-lg px-6 py-3 shadow-lg z-10 animate-slow-swing">
         <Button asChild variant="link" className="p-0 h-auto hover:no-underline">
           <Link href="/quiz" className="text-3xl md:text-4xl font-black uppercase tracking-wide text-primary flex items-center gap-2">
             GET PREPARED <ArrowRight className="h-8 w-8" />
