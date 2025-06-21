@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Breadcrumbs } from '@/components/core/Breadcrumbs';
-import { MapPin, Building, Briefcase, TrendingUp, Landmark, MountainSnow, Sun, Waves, Anchor, Leaf, Sprout, City, Banknote, Users, Scale, Home } from 'lucide-react';
+import { MapPin, Building, Briefcase, TrendingUp, Landmark, MountainSnow, Sun, Waves, Anchor, Leaf, Sprout, Building2, Banknote, Users, Scale, Home } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Regional Real Estate Guide: Australia | CPP41419 Q&A',
@@ -55,7 +55,7 @@ export default function RegionalGuidePage() {
         <AccordionItem value="nsw">
           <AccordionTrigger className="text-2xl font-semibold hover:no-underline p-4 bg-muted/50 rounded-lg">
             <div className="flex items-center">
-              <City className="mr-3 h-6 w-6 text-primary" /> New South Wales (NSW)
+              <Building2 className="mr-3 h-6 w-6 text-primary" /> New South Wales (NSW)
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-4 px-2 md:px-4">
@@ -100,7 +100,7 @@ export default function RegionalGuidePage() {
                 icon={<Sprout className="mr-2 h-5 w-5 text-primary" />}
                 marketFocus="Primarily agricultural land, regional city housing, and properties supporting local industries (wine, farming)."
                 uniqueAspects="Understanding rural property sales, water rights, agribusiness needs, and the seasonal nature of some local economies."
-                careerTip="Become an expert in rural transactions and build relationships with the agricultural community. Knowledge of local government infrastructure projects is beneficial."
+                careerTip="Become an expert in rural transactions and build a relationship with the agricultural community. Knowledge of local government infrastructure projects is beneficial."
               />
                <RegionDetailCard
                 title="New England (e.g., Armidale, Tamworth)"
@@ -356,6 +356,3 @@ export default function RegionalGuidePage() {
     </div>
   );
 }
-
-
-    
