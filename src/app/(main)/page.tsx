@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { categories } from '@/data/categories';
-import { ArrowRight, BookOpen, Map, BarChartBig, Lightbulb, ClipboardCheck, Star } from 'lucide-react';
+import { ArrowRight, BookOpen, Map, BarChartBig, Lightbulb, ClipboardCheck, Star, CheckCircle } from 'lucide-react';
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { getAllQuestions } from '@/data/questions';
@@ -42,29 +42,6 @@ const FeaturedGuideCard = ({ icon, title, content, href, rotationClass }: { icon
     </Card>
 );
 
-const popularTopics = [
-  { name: 'Licensing', href: '/questions/state-licensing-requirements' },
-  { name: 'Course Costs', href: '/questions/costs-payment' },
-  { name: 'Career Paths', href: '/questions/career-employment' },
-  { name: 'Online Study', href: '/questions/study-options-duration' },
-  { name: 'Enrollment', href: '/questions/course-basics-enrollment' },
-  { name: 'RPL', href: '/questions/assessment-completion' },
-  { name: 'Assessments', href: '/questions/assessment-completion' },
-  { name: 'Provider Reviews', href: '/questions/provider-selection' },
-  { name: 'TAFE vs RTO', href: '/questions/provider-selection' },
-  { name: 'CPD Points', href: '/questions/advanced-questions' },
-  { name: 'NSW Licensing', href: '/questions/state-licensing-requirements' },
-  { name: 'VIC Licensing', href: '/questions/state-licensing-requirements' },
-  { name: 'QLD Licensing', href: '/questions/state-licensing-requirements' },
-  { name: 'WA Licensing', href: '/questions/state-licensing-requirements' },
-  { name: 'SA Licensing', href: '/questions/state-licensing-requirements' },
-  { name: 'TAS Licensing', href: '/questions/state-licensing-requirements' },
-  { name: 'Job Outlook', href: '/questions/career-employment' },
-  { name: 'Salary', href: '/questions/career-employment' },
-  { name: 'Exams', href: '/questions/assessment-completion' },
-  { name: 'Prerequisites', href: '/questions/course-basics-enrollment' }
-];
-
 export default function HomePage() {
   const questions = getAllQuestions();
 
@@ -73,73 +50,43 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="py-20 md:py-28 bg-[hsl(var(--deep-navy))]">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary-foreground mb-4">
-            ANSWERS: Your Real Estate Authority Resource
-          </h1>
-          <p className="max-w-3xl mx-auto text-lg text-primary-foreground/80 mb-8">
-            The definitive, community-driven guide to the CPP41419 Certificate IV in Real Estate Practice. Gain clarity on licensing, costs, course options, career pathways, and more.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" asChild>
-              <Link href="/quiz">
-                ✅ Take the Quiz
-              </Link>
-            </Button>
-            <Button size="lg" variant="secondary" asChild>
-              <Link href="/submit-question">
-                ❓ Submit a Question
-              </Link>
-            </Button>
-          </div>
-           {/* New tags section */}
-          <div className="mt-10 text-center">
-            <p className="text-sm text-primary-foreground/60 mb-3">
-              Or jump to a popular topic:
-            </p>
-            <div className="flex flex-col items-center gap-1.5">
-              {/* Tier 1 - Visible on all screens */}
-              <div className="flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground font-medium">
-                {popularTopics.slice(0, 5).map((topic, index) => (
-                  <React.Fragment key={topic.name}>
-                    <Link href={topic.href} className="hover:underline text-white">
-                      {topic.name}
-                    </Link>
-                    {index < 4 && <span className="text-primary-foreground/50">•</span>}
-                  </React.Fragment>
-                ))}
-              </div>
-              
-              {/* Tier 2 - Hidden on mobile */}
-              <div className="hidden md:flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground/90 font-medium">
-                {popularTopics.slice(5, 12).map((topic, index) => (
-                  <React.Fragment key={topic.name}>
-                    <Link href={topic.href} className="hover:underline text-white">
-                      {topic.name}
-                    </Link>
-                    {index < popularTopics.slice(5, 12).length - 1 && <span className="text-primary-foreground/50">•</span>}
-                  </React.Fragment>
-                ))}
-              </div>
-              
-              {/* Tier 3 - Hidden on mobile */}
-              <div className="hidden md:flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-2 text-primary-foreground/80 font-medium">
-                 {popularTopics.slice(12, 20).map((topic, index) => (
-                  <React.Fragment key={topic.name}>
-                    <Link href={topic.href} className="hover:underline text-white">
-                      {topic.name}
-                    </Link>
-                    {index < popularTopics.slice(12, 20).length - 1 && <span className="text-primary-foreground/50">•</span>}
-                  </React.Fragment>
-                ))}
-              </div>
+          
+          <div className="flex flex-col items-center gap-1 mb-10 relative">
+            <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10">
+              <h1 className="text-2xl md:text-4xl font-black uppercase tracking-wide text-accent">
+                Find Quality Training
+              </h1>
+            </div>
+            <div className="bg-card rounded-lg px-6 py-3 shadow-2xl transform rotate-1 z-20 -my-5">
+              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-wide text-primary">
+                That Delivers Results
+              </h2>
+            </div>
+            <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform rotate-3 z-10">
+              <Button asChild variant="link" className="p-0 h-auto hover:no-underline">
+                <Link href="/quiz" className="text-xl md:text-3xl font-black uppercase tracking-wider text-destructive flex items-center gap-2">
+                  Start Your Search <ArrowRight className="h-6 w-6" />
+                </Link>
+              </Button>
             </div>
           </div>
-          {/* Trust Bar */}
-          <div className="mt-12 text-center">
-            <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm text-primary-foreground/70">
-                <span>✅ Independent & Unbiased</span>
-                <span>✅ Up-to-Date Information</span>
-                <span>✅ 150+ Providers Compared</span>
+          
+          <p className="max-w-3xl mx-auto text-lg text-primary-foreground/80 my-12">
+            Australia’s only independent platform protecting students from poor training decisions. Get matched with verified providers through our anonymous evaluation system - no marketing pressure, just honest assessment.
+          </p>
+
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm text-primary-foreground/90">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-500" />
+              <span>No Vested RTO Interests</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-500" />
+              <span>Anonymous Evaluation System</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-500" />
+              <span>Student Protection Focus</span>
             </div>
           </div>
         </div>
