@@ -7,6 +7,8 @@ import { categories } from '@/data/categories';
 import { ArrowRight, BookOpen, Map, BarChartBig } from 'lucide-react';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { getAllQuestions } from '@/data/questions';
+import { FaqSchema } from '@/components/core/FaqSchema';
 
 export const metadata: Metadata = {
   title: 'ANSWERS - Your CPP41419 Real Estate Authority Resource',
@@ -63,6 +65,8 @@ const popularTopics = [
 ];
 
 export default function HomePage() {
+  const questions = getAllQuestions();
+
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -189,6 +193,8 @@ export default function HomePage() {
             </div>
          </div>
       </section>
+
+      <FaqSchema questions={questions} />
     </div>
   );
 }
