@@ -19,11 +19,18 @@ export function HeroAnimation() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-1 mb-10 relative">
-      <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10">
+    // Apply slow swing to the entire container to make it all swing together
+    <div className="flex flex-col items-center gap-1 mb-10 relative animate-slow-swing">
+      <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10 relative">
         <h1 className="text-5xl md:text-7xl font-black uppercase tracking-wide text-primary">
           Find Course
         </h1>
+        {/* Attached "wood" card with a border */}
+        <div 
+            className="absolute -top-3 -right-6 bg-amber-800 text-white text-xs font-bold uppercase py-1 px-2 rounded-sm shadow-lg transform rotate-12 border-2 border-amber-900/50"
+        >
+            Real Estate Course
+        </div>
       </div>
       <div className="bg-card rounded-lg px-6 py-3 shadow-2xl transform rotate-1 z-20 -my-5 h-[100px] flex items-center justify-center [perspective:1000px]">
         <h2
@@ -33,7 +40,7 @@ export function HeroAnimation() {
           {cyclingWords[currentIndex]}
         </h2>
       </div>
-      <div className="bg-card rounded-lg px-6 py-3 shadow-lg z-10 animate-slow-swing">
+      <div className="bg-card rounded-lg px-6 py-3 shadow-lg z-10">
         <Button asChild variant="link" className="p-0 h-auto hover:no-underline">
           <Link href="/quiz" className="text-4xl md:text-6xl font-black uppercase tracking-wide text-primary flex items-center gap-2">
             GET PREPARED <ArrowRight className="h-8 w-8" />
