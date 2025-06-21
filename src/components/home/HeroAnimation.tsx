@@ -35,7 +35,7 @@ export function HeroAnimation() {
           Find Course
         </h1>
         {/* Attached "wood" card with a border */}
-        <div 
+        <div
             className="absolute -top-3 -right-6 bg-amber-800 text-white text-xs font-bold uppercase py-1 px-2 rounded-sm shadow-lg transform rotate-12 border-2 border-amber-900/50 [perspective:1000px]"
         >
           <span key={woodCardIndex} className="inline-block animate-flip-in">
@@ -43,10 +43,10 @@ export function HeroAnimation() {
           </span>
         </div>
       </div>
-      <div className="bg-card rounded-lg px-6 py-3 shadow-2xl transform rotate-1 z-20 -my-3 h-[90px] flex items-center justify-center [perspective:1000px]">
+      <div className="bg-primary rounded-lg px-8 py-4 shadow-2xl drop-shadow-xl transform rotate-1 z-20 -my-5 h-[135px] flex items-center justify-center [perspective:1000px]">
         <h2
           key={currentIndex}
-          className="text-4xl md:text-5xl font-black uppercase tracking-wide text-accent animate-flip-in text-center"
+          className="text-6xl md:text-7xl font-black uppercase tracking-wide text-primary-foreground animate-flip-in text-center"
         >
           {cyclingWords[currentIndex]}
         </h2>
