@@ -91,13 +91,20 @@ export default {
         'flip-in': {
             'from': { transform: 'perspective(1000px) rotateX(-90deg)', opacity: '0' },
             'to': { transform: 'perspective(1000px) rotateX(0deg)', opacity: '1' },
-        }
+        },
+        'rumble': {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(-1.5deg)' },
+          '50%': { transform: 'rotate(1.5deg)' },
+          '75%': { transform: 'rotate(-1.5deg)' },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
         'slow-swing': 'slow-swing 6s ease-in-out infinite',
-        'flip-in': 'flip-in 0.6s ease-out'
+        'flip-in': 'flip-in 0.6s ease-out',
+        'rumble': 'rumble 0.3s ease-in-out 2',
   		}
   	}
   },

@@ -9,6 +9,8 @@ import { cn } from '@/lib/utils';
 
 const NUDGE_SESSION_KEY = 'nudge-banner-dismissed';
 const APPEAR_DELAY = 5000; // 5 seconds
+const RUMBLE_DELAY = APPEAR_DELAY + 500; // Start rumble 0.5s after appearing
+const RUMBLE_DURATION = 600; // Corresponds to animation duration (0.3s * 2 iterations)
 
 const nudgeMessages = [
   "Let's get started!",
@@ -19,6 +21,7 @@ const nudgeMessages = [
 export function NudgeBanner() {
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(true);
+  const [isRumbling, setIsRumbling] = useState(false);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 
   useEffect(() => {
@@ -36,6 +39,16 @@ export function NudgeBanner() {
       setIsVisible(true);
     }, APPEAR_DELAY);
     
+    // Timer to start rumbling
+    const rumbleStartTimer = setTimeout(() => {
+      setIsRumbling(true);
+    }, RUMBLE_DELAY);
+
+    // Timer to stop rumbling
+    const rumbleEndTimer = setTimeout(() => {
+      setIsRumbling(false);
+    }, RUMBLE_DELAY + RUMBLE_DURATION);
+
     // Cycle through messages while banner is visible
     const messageTimer = setInterval(() => {
       setCurrentMessageIndex(prev => (prev + 1) % nudgeMessages.length);
@@ -43,6 +56,8 @@ export function NudgeBanner() {
 
     return () => {
       clearTimeout(showTimer);
+      clearTimeout(rumbleStartTimer);
+      clearTimeout(rumbleEndTimer);
       clearInterval(messageTimer);
     };
   }, []);
@@ -50,8 +65,6 @@ export function NudgeBanner() {
   const handleDismiss = () => {
     setIsVisible(false);
     sessionStorage.setItem(NUDGE_SESSION_KEY, 'true');
-    // We don't set isDismissed to true here so the component doesn't get unmounted
-    // allowing for the exit animation. The session storage prevents re-appearance.
   };
 
   if (isDismissed) {
@@ -62,10 +75,11 @@ export function NudgeBanner() {
     <div
       className={cn(
         'fixed bottom-4 right-4 z-50 transition-transform duration-500 ease-in-out',
-        isVisible ? 'translate-x-0' : 'translate-x-[calc(100%+2rem)]'
+        isVisible ? 'translate-x-0' : 'translate-x-[calc(100%+2rem)]',
+        isRumbling && 'animate-rumble'
       )}
     >
-      <Card className="max-w-xs shadow-2xl">
+      <Card className="max-w-[260px] shadow-2xl bg-card text-card-foreground border-border">
         <Button
           variant="ghost"
           size="icon"
@@ -79,7 +93,7 @@ export function NudgeBanner() {
           <div className="flex items-start gap-3">
             <MessageSquareQuote className="h-6 w-6 mt-1 text-muted-foreground shrink-0" />
             <div>
-              <p className="font-bold text-base">
+              <p className="font-semibold text-base">
                 {nudgeMessages[currentMessageIndex]}
               </p>
               <p className="text-xs text-muted-foreground mt-1 mb-3">
