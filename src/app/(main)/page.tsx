@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -6,14 +7,13 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { categories } from '@/data/categories';
-import { ArrowRight, BookOpen, Map, BarChartBig, Lightbulb, ClipboardCheck, Star, CheckCircle } from 'lucide-react';
+import { ArrowRight, BookOpen, Map, BarChartBig, Lightbulb, ClipboardCheck, Star, CheckCircle, Rss } from 'lucide-react';
 import React from 'react';
 import { cn, slugify } from '@/lib/utils';
 import { getAllQuestions } from '@/data/questions';
 import { FaqSchema } from '@/components/core/FaqSchema';
 import { CategoryCard } from '@/components/qa/CategoryCard';
 import type { FAQQuestion } from '@/types';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 
 const cyclingWords = [
@@ -22,68 +22,33 @@ const cyclingWords = [
   "Trusted by Students",
 ];
 
-const FeaturedGuideCard = ({
-  icon,
+const CtaCard = ({
+  icon: Icon,
   title,
-  infoContent,
-  relatedFaqs,
+  description,
   href,
-  rotationClass
+  actionText,
 }: {
-  icon: React.ReactNode;
+  icon: React.ElementType;
   title: string;
-  infoContent: React.ReactNode;
-  relatedFaqs: FAQQuestion[];
+  description: string;
   href: string;
-  rotationClass: string;
+  actionText: string;
 }) => (
-    <Card className={cn(
-        "flex flex-col h-full bg-amber-100/80 dark:bg-amber-900/30 text-gray-800 dark:text-gray-200 border-amber-200 dark:border-amber-800/50 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-105",
-        rotationClass
-      )}>
-      <CardHeader>
-        <div className="flex items-center gap-3 mb-2">
-          <span className="p-3 bg-amber-200/80 dark:bg-amber-800/50 text-amber-700 dark:text-amber-200 rounded-lg">
-            {icon}
-          </span>
-          <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100">{title}</CardTitle>
-        </div>
-      </CardHeader>
-      <CardContent className="flex-grow flex flex-col">
-        <Tabs defaultValue="info" className="w-full flex-grow flex flex-col">
-            <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="info">Info</TabsTrigger>
-                <TabsTrigger value="faqs">FAQs</TabsTrigger>
-            </TabsList>
-            <TabsContent value="info" className="p-4 text-sm text-gray-700 dark:text-gray-300 flex-grow">
-                {infoContent}
-            </TabsContent>
-            <TabsContent value="faqs" className="p-4 flex-grow max-h-[150px] overflow-y-auto">
-                <ul className="space-y-3 text-sm">
-                    {relatedFaqs.length > 0 ? (
-                        relatedFaqs.slice(0, 4).map((faq) => ( // limit to 4 FAQs
-                            <li key={faq.id}>
-                                <Link href={`/questions/${slugify(faq.category)}/${faq.id}`} className="flex items-start gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-amber-200 hover:underline">
-                                    <ArrowRight className="h-4 w-4 mt-0.5 shrink-0 opacity-70"/>
-                                    <span className="line-clamp-2">{faq.question}</span>
-                                </Link>
-                            </li>
-                        ))
-                    ) : (
-                        <p className="text-gray-500 italic">No related FAQs found.</p>
-                    )}
-                </ul>
-            </TabsContent>
-        </Tabs>
-      </CardContent>
-      <CardFooter className="mt-auto border-t border-amber-300/50 dark:border-amber-700/50 pt-3">
-        <Button asChild variant="ghost" className="w-full text-gray-800 dark:text-gray-200 hover:bg-amber-200/80 dark:hover:bg-amber-800/50">
-          <Link href={href}>
-            Read Full Guide <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
-      </CardFooter>
-    </Card>
+  <Card className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out border-2 border-transparent hover:border-primary">
+    <CardContent className="p-8 text-center flex flex-col items-center h-full">
+      <div className="mb-4 p-4 bg-primary/10 text-primary rounded-full group-hover:scale-110 transition-transform">
+        <Icon className="h-8 w-8" />
+      </div>
+      <h3 className="text-xl font-bold text-foreground mb-2">{title}</h3>
+      <p className="text-muted-foreground flex-grow mb-6">{description}</p>
+      <Button asChild className="mt-auto">
+        <Link href={href}>
+          {actionText} <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+    </CardContent>
+  </Card>
 );
 
 export default function HomePage() {
@@ -104,18 +69,6 @@ export default function HomePage() {
   }, []);
 
   const allQuestions = getAllQuestions();
-
-  const guideFaqs = allQuestions.filter(q => 
-    ["Course Basics & Enrollment", "Costs & Payment", "Study Options & Duration"].includes(q.category)
-  );
-
-  const regionalFaqs = allQuestions.filter(q => 
-    q.category === "State Licensing Requirements"
-  );
-  
-  const dataFaqs = allQuestions.filter(q => 
-    q.category === "Provider Selection"
-  );
 
   return (
     <div className="bg-background">
@@ -189,41 +142,45 @@ export default function HomePage() {
         </div>
       </section>
       
-       {/* Featured Guides Section */}
+       {/* Featured Content Section */}
       <section className="py-16 md:py-20 bg-background border-t">
-         <div className="container mx-auto px-4 md:px-6">
-            <div className="flex justify-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md -rotate-1 shadow-md dark:text-gray-800">
-                  📘 In-Depth Resources
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-               <FeaturedGuideCard 
-                  icon={<BookOpen className="h-6 w-6" />}
-                  title="Comprehensive Guide"
-                  infoContent={<p>The full breakdown of CPP41419: structure, content, providers, costs, timeframes, and outcomes.</p>}
-                  relatedFaqs={guideFaqs}
-                  href="/guide"
-                  rotationClass="transform -rotate-2 hover:-rotate-1"
-               />
-               <FeaturedGuideCard 
-                  icon={<Map className="h-6 w-6" />}
-                  title="Regional Real Estate"
-                  infoContent={<p>Insights into studying and working in real estate across major Australian cities and regional areas.</p>}
-                  relatedFaqs={regionalFaqs}
-                  href="/regional-guide"
-                  rotationClass="transform rotate-1 hover:rotate-0"
-               />
-               <FeaturedGuideCard 
-                  icon={<BarChartBig className="h-6 w-6" />}
-                  title="Data Insights"
-                  infoContent={<p>See how providers compare. Red flags. Trends. Real stories from students and alumni.</p>}
-                  relatedFaqs={dataFaqs}
-                  href="/data-insights"
-                  rotationClass="transform rotate-3 hover:rotate-1"
-               />
-            </div>
-         </div>
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex justify-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground bg-amber-200/80 px-6 py-2 rounded-md -rotate-1 shadow-md dark:text-gray-800">
+                Major Content Features
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <CtaCard
+              icon={BookOpen}
+              title="Comprehensive Guide"
+              description="The complete course overview"
+              href="/guide"
+              actionText="Read the Guide"
+            />
+            <CtaCard
+              icon={Map}
+              title="Regional Guide"
+              description="Licensing by state"
+              href="/regional-guide"
+              actionText="Explore Regions"
+            />
+            <CtaCard
+              icon={Rss}
+              title="Popular Blogs"
+              description="Latest articles & insights"
+              href="/popular-blogs"
+              actionText="View Blogs"
+            />
+            <CtaCard
+              icon={BarChartBig}
+              title="Data Insights"
+              description="Expert analysis"
+              href="/data-insights"
+              actionText="See the Data"
+            />
+          </div>
+        </div>
       </section>
 
       {/* RTO Sale Offer Section */}
