@@ -172,7 +172,7 @@ export default function HomePage() {
                   📘 In-Depth Resources
               </h2>
             </div>
-            <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                <FeaturedGuideCard 
                   icon={<BookOpen className="h-6 w-6" />}
                   title="Comprehensive Guide"
