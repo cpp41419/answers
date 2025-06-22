@@ -65,27 +65,27 @@ export function NudgeBanner() {
         isVisible ? 'translate-x-0' : 'translate-x-[calc(100%+2rem)]'
       )}
     >
-      <Card className="max-w-sm shadow-2xl bg-primary text-primary-foreground border-accent">
+      <Card className="max-w-xs shadow-2xl">
         <Button
           variant="ghost"
           size="icon"
           onClick={handleDismiss}
-          className="absolute -top-2 -right-2 h-7 w-7 rounded-full bg-accent text-accent-foreground hover:bg-accent/80 z-10"
+          className="absolute -top-2 -right-2 h-7 w-7 rounded-full bg-muted text-muted-foreground hover:bg-muted/80 z-10"
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Dismiss</span>
         </Button>
-        <CardContent className="p-5">
-          <div className="flex items-start gap-4">
-            <MessageSquareQuote className="h-8 w-8 mt-1 text-primary-foreground/80 shrink-0" />
+        <CardContent className="p-4">
+          <div className="flex items-start gap-3">
+            <MessageSquareQuote className="h-6 w-6 mt-1 text-muted-foreground shrink-0" />
             <div>
-              <p className="font-bold text-lg h-8">
+              <p className="font-bold text-base">
                 {nudgeMessages[currentMessageIndex]}
               </p>
-              <p className="text-sm text-primary-foreground/90 mt-1 mb-4">
+              <p className="text-xs text-muted-foreground mt-1 mb-3">
                 Ready to take the next step in your real estate journey?
               </p>
-              <Button asChild variant="secondary" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button asChild size="sm" className="w-full">
                 <Link href="https://cpp41419.com.au/contact" target="_blank" rel="noopener noreferrer">
                   Contact Us
                 </Link>
