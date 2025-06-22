@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -13,10 +16,11 @@ import type { FAQQuestion } from '@/types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 
-export const metadata: Metadata = {
-  title: 'ANSWERS - Your Real Estate Authority Resource',
-  description: 'The definitive, community-driven guide to the CPP41419 Certificate IV in Real Estate Practice. Gain clarity on licensing, costs, course options, career pathways, and more.',
-};
+const cyclingWords = [
+  "That Delivers Results",
+  "Verified by Experts",
+  "Trusted by Students",
+];
 
 const FeaturedGuideCard = ({
   icon,
@@ -83,6 +87,22 @@ const FeaturedGuideCard = ({
 );
 
 export default function HomePage() {
+  const [middleCardWord, setMiddleCardWord] = useState(cyclingWords[0]);
+  
+  useEffect(() => {
+    // Set metadata dynamically if needed in a client component
+    document.title = 'ANSWERS - Your Real Estate Authority Resource';
+
+    const interval = setInterval(() => {
+      setMiddleCardWord(prev => {
+        const currentIndex = cyclingWords.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % cyclingWords.length;
+        return cyclingWords[nextIndex];
+      });
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   const allQuestions = getAllQuestions();
 
   const guideFaqs = allQuestions.filter(q => 
@@ -109,9 +129,9 @@ export default function HomePage() {
                 Find Quality Training
               </h1>
             </div>
-            <div className="z-10 rounded-lg bg-card px-8 py-4 shadow-xl transform rotate-1">
-              <h2 className="text-4xl font-black uppercase tracking-tight text-[hsl(var(--deep-navy))] md:text-5xl">
-                That Delivers Results
+            <div className="z-10 rounded-lg bg-card px-8 py-4 shadow-xl transform rotate-1 transition-transform duration-300 hover:scale-110">
+              <h2 key={middleCardWord} className="text-4xl font-black uppercase tracking-tight text-[hsl(var(--deep-navy))] md:text-5xl animate-flip-in h-12 flex items-center justify-center">
+                {middleCardWord}
               </h2>
             </div>
             <div className="rounded-lg bg-card px-6 py-3 shadow-xl transform -rotate-1">
