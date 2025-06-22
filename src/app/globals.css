@@ -133,6 +133,10 @@ body {
     @apply underline;
   }
 
+  strong {
+    @apply font-semibold text-foreground;
+  }
+
   /* Utility classes for secondary/small body text if needed explicitly elsewhere */
   .text-secondary-body {
     @apply text-sm font-normal text-muted-foreground; /* 14px, Medium Gray */
