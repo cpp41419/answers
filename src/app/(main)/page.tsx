@@ -75,7 +75,7 @@ export default function HomePage() {
       <section className="py-16 md:py-24 bg-[hsl(var(--deep-navy))]">
         <div className="container mx-auto px-4 md:px-6 text-center">
           
-          <div className="relative mb-12 flex flex-col items-center justify-center gap-y-1">
+          <div className="relative mb-12 flex flex-col items-center justify-center gap-y-0">
              <div className="absolute top-0 right-0 z-20 transform rotate-12 translate-x-4 -translate-y-4">
               <div className="bg-destructive text-destructive-foreground text-xs font-bold uppercase py-1 px-3 rounded-md shadow-lg border-2 border-white/50">
                 2025 Real Estate Course
@@ -86,12 +86,12 @@ export default function HomePage() {
                 Find Quality Training
               </h1>
             </div>
-            <div className="z-10 rounded-lg bg-card px-10 py-5 shadow-xl transform rotate-1 transition-transform duration-300 hover:scale-110">
+            <div className="z-10 rounded-lg bg-card px-10 py-5 shadow-xl transform rotate-1 transition-transform duration-300 hover:scale-110 -mt-2">
               <h2 key={middleCardWord} className="text-5xl font-black uppercase tracking-tight text-[hsl(var(--deep-navy))] md:text-6xl animate-flip-in h-16 flex items-center justify-center">
                 {middleCardWord}
               </h2>
             </div>
-            <div className="rounded-lg bg-card px-6 py-3 shadow-xl transform -rotate-1">
+            <div className="rounded-lg bg-card px-6 py-3 shadow-xl transform -rotate-2 -mt-2">
               <Link
                 href="/quiz"
                 className="group flex items-center gap-3 text-destructive"
