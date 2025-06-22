@@ -123,7 +123,12 @@ export default function HomePage() {
       <section className="py-16 md:py-24 bg-[hsl(var(--deep-navy))]">
         <div className="container mx-auto px-4 md:px-6 text-center">
           
-          <div className="mb-12 flex flex-col items-center justify-center gap-y-1">
+          <div className="relative mb-12 flex flex-col items-center justify-center gap-y-1">
+             <div className="absolute top-0 right-0 z-20 transform rotate-12 translate-x-4 -translate-y-4">
+              <div className="bg-destructive text-destructive-foreground text-xs font-bold uppercase py-1 px-3 rounded-md shadow-lg border-2 border-white/50">
+                2025 Real Estate Course
+              </div>
+            </div>
             <div className="rounded-lg bg-card px-8 py-4 shadow-xl transform -rotate-3">
               <h1 className="text-4xl font-black uppercase tracking-tight text-accent md:text-5xl">
                 Find Quality Training
