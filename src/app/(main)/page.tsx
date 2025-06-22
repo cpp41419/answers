@@ -11,7 +11,6 @@ import { FaqSchema } from '@/components/core/FaqSchema';
 import { CategoryCard } from '@/components/qa/CategoryCard';
 import type { FAQQuestion } from '@/types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { HeroAnimation } from '@/components/home/HeroAnimation';
 
 
 export const metadata: Metadata = {
@@ -104,13 +103,35 @@ export default function HomePage() {
       <section className="py-16 md:py-24 bg-[hsl(var(--deep-navy))]">
         <div className="container mx-auto px-4 md:px-6 text-center">
           
-          <HeroAnimation />
+          <div className="mb-12 flex flex-col items-center justify-center gap-y-1">
+            <div className="rounded-lg bg-card px-8 py-4 shadow-xl transform -rotate-3">
+              <h1 className="text-4xl font-black uppercase tracking-tight text-accent md:text-5xl">
+                Find Quality Training
+              </h1>
+            </div>
+            <div className="z-10 rounded-lg bg-card px-8 py-4 shadow-xl transform rotate-1">
+              <h2 className="text-4xl font-black uppercase tracking-tight text-[hsl(var(--deep-navy))] md:text-5xl">
+                That Delivers Results
+              </h2>
+            </div>
+            <div className="rounded-lg bg-card px-6 py-3 shadow-xl transform -rotate-1">
+              <Link
+                href="/quiz"
+                className="group flex items-center gap-3 text-destructive"
+              >
+                <h3 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
+                  Start Your Search
+                </h3>
+                <ArrowRight className="h-7 w-7 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
           
-          <p className="max-w-3xl mx-auto text-lg text-primary-foreground/80 my-10">
+          <p className="max-w-3xl mx-auto text-lg text-primary-foreground/80">
             Australia’s only independent platform protecting students from poor training decisions. Get matched with verified providers through our anonymous evaluation system - no marketing pressure, just honest assessment.
           </p>
 
-          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm text-primary-foreground/90">
+          <div className="mt-8 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm text-primary-foreground/90">
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-green-500" />
               <span>No Vested RTO Interests</span>
