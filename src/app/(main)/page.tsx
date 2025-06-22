@@ -51,10 +51,10 @@ const FeaturedGuideCard = ({
                 <TabsTrigger value="info">Info</TabsTrigger>
                 <TabsTrigger value="faqs">FAQs</TabsTrigger>
             </TabsList>
-            <TabsContent value="info" className="pt-3 text-sm text-gray-700 dark:text-gray-300 flex-grow">
+            <TabsContent value="info" className="p-4 text-sm text-gray-700 dark:text-gray-300 flex-grow">
                 {infoContent}
             </TabsContent>
-            <TabsContent value="faqs" className="pt-3 flex-grow max-h-[150px] overflow-y-auto">
+            <TabsContent value="faqs" className="p-4 flex-grow max-h-[150px] overflow-y-auto">
                 <ul className="space-y-3 text-sm">
                     {relatedFaqs.length > 0 ? (
                         relatedFaqs.slice(0, 4).map((faq) => ( // limit to 4 FAQs
