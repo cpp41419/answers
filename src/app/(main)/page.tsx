@@ -81,7 +81,7 @@ export default function HomePage() {
                 2025 Real Estate Course
               </div>
             </div>
-            <div className="rounded-lg bg-card px-8 py-4 shadow-xl transform -rotate-3">
+            <div className="rounded-lg bg-card px-8 py-4 shadow-xl transform -rotate-3 animate-slow-swing">
               <h1 className="text-4xl font-black uppercase tracking-tight text-accent md:text-5xl">
                 Find Quality Training
               </h1>
