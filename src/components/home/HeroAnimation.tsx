@@ -32,10 +32,10 @@ export function HeroAnimation() {
             Find Course
           </h1>
           {/* Attached Wood Card */}
-          <div className="absolute -bottom-5 -right-5 [perspective:1000px]">
+          <div className="absolute -top-4 -left-4 [perspective:1000px]">
               <div 
                   key={woodCardIndex}
-                  className="bg-[#4a2c2a] text-white text-xs font-bold uppercase py-2 px-3 rounded-sm shadow-md border border-black/30 transform rotate-12 animate-flip-in">
+                  className="bg-[#4a2c2a] text-white text-xs font-bold uppercase py-2 px-3 rounded-sm shadow-md border border-black/30 transform -rotate-12 animate-flip-in">
                   {woodCardWords[woodCardIndex]}
               </div>
           </div>
