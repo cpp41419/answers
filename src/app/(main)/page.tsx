@@ -86,8 +86,8 @@ export default function HomePage() {
                 Find Quality Training
               </h1>
             </div>
-            <div className="z-10 rounded-lg bg-card px-8 py-4 shadow-xl transform rotate-1 transition-transform duration-300 hover:scale-110">
-              <h2 key={middleCardWord} className="text-4xl font-black uppercase tracking-tight text-[hsl(var(--deep-navy))] md:text-5xl animate-flip-in h-12 flex items-center justify-center">
+            <div className="z-10 rounded-lg bg-card px-10 py-5 shadow-xl transform rotate-1 transition-transform duration-300 hover:scale-110">
+              <h2 key={middleCardWord} className="text-5xl font-black uppercase tracking-tight text-[hsl(var(--deep-navy))] md:text-6xl animate-flip-in h-16 flex items-center justify-center">
                 {middleCardWord}
               </h2>
             </div>
