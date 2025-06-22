@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Breadcrumbs } from '@/components/core/Breadcrumbs';
@@ -14,12 +15,20 @@ interface BlogPost {
   description: string;
   href: string;
   category: string; // e.g., 'guides', 'digital-trends'
+  imageUrl: string;
+  imageHint: string;
 }
 
-const BlogPostCard: React.FC<BlogPost> = ({ title, description, href, category }) => (
+const BlogPostCard: React.FC<BlogPost> = ({ title, description, href, category, imageUrl, imageHint }) => (
   <Card className="flex flex-col overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 h-full">
-    <div className="flex h-48 w-full items-center justify-center bg-muted/50">
-      <Rss className="h-16 w-16 text-muted-foreground/40" />
+    <div className="relative h-48 w-full">
+      <Image
+        src={imageUrl}
+        alt={title}
+        fill
+        className="object-cover"
+        data-ai-hint={imageHint}
+      />
     </div>
     <CardHeader>
       <CardTitle className="text-xl font-semibold">{title}</CardTitle>
@@ -44,42 +53,54 @@ const initialBlogPosts: BlogPost[] = [
     title: "Navigating Your First Year as a Real Estate Agent",
     description: "Tips and tricks for surviving and thriving in your initial year in the competitive real estate market. Learn how to build your network and close your first deals.",
     href: "https://cpp41419.com.au/blog/first-year-agent",
-    category: "student-advice" 
+    category: "student-advice",
+    imageUrl: "https://placehold.co/400x250.png",
+    imageHint: "real estate agent"
   },
   {
     id: 'blog-2',
     title: "Understanding the Latest PropTech Innovations",
     description: "An overview of cutting-edge technologies transforming the property industry, from AI-powered valuations to virtual reality tours.",
     href: "https://cpp41419.com.au/blog/proptech-innovations",
-    category: "digital-trends"
+    category: "digital-trends",
+    imageUrl: "https://placehold.co/400x250.png",
+    imageHint: "technology future"
   },
   {
     id: 'blog-3',
     title: "Mastering Digital Marketing for Real Estate in 2025",
     description: "Essential digital marketing strategies for agents, including social media engagement, SEO for listings, and effective email campaigns.",
     href: "https://cpp41419.com.au/blog/digital-marketing-2025",
-    category: "digital-trends"
+    category: "digital-trends",
+    imageUrl: "https://placehold.co/400x250.png",
+    imageHint: "digital marketing"
   },
   {
     id: 'blog-4',
     title: "The Future of Sustainable Housing in Australia",
     description: "Exploring trends in eco-friendly building practices, green certifications, and how they impact property values and buyer preferences.",
     href: "https://cpp41419.com.au/blog/sustainable-housing-trends",
-    category: "guides" 
+    category: "guides",
+    imageUrl: "https://placehold.co/400x250.png",
+    imageHint: "sustainable house"
   },
   {
     id: 'blog-5',
     title: "Deep Dive into NSW Licensing Changes",
     description: "A comprehensive look at the latest updates to NSW real estate licensing and what they mean for agents.",
     href: "https://cpp41419.com.au/blog/nsw-licensing-updates",
-    category: "licensing"
+    category: "licensing",
+    imageUrl: "https://placehold.co/400x250.png",
+    imageHint: "law document"
   },
   {
     id: 'blog-6',
     title: "Choosing the Right RTO: A Student's Perspective",
     description: "An honest review and guide on selecting a Registered Training Organisation that fits your learning style and career goals.",
     href: "https://cpp41419.com.au/blog/choosing-an-rto-guide",
-    category: "rto-reviews"
+    category: "rto-reviews",
+    imageUrl: "https://placehold.co/400x250.png",
+    imageHint: "student studying"
   }
 ];
 
