@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 const cyclingWords = ['ANSWERS', 'QUESTIONS', 'FINAL EXAM 2025'];
 const woodCardWords = ['Real Estate Course', 'Licensing Info', 'Career Guides'];
@@ -28,7 +28,7 @@ export function HeroAnimation() {
     <div className="relative bg-black/5 p-4 md:p-6 rounded-2xl border border-white/10 mb-10">
       <div className="flex flex-col items-center gap-4">
         <div className="bg-primary rounded-lg px-8 py-4 shadow-2xl drop-shadow-xl z-10 w-full max-w-2xl relative">
-          <h1 className="text-7xl md:text-8xl font-black uppercase tracking-wide text-primary-foreground text-center">
+          <h1 className="text-5xl md:text-6xl font-black uppercase tracking-wide text-primary-foreground text-center">
             Find Course
           </h1>
           {/* Attached Wood Card */}
@@ -41,17 +41,17 @@ export function HeroAnimation() {
           </div>
         </div>
 
-        <div className="bg-accent rounded-lg px-8 py-6 shadow-2xl drop-shadow-xl z-20 -my-6 w-full max-w-lg h-[155px] flex items-center justify-center [perspective:1000px]">
+        <div className="bg-accent rounded-lg px-8 py-6 shadow-2xl drop-shadow-xl z-20 -my-4 w-full max-w-lg h-[120px] flex items-center justify-center [perspective:1000px]">
           <h2
             key={mainIndex}
-            className="text-9xl md:text-[10rem] font-black uppercase tracking-wide text-accent-foreground animate-flip-in text-center"
+            className="text-7xl md:text-8xl font-black uppercase tracking-wide text-accent-foreground animate-flip-in text-center"
           >
             {cyclingWords[mainIndex]}
           </h2>
         </div>
 
         <div className="bg-card rounded-lg px-6 py-3 shadow-lg transform -rotate-3 z-10 animate-slow-swing">
-          <p className="text-xl font-bold uppercase tracking-wider text-primary">GET PREPARED</p>
+          <p className="text-lg font-bold uppercase tracking-wider text-primary">GET PREPARED</p>
         </div>
       </div>
     </div>
